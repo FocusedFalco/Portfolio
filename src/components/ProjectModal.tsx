@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Calendar, Target, Award, ArrowUpRight, BarChart3, Users, Zap, FileText } from "lucide-react";
+import { X, Calendar, Target, Award, ArrowUpRight, BarChart3, Users, Zap, FileText, AlertCircle } from "lucide-react";
 
 interface ProjectDetails {
   id: string;
@@ -135,7 +135,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             {/* Problem Statement */}
             <div className="space-y-4">
               <h3 className="text-xl font-medium text-white flex items-center gap-2">
-                <X className="w-5 h-5 text-red-500" />
+                <AlertCircle className="w-5 h-5 text-red-500" />
                 Problem Statement & Impact
               </h3>
               <div className="bg-red-500/5 border border-red-500/10 p-5 rounded-xl space-y-3">
