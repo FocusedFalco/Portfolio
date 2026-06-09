@@ -112,7 +112,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                   <Users className="w-5 h-5 text-orange-500" />
                   Market Opportunity & Sizing
                 </h3>
-                <div className="grid grid-cols-3 gap-4 text-center">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 text-center">
                   <div className="p-3 bg-neutral-900/40 rounded-lg border border-neutral-900/60">
                     <span className="block text-[10px] text-neutral-500 uppercase font-semibold">TAM</span>
                     <span className="text-lg md:text-xl font-bold text-white">{project.marketSize.tam}</span>

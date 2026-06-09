@@ -41,11 +41,11 @@ export default function SunsetCanvas() {
       </div>
 
       {/* Diagonal strips wrapper */}
-      <div className="absolute right-0 top-[-100px] md:top-[-150px] w-full max-w-[800px] h-[130%] flex justify-center items-center gap-2 md:gap-4 pointer-events-auto z-20">
+      <div className="absolute right-0 top-[-100px] md:top-[-150px] w-full max-w-[800px] h-[130%] flex justify-center items-center gap-1.5 md:gap-4 pointer-events-auto z-20">
         {strips.map((strip, idx) => (
           <motion.div
             key={idx}
-            className={`w-10 md:w-16 ${strip.height} rounded-full diagonal-strip relative shadow-2xl overflow-hidden`}
+            className={`w-7 md:w-16 ${strip.height} rounded-full diagonal-strip relative shadow-2xl overflow-hidden`}
             style={{
               background: strip.via 
                 ? `linear-gradient(to bottom, ${strip.from}, ${strip.via}, ${strip.to})`

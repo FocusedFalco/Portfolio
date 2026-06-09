@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { 
   Mail, 
   MapPin, 
@@ -12,7 +12,9 @@ import {
   FileText, 
   Settings,
   ChevronRight,
-  Award
+  Award,
+  Menu,
+  X
 } from "lucide-react";
 import SunsetCanvas from "@/components/SunsetCanvas";
 import ProjectModal from "@/components/ProjectModal";
@@ -258,6 +260,7 @@ const projectsData = [
 
 export default function PortfolioHome() {
   const [selectedProject, setSelectedProject] = useState<typeof projectsData[0] | null>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-[#030303] text-neutral-100 font-sans relative pb-24 selection:bg-orange-500 selection:text-black">
@@ -272,7 +275,7 @@ export default function PortfolioHome() {
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         
         {/* Header / Nav */}
-        <header className="py-8 flex items-center justify-between border-b border-neutral-900/60 mb-12">
+        <header className="py-6 flex items-center justify-between border-b border-neutral-900/60 mb-12 relative">
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -281,6 +284,8 @@ export default function PortfolioHome() {
             <span className="w-2.5 h-2.5 rounded-full bg-orange-500 animate-pulse"></span>
             <span className="text-lg font-bold tracking-tight text-white">Rakshit Raj</span>
           </motion.div>
+          
+          {/* Desktop Nav */}
           <motion.nav 
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -292,6 +297,35 @@ export default function PortfolioHome() {
             <a href="#resume" className="hover:text-white transition-colors">Resume</a>
             <a href="#contact" className="hover:text-white transition-colors">Contact</a>
           </motion.nav>
+
+          {/* Mobile Hamburger Toggle */}
+          <div className="md:hidden flex items-center">
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="p-2 text-neutral-400 hover:text-white transition-colors"
+              aria-label="Toggle menu"
+            >
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
+
+          {/* Mobile Nav Menu Dropdown */}
+          <AnimatePresence>
+            {mobileMenuOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                className="absolute top-full left-0 right-0 mt-2 p-6 bg-neutral-950/95 border border-neutral-900 rounded-xl flex flex-col gap-4 text-base text-neutral-400 font-light z-50 backdrop-blur-md shadow-2xl"
+              >
+                <a href="#about" onClick={() => setMobileMenuOpen(false)} className="hover:text-white transition-colors py-2 border-b border-neutral-900/50">About</a>
+                <a href="#skills" onClick={() => setMobileMenuOpen(false)} className="hover:text-white transition-colors py-2 border-b border-neutral-900/50">Skills</a>
+                <a href="#projects" onClick={() => setMobileMenuOpen(false)} className="hover:text-white transition-colors py-2 border-b border-neutral-900/50">Projects</a>
+                <a href="#resume" onClick={() => setMobileMenuOpen(false)} className="hover:text-white transition-colors py-2 border-b border-neutral-900/50">Resume</a>
+                <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="hover:text-white transition-colors py-2">Contact</a>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </header>
 
         {/* Hero Section */}
@@ -308,7 +342,7 @@ export default function PortfolioHome() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-5xl md:text-7xl font-extrabold tracking-tight text-white leading-[1.05]"
+              className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight text-white leading-[1.05]"
             >
               Building products <br className="hidden md:block"/>
               <span className="text-gradient">people love.</span>
@@ -317,7 +351,7 @@ export default function PortfolioHome() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-lg md:text-xl text-neutral-400 font-light leading-relaxed"
+              className="text-base sm:text-lg md:text-xl text-neutral-400 font-light leading-relaxed"
             >
               IIT (ISM) Dhanbad pre-final year student. Specializing in data-backed product strategy, user-centric discovery, wireframing, and custom AI prototyping. Proven track record in national product cases.
             </motion.p>
@@ -363,7 +397,7 @@ export default function PortfolioHome() {
                 Product thinking, user empathy, and strategic prioritization mapped at the intersection of business and technology.
               </p>
             </div>
-            <div className="relative group w-48 h-48 md:w-full md:max-w-[240px] aspect-square rounded-2xl overflow-hidden border border-neutral-800 bg-neutral-950/40 p-2 transition-all hover:border-orange-500/30">
+            <div className="relative group w-48 h-48 md:w-full md:max-w-[240px] aspect-square rounded-2xl overflow-hidden border border-neutral-800 bg-neutral-950/40 p-2 transition-all hover:border-orange-500/30 mx-auto md:mx-0">
               <div className="absolute inset-0 bg-gradient-to-tr from-orange-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
               <Image 
                 src="/rakshit.png" 
