@@ -16,8 +16,18 @@ import {
   Menu,
   X
 } from "lucide-react";
-import SunsetCanvas from "@/components/SunsetCanvas";
 import ProjectModal from "@/components/ProjectModal";
+
+// Colors for the sunset strips from bottom-left (reds) to top-right (golds)
+const strips = [
+  { from: "#DC2626", to: "#EF4444", delay: 0.1, height: "h-[250px] md:h-[350px]" }, // Red
+  { from: "#DC2626", via: "#EA580C", to: "#F97316", delay: 0.15, height: "h-[300px] md:h-[420px]" }, // Red-Orange
+  { from: "#EA580C", via: "#F97316", to: "#FB923C", delay: 0.2, height: "h-[350px] md:h-[480px]" }, // Orange
+  { from: "#F97316", via: "#FDBA74", to: "#F59E0B", delay: 0.25, height: "h-[400px] md:h-[530px]" }, // Orange-Gold
+  { from: "#F59E0B", via: "#FBBF24", to: "#FDE047", delay: 0.3, height: "h-[420px] md:h-[570px]" }, // Gold-Yellow
+  { from: "#FBBF24", via: "#FDE047", to: "#FEF08A", delay: 0.35, height: "h-[370px] md:h-[500px]" }, // Yellow
+  { from: "#F59E0B", via: "#F97316", to: "#EA580C", delay: 0.4, height: "h-[280px] md:h-[380px]" }, // Orange
+];
 
 // Setup full project database extracted from scraped Notion/PDF data
 const projectsData = [
@@ -261,6 +271,7 @@ const projectsData = [
 export default function PortfolioHome() {
   const [selectedProject, setSelectedProject] = useState<typeof projectsData[0] | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [hoveredStripIndex, setHoveredStripIndex] = useState<number | null>(null);
 
   return (
     <div className="min-h-screen bg-[#030303] text-neutral-100 font-sans relative pb-24 selection:bg-orange-500 selection:text-black">
@@ -328,13 +339,18 @@ export default function PortfolioHome() {
           </AnimatePresence>
         </header>
 
-        {/* Hero Section */}
-        <section className="mb-20 space-y-12">
-          <div className="max-w-3xl space-y-6">
+        {/* Unified Hero Section */}
+        <section className="mb-20 relative overflow-hidden rounded-3xl bg-[#050505]/60 border border-neutral-900 p-8 md:p-16 min-h-[520px] md:min-h-[580px] flex items-center group">
+          {/* Ambient Background Grid Overlay inside Hero */}
+          <div className="absolute inset-0 grid-bg opacity-10 pointer-events-none z-10" />
+          <div className="absolute inset-0 bg-gradient-to-tr from-orange-950/10 via-transparent to-transparent pointer-events-none z-10" />
+
+          {/* Hero Content (left side) */}
+          <div className="max-w-2xl space-y-6 relative z-30 pointer-events-auto">
             <motion.span 
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-xs uppercase tracking-widest text-orange-500 font-semibold bg-orange-500/10 px-3 py-1 rounded-full border border-orange-500/20"
+              className="inline-block text-xs uppercase tracking-widest text-orange-500 font-semibold bg-orange-500/10 px-3 py-1 rounded-full border border-orange-500/20"
             >
               Aspiring Product Manager
             </motion.span>
@@ -351,7 +367,7 @@ export default function PortfolioHome() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-base sm:text-lg md:text-xl text-neutral-400 font-light leading-relaxed"
+              className="text-base sm:text-lg md:text-xl text-neutral-400 font-light leading-relaxed max-w-xl"
             >
               IIT (ISM) Dhanbad pre-final year student. Specializing in data-backed product strategy, user-centric discovery, wireframing, and custom AI prototyping. Proven track record in national product cases.
             </motion.p>
@@ -378,14 +394,59 @@ export default function PortfolioHome() {
             </motion.div>
           </div>
 
-          {/* Sunset Theme Visual Canvas component */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.4 }}
-          >
-            <SunsetCanvas />
-          </motion.div>
+          {/* Interactive Sunset Strips (Right side background overlay) */}
+          <div className="absolute right-[-60px] md:right-0 top-[-100px] md:top-[-150px] w-full max-w-[320px] sm:max-w-[480px] md:max-w-[650px] h-[145%] flex justify-end items-center gap-1.5 md:gap-3.5 z-20 pointer-events-auto pr-8 md:pr-16 opacity-35 group-hover:opacity-85 md:opacity-75 md:group-hover:opacity-100 transition-opacity duration-500">
+            {strips.map((strip, idx) => (
+              <motion.div
+                key={idx}
+                className={`w-5 sm:w-7 md:w-12 ${strip.height} rounded-full diagonal-strip relative shadow-2xl overflow-hidden`}
+                style={{
+                  background: strip.via 
+                    ? `linear-gradient(to bottom, ${strip.from}, ${strip.via}, ${strip.to})`
+                    : `linear-gradient(to bottom, ${strip.from}, ${strip.to})`,
+                  boxShadow: hoveredStripIndex === idx
+                    ? `0 0 50px 10px ${strip.from}50, 0 10px 30px rgba(0,0,0,0.8)`
+                    : `0 0 20px 2px ${strip.from}20, 0 5px 15px rgba(0,0,0,0.5)`,
+                }}
+                initial={{ y: 200, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 45,
+                  damping: 15,
+                  delay: strip.delay
+                }}
+                whileHover={{
+                  scale: 1.05,
+                  filter: "brightness(1.25)",
+                  y: -20,
+                }}
+                onHoverStart={() => setHoveredStripIndex(idx)}
+                onHoverEnd={() => setHoveredStripIndex(null)}
+              >
+                {/* Glossy radial overlay inside strip */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-white/10 pointer-events-none"></div>
+                {/* Ambient inner shimmer */}
+                <motion.div 
+                  className="absolute inset-0 bg-gradient-to-b from-white/0 via-white/10 to-white/0"
+                  animate={{
+                    y: ["-100%", "100%"]
+                  }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "linear",
+                    delay: idx * 0.5
+                  }}
+                />
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Interactive Hint Pill */}
+          <div className="absolute bottom-4 right-8 z-35 text-[10px] text-neutral-500 font-light pointer-events-none hidden md:block group-hover:text-neutral-400 transition-colors">
+            ✦ Hover over the sunset bars to interact
+          </div>
         </section>
 
         {/* About Section */}
