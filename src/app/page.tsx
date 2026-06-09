@@ -20,13 +20,13 @@ import ProjectModal from "@/components/ProjectModal";
 
 // Colors for the sunset strips from bottom-left (reds) to top-right (golds)
 const strips = [
-  { from: "#DC2626", to: "#EF4444", delay: 0.1, height: "h-[250px] md:h-[350px]" }, // Red
-  { from: "#DC2626", via: "#EA580C", to: "#F97316", delay: 0.15, height: "h-[300px] md:h-[420px]" }, // Red-Orange
-  { from: "#EA580C", via: "#F97316", to: "#FB923C", delay: 0.2, height: "h-[350px] md:h-[480px]" }, // Orange
-  { from: "#F97316", via: "#FDBA74", to: "#F59E0B", delay: 0.25, height: "h-[400px] md:h-[530px]" }, // Orange-Gold
-  { from: "#F59E0B", via: "#FBBF24", to: "#FDE047", delay: 0.3, height: "h-[420px] md:h-[570px]" }, // Gold-Yellow
-  { from: "#FBBF24", via: "#FDE047", to: "#FEF08A", delay: 0.35, height: "h-[370px] md:h-[500px]" }, // Yellow
-  { from: "#F59E0B", via: "#F97316", to: "#EA580C", delay: 0.4, height: "h-[280px] md:h-[380px]" }, // Orange
+  { from: "#DC2626", to: "#EF4444", delay: 0.1, height: "h-[300px] md:h-[420px]" }, // Red
+  { from: "#DC2626", via: "#EA580C", to: "#F97316", delay: 0.15, height: "h-[350px] md:h-[500px]" }, // Red-Orange
+  { from: "#EA580C", via: "#F97316", to: "#FB923C", delay: 0.2, height: "h-[400px] md:h-[580px]" }, // Orange
+  { from: "#F97316", via: "#FDBA74", to: "#F59E0B", delay: 0.25, height: "h-[450px] md:h-[650px]" }, // Orange-Gold
+  { from: "#F59E0B", via: "#FBBF24", to: "#FDE047", delay: 0.3, height: "h-[480px] md:h-[700px]" }, // Gold-Yellow
+  { from: "#FBBF24", via: "#FDE047", to: "#FEF08A", delay: 0.35, height: "h-[420px] md:h-[620px]" }, // Yellow
+  { from: "#F59E0B", via: "#F97316", to: "#EA580C", delay: 0.4, height: "h-[320px] md:h-[470px]" }, // Orange
 ];
 
 // Setup full project database extracted from scraped Notion/PDF data
@@ -279,8 +279,7 @@ export default function PortfolioHome() {
       <div className="absolute top-0 left-1/4 w-[500px] h-[300px] sunset-glow bg-orange-600/20" />
       <div className="absolute top-0 right-1/4 w-[400px] h-[250px] sunset-glow bg-red-600/10" />
 
-      {/* Grid Overlay Background */}
-      <div className="absolute inset-0 grid-bg opacity-[0.03] pointer-events-none z-0" />
+
 
       {/* Container */}
       <div className="max-w-6xl mx-auto px-6 relative z-10">
@@ -341,8 +340,6 @@ export default function PortfolioHome() {
 
         {/* Unified Hero Section */}
         <section className="mb-20 relative overflow-hidden rounded-3xl bg-[#050505]/60 border border-neutral-900 p-8 md:p-16 min-h-[520px] md:min-h-[580px] flex items-center group">
-          {/* Ambient Background Grid Overlay inside Hero */}
-          <div className="absolute inset-0 grid-bg opacity-10 pointer-events-none z-10" />
           <div className="absolute inset-0 bg-gradient-to-tr from-orange-950/10 via-transparent to-transparent pointer-events-none z-10" />
 
           {/* Hero Content (left side) */}
@@ -395,11 +392,11 @@ export default function PortfolioHome() {
           </div>
 
           {/* Interactive Sunset Strips (Right side background overlay) */}
-          <div className="absolute right-[-60px] md:right-0 top-[-100px] md:top-[-150px] w-full max-w-[320px] sm:max-w-[480px] md:max-w-[650px] h-[145%] flex justify-end items-center gap-1.5 md:gap-3.5 z-20 pointer-events-auto pr-8 md:pr-16 opacity-35 group-hover:opacity-85 md:opacity-75 md:group-hover:opacity-100 transition-opacity duration-500">
+          <div className="absolute right-0 top-0 bottom-0 w-full max-w-[320px] sm:max-w-[480px] md:max-w-[650px] flex justify-end items-center gap-2 md:gap-4 pointer-events-auto pr-8 md:pr-16 z-20 opacity-35 group-hover:opacity-85 md:opacity-75 md:group-hover:opacity-100 transition-opacity duration-500">
             {strips.map((strip, idx) => (
               <motion.div
                 key={idx}
-                className={`w-5 sm:w-7 md:w-12 ${strip.height} rounded-full diagonal-strip relative shadow-2xl overflow-hidden`}
+                className={`w-5 sm:w-7 md:w-12 ${strip.height} rounded-full relative shadow-2xl overflow-hidden`}
                 style={{
                   background: strip.via 
                     ? `linear-gradient(to bottom, ${strip.from}, ${strip.via}, ${strip.to})`
@@ -408,8 +405,8 @@ export default function PortfolioHome() {
                     ? `0 0 50px 10px ${strip.from}50, 0 10px 30px rgba(0,0,0,0.8)`
                     : `0 0 20px 2px ${strip.from}20, 0 5px 15px rgba(0,0,0,0.5)`,
                 }}
-                initial={{ y: 200, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
+                initial={{ y: 200, opacity: 0, rotate: -35 }}
+                animate={{ y: 0, opacity: 1, rotate: -35 }}
                 transition={{
                   type: "spring",
                   stiffness: 45,
@@ -420,6 +417,7 @@ export default function PortfolioHome() {
                   scale: 1.05,
                   filter: "brightness(1.25)",
                   y: -20,
+                  rotate: -35
                 }}
                 onHoverStart={() => setHoveredStripIndex(idx)}
                 onHoverEnd={() => setHoveredStripIndex(null)}
