@@ -39,15 +39,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .grain-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0.05;
-  background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAcskYDOX7Gxyr6q_F0cdwYfmDBbVQ9RoFjCOyopdBTbd94tlmfySzGiaABOMbiZAsgm0FOMhn1TWFktx1sAUZ5xv-Xy4IbfVy5xB-X5q3WQOSP9yTTnwMjoTuudEX0wnAQN5E_oYd2j1VB_QIG59JOe6LJdH2jQWumid1kkn073HNDkpi6TdzqbYACOyY6Om96z-CCh9AajWWXl8FQB65kS1nrzFVOvpj7B8I9m8wsCDSndHBSojOx4WGel8y6nl7wawrYdUc4le4");
+  display: none;
 }
 
 .glass-card {
