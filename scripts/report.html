@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Academic Performance Analysis Report</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter for UI/Body, Playfair Display for formal headers -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    @media print {
+      body {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        background-color: #ffffff;
+      }
+      .page-section {
+        page-break-after: always;
+        break-after: page;
+      }
+      .page-section:last-child {
+        page-break-after: avoid;
+        break-after: avoid;
+      }
+    }
+    
+    .metric-badge {
+      background: linear-gradient(135deg, #e0e7ff 0%, #e0f2fe 100%);
+      color: #4338ca;
+    }
+    
+    .accent-gradient {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    }
+
+    .card-shadow {
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+    }
+  </style>
+</head>
+<body class="bg-white text-slate-800 font-sans leading-relaxed text-sm">
+
+  <!-- ==================== PAGE 1: COVER PAGE ==================== -->
+  <div class="page-section flex flex-col justify-between" style="min-height: 235mm;">
+    <!-- Top Bar Accent -->
+    <div class="h-3 w-full bg-gradient-to-r from-slate-900 via-indigo-950 to-teal-800 rounded-full"></div>
+    
+    <!-- Title Section -->
+    <div class="my-auto px-4 md:px-12 py-12 flex flex-col justify-center">
+      <div class="flex items-center gap-2 mb-6">
+        <span class="text-xs font-semibold tracking-widest text-indigo-600 uppercase bg-indigo-50 px-3 py-1 rounded-full">
+          Research & Analytics Report
+        </span>
+        <span class="text-slate-300">|</span>
+        <span class="text-xs text-slate-500 tracking-wider font-medium">SQL & Tableau Workflow</span>
+      </div>
+      
+      <h1 class="font-serif text-5xl font-bold text-slate-900 tracking-tight leading-tight mb-6">
+        Student Academic <br/>Performance Analysis
+      </h1>
+      
+      <p class="text-lg text-slate-600 max-w-xl font-light leading-relaxed border-l-2 border-indigo-500 pl-4">
+        An investigation into habits, lifestyle choices, and demographics associated with exam outcomes using a dataset of 1,000 students.
+      </p>
+      
+      <!-- Abstract Decal -->
+      <div class="mt-12 flex gap-4">
+        <div class="w-16 h-1 bg-indigo-600 rounded"></div>
+        <div class="w-8 h-1 bg-teal-500 rounded"></div>
+        <div class="w-4 h-1 bg-slate-300 rounded"></div>
+      </div>
+    </div>
+    
+    <!-- Meta Info Block at Bottom -->
+    <div class="mt-auto bg-slate-50 border border-slate-100 rounded-2xl p-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+      <div>
+        <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Prepared For</h4>
+        <p class="font-semibold text-slate-800">Academic Analytics & Institutional Research</p>
+        <p class="text-xs text-slate-500 mt-1">Data scope: N = 1,000 Student Records</p>
+      </div>
+      
+      <div class="flex gap-12">
+        <div>
+          <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Analysis Date</h4>
+          <p class="font-medium text-slate-700">June 2026</p>
+          <p class="text-xs text-slate-500">Version 1.0 (Final)</p>
+        </div>
+        <div>
+          <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Workflow Stack</h4>
+          <div class="flex gap-2 mt-1">
+            <span class="text-[10px] font-bold bg-slate-200 text-slate-700 px-2 py-0.5 rounded">PostgreSQL</span>
+            <span class="text-[10px] font-bold bg-indigo-100 text-indigo-800 px-2 py-0.5 rounded">Tableau Desktop</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== PAGE 2: PROJECT OVERVIEW & DATASET DESCRIPTION ==================== -->
+  <div class="page-section flex flex-col justify-between pt-4" style="min-height: 235mm;">
+    <div>
+      <!-- Section Header -->
+      <div class="flex justify-between items-center border-b border-slate-100 pb-4 mb-6">
+        <h2 class="font-serif text-2xl font-bold text-slate-900">01. Project Overview & Scope</h2>
+        <span class="text-xs text-slate-400 font-medium tracking-wider">SECTION I</span>
+      </div>
+
+      <!-- Overview Content -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-10">
+        <div class="md:col-span-7 pr-4">
+          <p class="text-slate-600 leading-relaxed mb-4">
+            The objective of this project was to identify the key factors that influence student academic performance and determine which habits, lifestyle choices, and demographic characteristics are associated with higher exam scores.
+          </p>
+          <p class="text-slate-600 leading-relaxed">
+            By analyzing the lifestyle choices and demographic parameters of a large, representative student population, institutions can implement targeted support strategies. This project followed a complete analytics workflow involving data extraction and segmentation through SQL, followed by exploratory visualization and dashboard creation in Tableau.
+          </p>
+        </div>
+        
+        <div class="md:col-span-5 bg-gradient-to-br from-slate-50 to-indigo-50/30 border border-indigo-100/50 rounded-xl p-5 card-shadow">
+          <h3 class="text-xs font-bold uppercase tracking-wider text-indigo-900 mb-3">Workflow Summary</h3>
+          <ul class="space-y-3 text-xs text-slate-600">
+            <li class="flex items-start gap-2">
+              <span class="text-indigo-600 font-bold">1.</span>
+              <span><strong>Data Preparation:</strong> Processed a database containing 1,000 student records.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-indigo-600 font-bold">2.</span>
+              <span><strong>SQL Queries:</strong> Extracted specific cohorts to examine factors such as sleep, screen time, and parental education.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-indigo-600 font-bold">3.</span>
+              <span><strong>Tableau Visualization:</strong> Built interactive dashboards showing trends and relationships.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Dataset Description Section -->
+      <div class="border-b border-slate-100 pb-3 mb-5">
+        <h2 class="font-serif text-xl font-bold text-slate-900">02. Dataset Description</h2>
+        <p class="text-xs text-slate-500 mt-1">The dataset covers 1,000 students across 15 distinct variables, structured into five major categories:</p>
+      </div>
+
+      <!-- Variables Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+        <!-- Card 1 -->
+        <div class="border border-slate-100 bg-slate-50/50 rounded-xl p-4 flex flex-col justify-between">
+          <div>
+            <div class="w-7 h-7 bg-indigo-50 text-indigo-600 rounded-lg flex items-center justify-center font-bold text-xs mb-3">DM</div>
+            <h4 class="font-bold text-slate-800 text-xs tracking-wide uppercase mb-2">Demographic</h4>
+            <ul class="text-xs text-slate-600 space-y-1.5 list-disc pl-3">
+              <li>Age</li>
+              <li>Gender</li>
+            </ul>
+          </div>
+          <p class="text-[10px] text-slate-400 mt-4 italic">Individual profile metrics</p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="border border-slate-100 bg-slate-50/50 rounded-xl p-4 flex flex-col justify-between">
+          <div>
+            <div class="w-7 h-7 bg-teal-50 text-teal-600 rounded-lg flex items-center justify-center font-bold text-xs mb-3">AC</div>
+            <h4 class="font-bold text-slate-800 text-xs tracking-wide uppercase mb-2">Academic</h4>
+            <ul class="text-xs text-slate-600 space-y-1.5 list-disc pl-3">
+              <li>Study Hours / Day</li>
+              <li>Attendance %</li>
+              <li>Exam Score</li>
+            </ul>
+          </div>
+          <p class="text-[10px] text-slate-400 mt-4 italic">Primary performance metrics</p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="border border-slate-100 bg-slate-50/50 rounded-xl p-4 flex flex-col justify-between">
+          <div>
+            <div class="w-7 h-7 bg-amber-50 text-amber-700 rounded-lg flex items-center justify-center font-bold text-xs mb-3">LF</div>
+            <h4 class="font-bold text-slate-800 text-xs tracking-wide uppercase mb-2">Lifestyle</h4>
+            <ul class="text-xs text-slate-600 space-y-1.5 list-disc pl-3">
+              <li>Sleep Hours</li>
+              <li>Diet Quality</li>
+              <li>Mental Health</li>
+              <li>Exercise Frequency</li>
+            </ul>
+          </div>
+          <p class="text-[10px] text-slate-400 mt-4 italic">Wellness and habit metrics</p>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="border border-slate-100 bg-slate-50/50 rounded-xl p-4 flex flex-col justify-between">
+          <div>
+            <div class="w-7 h-7 bg-rose-50 text-rose-600 rounded-lg flex items-center justify-center font-bold text-xs mb-3">ENT</div>
+            <h4 class="font-bold text-slate-800 text-xs tracking-wide uppercase mb-2">Entertainment</h4>
+            <ul class="text-xs text-slate-600 space-y-1.5 list-disc pl-3">
+              <li>Social Media Hours</li>
+              <li>Netflix Hours</li>
+            </ul>
+          </div>
+          <p class="text-[10px] text-slate-400 mt-4 italic">Screen-time metrics</p>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="border border-slate-100 bg-slate-50/50 rounded-xl p-4 flex flex-col justify-between">
+          <div>
+            <div class="w-7 h-7 bg-slate-100 text-slate-700 rounded-lg flex items-center justify-center font-bold text-xs mb-3">EXT</div>
+            <h4 class="font-bold text-slate-800 text-xs tracking-wide uppercase mb-2">External</h4>
+            <ul class="text-xs text-slate-600 space-y-1.5 list-disc pl-3">
+              <li>Part-Time Job</li>
+              <li>Extracurriculars</li>
+              <li>Parental Education</li>
+              <li>Internet Quality</li>
+            </ul>
+          </div>
+          <p class="text-[10px] text-slate-400 mt-4 italic">Environmental factors</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Page Footer Note -->
+    <div class="mt-8 border-t border-slate-100 pt-4 flex justify-between text-xs text-slate-400">
+      <span>Section 1: Context & Framework</span>
+      <span>Student Performance Analysis</span>
+    </div>
+  </div>
+
+  <!-- ==================== PAGE 3: SQL ANALYSIS & TABLEAU DEVELOPMENT ==================== -->
+  <div class="page-section flex flex-col justify-between pt-4" style="min-height: 235mm;">
+    <div>
+      <!-- Section Header -->
+      <div class="flex justify-between items-center border-b border-slate-100 pb-4 mb-6">
+        <h2 class="font-serif text-2xl font-bold text-slate-900">03. Data Extraction & SQL Analysis</h2>
+        <span class="text-xs text-slate-400 font-medium tracking-wider">SECTION II</span>
+      </div>
+
+      <p class="text-slate-600 mb-6">
+        Before dashboard construction, SQL queries isolated target student cohorts to analyze how specific lifestyle, demographic, and educational parameters correlated with exam scores. This filtering established baseline comparisons for the final Tableau dashboard.
+      </p>
+
+      <!-- SQL Query Focus Areas -->
+      <div class="space-y-4">
+        <!-- Area 1 -->
+        <div class="flex items-start gap-4 p-4 rounded-xl border border-slate-100 bg-slate-50/40">
+          <div class="flex-shrink-0 w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center font-mono text-xs font-bold">01</div>
+          <div>
+            <h4 class="font-bold text-slate-950 text-sm mb-1">Parental Education Analysis</h4>
+            <p class="text-xs text-slate-600">
+              Aggregated and calculated average exam scores across categories of parental education level to see if background impacts performance.
+            </p>
+          </div>
+        </div>
+
+        <!-- Area 2 -->
+        <div class="flex items-start gap-4 p-4 rounded-xl border border-slate-100 bg-slate-50/40">
+          <div class="flex-shrink-0 w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center font-mono text-xs font-bold">02</div>
+          <div>
+            <h4 class="font-bold text-slate-950 text-sm mb-1">Lifestyle & Wellness Querying</h4>
+            <p class="text-xs text-slate-600">
+              Filtered student populations on overlapping wellness metrics: diet quality, mental health rating, and sleep duration to study compound effects of physical and mental health.
+            </p>
+          </div>
+        </div>
+
+        <!-- Area 3 -->
+        <div class="flex items-start gap-4 p-4 rounded-xl border border-slate-100 bg-slate-50/40">
+          <div class="flex-shrink-0 w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center font-mono text-xs font-bold">03</div>
+          <div>
+            <h4 class="font-bold text-slate-950 text-sm mb-1">Entertainment Consumption Analysis</h4>
+            <p class="text-xs text-slate-600">
+              Segmented students by high vs. low screen-time using combined metrics (social media + Netflix hours) to identify thresholds of academic distraction.
+            </p>
+          </div>
+        </div>
+
+        <!-- Area 4 -->
+        <div class="flex items-start gap-4 p-4 rounded-xl border border-slate-100 bg-slate-50/40">
+          <div class="flex-shrink-0 w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center font-mono text-xs font-bold">04</div>
+          <div>
+            <h4 class="font-bold text-slate-950 text-sm mb-1">Part-Time Employment Split</h4>
+            <p class="text-xs text-slate-600">
+              Created distinct datasets comparing employed vs. unemployed students to evaluate time constraints and academic trade-offs.
+            </p>
+          </div>
+        </div>
+
+        <!-- Area 5 -->
+        <div class="flex items-start gap-4 p-4 rounded-xl border border-slate-100 bg-slate-50/40">
+          <div class="flex-shrink-0 w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center font-mono text-xs font-bold">05</div>
+          <div>
+            <h4 class="font-bold text-slate-950 text-sm mb-1">Attendance Stratification</h4>
+            <p class="text-xs text-slate-600">
+              Grouped students into attendance percentage tiers to measure the direct relationship between physical class presence and exam marks.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 4: Tableau Development -->
+      <div class="mt-8 pt-6 border-t border-slate-100">
+        <h3 class="font-serif text-xl font-bold text-slate-900 mb-2">04. Dashboard Development in Tableau</h3>
+        <p class="text-slate-600">
+          Following SQL prep, the datasets were exported to Tableau. Dashboards were structured around core comparisons, prioritizing intuitive visualization layouts. Designs emphasized highlighting academic drivers and enabling quick cross-group cohort filtering.
+        </p>
+      </div>
+    </div>
+
+    <!-- Page Footer Note -->
+    <div class="mt-8 border-t border-slate-100 pt-4 flex justify-between text-xs text-slate-400">
+      <span>Section 2: SQL Pre-processing & Dashboard Strategy</span>
+      <span>Student Performance Analysis</span>
+    </div>
+  </div>
+
+  <!-- ==================== PAGE 4: TABLEAU DASHBOARD EXHIBITS (NEW) ==================== -->
+  <div class="page-section flex flex-col justify-between pt-4" style="min-height: 235mm;">
+    <div>
+      <!-- Section Header -->
+      <div class="flex justify-between items-center border-b border-slate-100 pb-4 mb-4">
+        <h2 class="font-serif text-2xl font-bold text-slate-900">04. Tableau Interactive Dashboards</h2>
+        <span class="text-xs text-slate-400 font-medium tracking-wider">EXHIBIT GALLERY</span>
+      </div>
+
+      <p class="text-xs text-slate-600 mb-4">
+        Below are the two primary interactive dashboards compiled in Tableau, showcasing student-level variables across demographics, habits, and exam averages.
+      </p>
+
+      <!-- Dashboards Gallery Side-by-Side -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Dashboard 1 Exhibit -->
+        <div class="bg-slate-50 border border-slate-100 rounded-xl p-4 card-shadow flex flex-col justify-between">
+          <div>
+            <div class="text-[10px] font-bold text-indigo-700 tracking-wider uppercase mb-2">EXHIBIT A: ACADEMIC PERFORMANCE FACTORS (SHEET I)</div>
+            <img class="w-full rounded-lg border border-slate-200 mb-3 bg-white" src="{{DASHBOARD_1_BASE64}}" alt="Academic Performance Factors Dashboard" style="max-height: 110mm; object-fit: contain;">
+          </div>
+          <p class="text-[10px] text-slate-500 leading-relaxed border-t border-slate-100 pt-2">
+            <strong>Figure 4.1:</strong> Lifestyle vs. Screen-time matrix. Summarizes average exam scores by general wellness rating ("sadge" vs. "happy" life), screen-time distraction levels (chronically online vs. non-chronically online), part-time job status, and extracurricular participation.
+          </p>
+        </div>
+
+        <!-- Dashboard 2 Exhibit -->
+        <div class="bg-slate-50 border border-slate-100 rounded-xl p-4 card-shadow flex flex-col justify-between">
+          <div>
+            <div class="text-[10px] font-bold text-indigo-700 tracking-wider uppercase mb-2">EXHIBIT B: ACADEMIC PERFORMANCE FACTORS - II (SHEET II)</div>
+            <img class="w-full rounded-lg border border-slate-200 mb-3 bg-white" src="{{DASHBOARD_2_BASE64}}" alt="Academic Performance Factors II Dashboard" style="max-height: 110mm; object-fit: contain;">
+          </div>
+          <p class="text-[10px] text-slate-500 leading-relaxed border-t border-slate-100 pt-2">
+            <strong>Figure 4.2:</strong> Demographics, Education & Attendance trends. Visualizes exam scores by parental education (treemap), age (bubble chart), attendance level split (low vs. high average scores), and scatter/trend lines mapping daily study hours to exam outcomes.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Page Footer Note -->
+    <div class="mt-4 border-t border-slate-100 pt-3 flex justify-between text-xs text-slate-400">
+      <span>Section 3: Dashboard Layout Gallery</span>
+      <span>Student Performance Analysis</span>
+    </div>
+  </div>
+
+  <!-- ==================== PAGE 5: KEY FINDINGS ==================== -->
+  <div class="page-section flex flex-col justify-between pt-4" style="min-height: 235mm;">
+    <div>
+      <!-- Section Header -->
+      <div class="flex justify-between items-center border-b border-slate-100 pb-4 mb-6">
+        <h2 class="font-serif text-2xl font-bold text-slate-900">05. Key Findings & Insights</h2>
+        <span class="text-xs text-slate-400 font-medium tracking-wider">SECTION III</span>
+      </div>
+
+      <!-- Findings Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <!-- Finding 1 -->
+        <div class="border border-slate-100 rounded-xl p-5 card-shadow flex flex-col justify-between bg-slate-50/30">
+          <div>
+            <div class="flex justify-between items-start mb-3">
+              <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded">01. CLASS PARTICIPATION</span>
+              <span class="text-xs font-bold text-indigo-900 bg-indigo-100/70 px-2 py-0.5 rounded">1.05x Impact</span>
+            </div>
+            <h4 class="font-bold text-slate-900 text-sm mb-2">Attendance is a Dominant Performance Predictor</h4>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Comparison between high and low attendance cohorts reveals clear differences. Students with higher attendance consistently achieve examination results of <strong>about 1.05x</strong> as compared to those with low attendance, highlighting the critical nature of classroom participation.
+            </p>
+          </div>
+        </div>
+
+        <!-- Finding 2 -->
+        <div class="border border-slate-100 rounded-xl p-5 card-shadow flex flex-col justify-between bg-slate-50/30">
+          <div>
+            <div class="flex justify-between items-start mb-3">
+              <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded">02. HABITS</span>
+              <span class="text-xs font-bold text-teal-800 bg-teal-50 px-2 py-0.5 rounded">Strong Trend</span>
+            </div>
+            <h4 class="font-bold text-slate-900 text-sm mb-2">Study Hours Directly Correlate with High Scores</h4>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Line charts comparing study hours and exam scores display a strong upward trend. Invested study time translates directly into higher marks. Notably, this positive correlation holds true regardless of the student's gender.
+            </p>
+          </div>
+        </div>
+
+        <!-- Finding 3 -->
+        <div class="border border-slate-100 rounded-xl p-5 card-shadow flex flex-col justify-between bg-slate-50/30">
+          <div>
+            <div class="flex justify-between items-start mb-3">
+              <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded">03. DISTRACTIONS</span>
+              <span class="text-xs font-bold text-rose-800 bg-rose-50 px-2 py-0.5 rounded">Negative Drag</span>
+            </div>
+            <h4 class="font-bold text-slate-900 text-sm mb-2">Excessive Online Entertainment Decreases Scores</h4>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Students categorized as "chronically online" (high social media and streaming consumption) scored noticeably lower than peers with moderate digital consumption. Tableau dashboards suggest excessive media consumption directly impacts available study time.
+            </p>
+          </div>
+        </div>
+
+        <!-- Finding 4 -->
+        <div class="border border-slate-100 rounded-xl p-5 card-shadow flex flex-col justify-between bg-slate-50/30">
+          <div>
+            <div class="flex justify-between items-start mb-3">
+              <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded">04. WELL-BEING</span>
+              <span class="text-xs font-bold text-indigo-900 bg-indigo-100/70 px-2 py-0.5 rounded">1.20x Impact</span>
+            </div>
+            <h4 class="font-bold text-slate-900 text-sm mb-2">Mental Health & Lifestyle Habits Matter Greatly</h4>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              SQL analyses revealed that healthy habits (better sleep, diet quality, and higher mental health ratings) correlate with stronger outcomes. Students with highly rated well-being scored <strong>an average of 1.2x</strong> higher than those with poor ratings.
+            </p>
+          </div>
+        </div>
+
+        <!-- Finding 5 -->
+        <div class="border border-slate-100 rounded-xl p-5 card-shadow flex flex-col justify-between bg-slate-50/30">
+          <div>
+            <div class="flex justify-between items-start mb-3">
+              <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded">05. BACKGROUND</span>
+              <span class="text-xs font-bold text-slate-600 bg-slate-100 px-2 py-0.5 rounded">Limited Impact</span>
+            </div>
+            <h4 class="font-bold text-slate-900 text-sm mb-2">Parental Education Has Minimal Influence</h4>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              A treemap comparing parental education levels showed only minor differences in student exam performance. Individual habits and lifestyle choices play a significantly larger role than parental background in this dataset.
+            </p>
+          </div>
+        </div>
+
+        <!-- Finding 6 -->
+        <div class="border border-slate-100 rounded-xl p-5 card-shadow flex flex-col justify-between bg-slate-50/30">
+          <div>
+            <div class="flex justify-between items-start mb-3">
+              <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded">06. EMPLOYMENT</span>
+              <span class="text-xs font-bold text-slate-600 bg-slate-100 px-2 py-0.5 rounded">Negligible Effect</span>
+            </div>
+            <h4 class="font-bold text-slate-900 text-sm mb-2">Part-Time Jobs Do Not Impede Academic Success</h4>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Contrary to the common assumption that part-time jobs reduce academic performance, SQL queries and dashboards show only small, negligible score differences between employed and unemployed students.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Page Footer Note -->
+    <div class="mt-8 border-t border-slate-100 pt-4 flex justify-between text-xs text-slate-400">
+      <span>Section 4: Analysis Outcomes & Core Findings</span>
+      <span>Student Performance Analysis</span>
+    </div>
+  </div>
+
+  <!-- ==================== PAGE 6: VISUALIZATION REVIEW & CONCLUSION ==================== -->
+  <div class="page-section flex flex-col justify-between pt-4" style="min-height: 235mm;">
+    <div>
+      <!-- Section Header -->
+      <div class="flex justify-between items-center border-b border-slate-100 pb-4 mb-6">
+        <h2 class="font-serif text-2xl font-bold text-slate-900">06. Visualization Analysis</h2>
+        <span class="text-xs text-slate-400 font-medium tracking-wider">SECTION IV</span>
+      </div>
+
+      <!-- Comparison of Visualizations -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <!-- Effective Visualizations -->
+        <div class="border-l-4 border-teal-500 pl-4 space-y-4">
+          <h3 class="text-sm font-bold text-teal-800 uppercase tracking-wider flex items-center gap-1.5">
+            <span class="text-lg">✓</span> Most Effective Visualizations
+          </h3>
+          
+          <div class="space-y-3">
+            <div>
+              <h4 class="font-semibold text-slate-900 text-xs">Attendance vs. Exam Score Analysis</h4>
+              <p class="text-xs text-slate-600 mt-0.5">
+                Demonstrated one of the strongest relationships in the dataset and provided clear, actionable insights for policy makers.
+              </p>
+            </div>
+            
+            <div>
+              <h4 class="font-semibold text-slate-900 text-xs">Study Hours Trend Charts</h4>
+              <p class="text-xs text-slate-600 mt-0.5">
+                Line charts showed performance increases with study time. Importantly, it highlighted that high-attendance students score higher than low-attendance peers when study hours are identical.
+              </p>
+            </div>
+            
+            <div>
+              <h4 class="font-semibold text-slate-900 text-xs">Chronically Online vs. Non-Chronically Online</h4>
+              <p class="text-xs text-slate-600 mt-0.5">
+                Side-by-side cohort comparisons showed low-screen-time students have a clear academic edge over high-screen-time students.
+              </p>
+            </div>
+
+            <div>
+              <h4 class="font-semibold text-slate-900 text-xs">Parental Education Treemap</h4>
+              <p class="text-xs text-slate-600 mt-0.5">
+                Visually engaging layout summarizing scores, demonstrating that parental background has minimal bearing on academic success.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Limited Insight Visualizations -->
+        <div class="border-l-4 border-amber-500 pl-4 space-y-4">
+          <h3 class="text-sm font-bold text-amber-800 uppercase tracking-wider flex items-center gap-1.5">
+            <span class="text-lg">✗</span> Visualizations with Limited Insight
+          </h3>
+          
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-semibold text-slate-900 text-xs">Age Bubble Chart</h4>
+              <p class="text-xs text-slate-600 mt-0.5">
+                Although visually appealing, the bubble chart showed only minor variations in average scores across age groups, failing to yield actionable insights. A simpler visualization would suffice.
+              </p>
+            </div>
+            
+            <div>
+              <h4 class="font-semibold text-slate-900 text-xs">Extracurricular Participation Chart</h4>
+              <p class="text-xs text-slate-600 mt-0.5">
+                Negligible performance differences were found between active and non-active students. Extracurriculars do not hurt academics and should be viewed as opportunities for personal/social growth.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Conclusion Section -->
+      <div class="mt-8 pt-6 border-t border-slate-100 bg-slate-50/50 rounded-xl p-5 border border-slate-100">
+        <h2 class="font-serif text-xl font-bold text-slate-900 mb-3">07. Strategic Conclusion</h2>
+        <p class="text-xs text-slate-600 leading-relaxed mb-3">
+          The analysis demonstrates that academic performance is primarily driven by classroom attendance and study habits. Conversely, static demographic traits (parental education, gender, age) and part-time jobs show negligible academic impact.
+        </p>
+        <p class="text-xs text-slate-600 leading-relaxed">
+          From an analytics workflow perspective, SQL proved highly effective for cohort segmentation and raw data pre-processing, while Tableau successfully translated these queries into intuitive, interactive visual stories. This combined approach equips administrators with clear points of intervention to improve student outcomes.
+        </p>
+      </div>
+    </div>
+
+    <!-- Page Footer Note & Sign off -->
+    <div class="mt-8 border-t border-slate-100 pt-4 flex justify-between text-xs text-slate-400">
+      <span>Section 5: Visual Critique & Conclusions</span>
+      <span>Student Performance Analysis</span>
+    </div>
+  </div>
+
+</body>
+</html>
