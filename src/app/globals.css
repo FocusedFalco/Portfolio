@@ -1,13 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Rubik+Mono+One&family=Teko:wght@500;600;700&family=Russo+One&family=Share+Tech+Mono&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: #030303;
+  --background: #070708;
   --foreground: #F3F4F6;
-  --primary: #F97316;
+  --primary: #E55943;
 }
 
 body {
@@ -18,9 +18,40 @@ body {
   position: relative;
 }
 
+/* Custom Monospace Typography */
+.font-mono-tech {
+  font-family: 'Share Tech Mono', monospace;
+}
+
+.font-mono-code {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Custom Blocky Typography */
+.font-machine {
+  font-family: 'Outfit', sans-serif;
+  letter-spacing: -0.03em;
+  font-weight: 700;
+}
+
+.font-machine-condensed {
+  font-family: 'Outfit', sans-serif;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  line-height: 0.95;
+}
+
+.font-machine-modern {
+  font-family: 'Outfit', sans-serif;
+  letter-spacing: -0.01em;
+  font-weight: 600;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Outfit', sans-serif;
+  letter-spacing: -0.02em;
 }
+
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
@@ -31,47 +62,64 @@ h1, h2, h3, h4, h5, h6 {
   background: #0b0b0b;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(249, 115, 22, 0.3);
+  background: rgba(229, 89, 67, 0.3);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(249, 115, 22, 0.6);
+  background: rgba(229, 89, 67, 0.6);
 }
 
 .grain-overlay {
   display: none;
 }
 
+/* RIG Style Scanline Pattern Overlay */
+.scanline-grid {
+  position: relative;
+}
+.scanline-grid::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.12) 50%);
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.85;
+}
+
+
+/* Chamfered (Cut-Corner) Button Style */
+.btn-chamfer {
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-chamfer:hover {
+  filter: brightness(1.15);
+}
+
 .glass-card {
-  background: rgba(10, 10, 10, 0.6);
+  background: rgba(8, 8, 10, 0.75);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(249, 115, 22, 0.15);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(229, 89, 67, 0.12);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
 }
 
 .glass-card-hover {
   transition: all 0.3s ease;
 }
 .glass-card-hover:hover {
-  border-color: rgba(249, 115, 22, 0.3);
-  box-shadow: 0 12px 40px 0 rgba(249, 115, 22, 0.1);
+  border-color: rgba(229, 89, 67, 0.25);
+  box-shadow: 0 12px 40px 0 rgba(229, 89, 67, 0.06);
   transform: translateY(-2px);
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, #FFF 30%, #F97316 70%, #EF4444 100%);
+  background: linear-gradient(135deg, #111111 30%, #222222 70%, #000000 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-}
-
-.sunset-glow {
-  position: absolute;
-  filter: blur(120px);
-  pointer-events: none;
-  opacity: 0.45;
-  border-radius: 9999px;
-  z-index: 0;
 }
 
 .diagonal-strip {
@@ -81,6 +129,30 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Custom background grid */
 .grid-bg {
-  background-image: radial-gradient(rgba(249, 115, 22, 0.05) 1px, transparent 0);
+  background-image: radial-gradient(rgba(229, 89, 67, 0.03) 1px, transparent 0);
   background-size: 24px 24px;
 }
+
+@keyframes scan-sweep {
+  0% {
+    top: 0%;
+  }
+  50% {
+    top: 100%;
+  }
+  100% {
+    top: 0%;
+  }
+}
+
+.animate-scan-sweep {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: rgba(229, 89, 67, 0.4);
+  box-shadow: 0 0 8px rgba(229, 89, 67, 0.8);
+  animation: scan-sweep 4s ease-in-out infinite;
+  pointer-events: none;
+}
+

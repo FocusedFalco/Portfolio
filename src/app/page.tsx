@@ -274,247 +274,254 @@ export default function PortfolioHome() {
   const [hoveredStripIndex, setHoveredStripIndex] = useState<number | null>(null);
 
   return (
-    <div className="min-h-screen bg-[#030303] text-neutral-100 font-sans relative pb-24 selection:bg-orange-500 selection:text-black">
-      {/* Decorative Top Accent Light */}
-      <div className="absolute top-0 left-1/4 w-[500px] h-[300px] sunset-glow bg-orange-600/20" />
-      <div className="absolute top-0 right-1/4 w-[400px] h-[250px] sunset-glow bg-red-600/10" />
-
-
-
-      {/* Container */}
-      <div className="max-w-6xl mx-auto px-6 relative z-10">
-
-        {/* Header / Nav */}
-        <header className="py-6 flex items-center justify-between border-b border-neutral-900/60 mb-12 relative">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="flex items-center gap-2"
-          >
-            <span className="w-2.5 h-2.5 rounded-full bg-orange-500 animate-pulse"></span>
-            <span className="text-lg font-bold tracking-tight text-white">Rakshit Raj</span>
-          </motion.div>
-
-          {/* Desktop Nav */}
-          <motion.nav
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="hidden md:flex items-center gap-8 text-sm text-neutral-400 font-light"
-          >
-            <a href="#about" className="hover:text-white transition-colors">About</a>
-            <a href="#skills" className="hover:text-white transition-colors">Skills</a>
-            <a href="#projects" className="hover:text-white transition-colors">Projects</a>
-            <a href="#resume" className="hover:text-white transition-colors">Resume</a>
-            <a href="#contact" className="hover:text-white transition-colors">Contact</a>
-          </motion.nav>
-
-          {/* Mobile Hamburger Toggle */}
-          <div className="md:hidden flex items-center">
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-neutral-400 hover:text-white transition-colors"
-              aria-label="Toggle menu"
-            >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
+    <div className="min-h-screen bg-[#070708] text-neutral-100 font-sans relative pb-24 selection:bg-white selection:text-black">
+      
+      {/* Boxed Hero Block with Black Border Stroke Frame */}
+      <div className="p-4 md:p-6 bg-[#070708]">
+        <div className="bg-[#E55943] text-[#0A0A0C] scanline-grid relative overflow-hidden pb-16 rounded-[24px] border-[4px] border-black">
+          
+          {/* Abstract background graphics (simple SVG path lines) */}
+          <div className="absolute inset-0 pointer-events-none opacity-5 z-0">
+            <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+              <path d="M-10,50 Q25,80 60,30 T120,60" fill="none" stroke="#000" strokeWidth="8" />
+              <path d="M-10,60 Q25,90 60,40 T120,70" fill="none" stroke="#000" strokeWidth="8" />
+              <path d="M-10,70 Q25,100 60,50 T120,80" fill="none" stroke="#000" strokeWidth="8" />
+            </svg>
           </div>
 
-          {/* Mobile Nav Menu Dropdown */}
-          <AnimatePresence>
-            {mobileMenuOpen && (
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                className="absolute top-full left-0 right-0 mt-2 p-6 bg-neutral-950/95 border border-neutral-900 rounded-xl flex flex-col gap-4 text-base text-neutral-400 font-light z-50 backdrop-blur-md shadow-2xl"
-              >
-                <a href="#about" onClick={() => setMobileMenuOpen(false)} className="hover:text-white transition-colors py-2 border-b border-neutral-900/50">About</a>
-                <a href="#skills" onClick={() => setMobileMenuOpen(false)} className="hover:text-white transition-colors py-2 border-b border-neutral-900/50">Skills</a>
-                <a href="#projects" onClick={() => setMobileMenuOpen(false)} className="hover:text-white transition-colors py-2 border-b border-neutral-900/50">Projects</a>
-                <a href="#resume" onClick={() => setMobileMenuOpen(false)} className="hover:text-white transition-colors py-2 border-b border-neutral-900/50">Resume</a>
-                <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="hover:text-white transition-colors py-2">Contact</a>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </header>
+          <div className="max-w-6xl mx-auto px-6 relative z-10">
+            {/* Header / Nav */}
+            <header className="py-6 flex items-center justify-between border-b border-black/15 mb-16 relative z-20">
+              <div className="flex items-center gap-2">
+                <span className="text-2xl font-bold tracking-tight text-black font-sans">Rakshit Raj</span>
+              </div>
 
-        {/* Unified Hero Section */}
-        <section className="mb-20 relative overflow-hidden rounded-3xl bg-[#050505]/60 border border-neutral-900 p-8 md:p-16 min-h-[520px] md:min-h-[580px] flex items-center group">
-          <div className="absolute inset-0 bg-gradient-to-tr from-orange-950/10 via-transparent to-transparent pointer-events-none z-10" />
+              {/* Desktop Nav */}
+              <nav className="hidden md:flex items-center gap-8 text-xs font-mono-tech tracking-wider uppercase text-black font-semibold">
+                <a href="#about" className="hover:text-neutral-800 transition-colors">About</a>
+                <a href="#skills" className="hover:text-neutral-800 transition-colors">Skills</a>
+                <a href="#projects" className="hover:text-neutral-800 transition-colors">Projects</a>
+                <a href="#resume" className="hover:text-neutral-800 transition-colors">Resume</a>
+                <a href="#contact" className="bg-[#0A0A0C] text-white px-4 py-2 text-xs font-mono-tech uppercase btn-chamfer border border-black hover:bg-neutral-900 transition-all font-semibold">Get in Touch</a>
+              </nav>
 
-          {/* Hero Content (left side) */}
-          <div className="max-w-2xl space-y-6 relative z-30 pointer-events-auto">
-            <motion.span
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="inline-block text-xs uppercase tracking-widest text-orange-500 font-semibold bg-orange-500/10 px-3 py-1 rounded-full border border-orange-500/20"
-            >
-              Aspiring Product Manager
-            </motion.span>
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight text-white leading-[1.05]"
-            >
-              Building products <br className="hidden md:block" />
-              <span className="text-gradient">people love.</span>
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="text-base sm:text-lg md:text-xl text-neutral-400 font-light leading-relaxed max-w-xl"
-            >
-              IIT (ISM) Dhanbad pre-final year student. Specializing in data-backed product strategy, user-centric discovery, wireframing, and custom AI prototyping. Proven track record in national product cases.
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="flex flex-wrap gap-4 pt-2"
-            >
-              <a
-                href="#projects"
-                className="bg-white text-black hover:bg-neutral-200 transition-colors font-medium px-6 py-3 rounded-lg flex items-center gap-1.5"
-              >
-                View Case Studies
-                <ChevronRight className="w-4 h-4" />
-              </a>
-              <a
-                href="#resume"
-                className="bg-neutral-950 border border-neutral-800 hover:border-neutral-700 hover:bg-neutral-900 transition-all font-medium px-6 py-3 rounded-lg flex items-center gap-1.5"
-              >
-                Download Resume
-                <Download className="w-4 h-4" />
-              </a>
-            </motion.div>
+              {/* Mobile Hamburger Toggle */}
+              <div className="md:hidden flex items-center">
+                <button
+                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                  className="p-2 text-black hover:text-neutral-800 transition-colors"
+                  aria-label="Toggle menu"
+                >
+                  {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                </button>
+              </div>
+
+              {/* Mobile Nav Menu Dropdown */}
+              <AnimatePresence>
+                {mobileMenuOpen && (
+                  <div className="absolute top-full left-0 right-0 mt-2 p-6 bg-[#0A0A0C] border border-neutral-900 rounded-xl flex flex-col gap-4 text-base text-neutral-400 font-light z-50 shadow-2xl">
+                    <a href="#about" onClick={() => setMobileMenuOpen(false)} className="hover:text-white transition-colors py-2 border-b border-neutral-900/50">About</a>
+                    <a href="#skills" onClick={() => setMobileMenuOpen(false)} className="hover:text-white transition-colors py-2 border-b border-neutral-900/50">Skills</a>
+                    <a href="#projects" onClick={() => setMobileMenuOpen(false)} className="hover:text-white transition-colors py-2 border-b border-neutral-900/50">Projects</a>
+                    <a href="#resume" onClick={() => setMobileMenuOpen(false)} className="hover:text-white transition-colors py-2 border-b border-neutral-900/50">Resume</a>
+                    <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="hover:text-white transition-colors py-2">Contact</a>
+                  </div>
+                )}
+              </AnimatePresence>
+            </header>
+
+            {/* Unified Hero Section */}
+            <div className="grid md:grid-cols-12 gap-8 items-center min-h-[420px]">
+              {/* Hero Content (left side) */}
+              <div className="md:col-span-8 space-y-6 relative z-10">
+                <span className="inline-block text-[10px] font-mono-tech uppercase tracking-widest text-black bg-black/10 px-3 py-1.5 border border-black font-semibold">
+                  Aspiring Product Manager
+                </span>
+                <h1 className="text-5xl sm:text-6xl md:text-[5.5rem] tracking-tight font-sans font-bold text-black leading-[0.9]">
+                  Building products <br />
+                  people love.
+                </h1>
+                <p className="text-base sm:text-lg md:text-xl text-black font-medium leading-relaxed max-w-xl">
+                  IIT (ISM) Dhanbad pre-final year student. Specializing in data-backed product strategy, user-centric discovery, wireframing, and custom AI prototyping. Proven track record in national product cases.
+                </p>
+                <div className="flex flex-wrap gap-4 pt-2">
+                  <a
+                    href="#resume"
+                    className="bg-[#0A0A0C] text-white hover:bg-neutral-900 transition-colors font-mono-tech text-xs uppercase px-6 py-3.5 btn-chamfer border border-black flex items-center gap-2 font-semibold"
+                  >
+                    Download Resume
+                    <Download className="w-4 h-4" />
+                  </a>
+                  <a
+                    href="#projects"
+                    className="border-2 border-black hover:bg-black/10 text-black transition-all font-mono-tech text-xs uppercase px-6 py-3.5 btn-chamfer flex items-center gap-2 font-semibold"
+                  >
+                    Case Studies
+                    <ChevronRight className="w-4 h-4" />
+                  </a>
+                </div>
+              </div>
+
+              {/* Interactive Sunset Strips (Right side background overlay) */}
+              <div className="md:col-span-4 hidden md:flex justify-end items-center pointer-events-auto z-20">
+                <div className="w-64 h-64 border-4 border-black rounded-3xl flex items-center justify-center p-4 relative bg-[#E55943]">
+                  <div className="absolute inset-2 border border-dashed border-black/30 rounded-2xl" />
+                  <div className="text-center space-y-2 z-10">
+                    <div className="font-sans font-bold text-7xl text-black leading-none">PM</div>
+                    <div className="font-mono-tech text-[10px] uppercase tracking-widest text-black font-semibold mt-1">[ 0-to-1 spec ]</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
+        </div>
+      </div>
 
-          {/* Interactive Sunset Strips (Right side background overlay) */}
-          <div className="absolute right-0 top-0 bottom-0 w-full max-w-[320px] sm:max-w-[480px] md:max-w-[650px] flex justify-end items-center gap-2 md:gap-4 pointer-events-auto pr-8 md:pr-16 z-20 opacity-35 group-hover:opacity-85 md:opacity-75 md:group-hover:opacity-100 transition-opacity duration-500">
-            {strips.map((strip, idx) => (
-              <motion.div
-                key={idx}
-                className={`w-5 sm:w-7 md:w-12 ${strip.height} rounded-full relative shadow-2xl overflow-hidden`}
-                style={{
-                  background: strip.via
-                    ? `linear-gradient(to bottom, ${strip.from}, ${strip.via}, ${strip.to})`
-                    : `linear-gradient(to bottom, ${strip.from}, ${strip.to})`,
-                  boxShadow: hoveredStripIndex === idx
-                    ? `0 0 50px 10px ${strip.from}50, 0 10px 30px rgba(0,0,0,0.8)`
-                    : `0 0 20px 2px ${strip.from}20, 0 5px 15px rgba(0,0,0,0.5)`,
-                }}
-                initial={{ y: 200, opacity: 0, rotate: -35 }}
-                animate={{ y: 0, opacity: 1, rotate: -35 }}
-                transition={{
-                  type: "spring",
-                  stiffness: 45,
-                  damping: 15,
-                  delay: strip.delay
-                }}
-                whileHover={{
-                  scale: 1.05,
-                  filter: "brightness(1.25)",
-                  y: -20,
-                  rotate: -35
-                }}
-                onHoverStart={() => setHoveredStripIndex(idx)}
-                onHoverEnd={() => setHoveredStripIndex(null)}
-              >
-                {/* Glossy radial overlay inside strip */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-white/10 pointer-events-none"></div>
-                {/* Ambient inner shimmer */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-b from-white/0 via-white/10 to-white/0"
-                  animate={{
-                    y: ["-100%", "100%"]
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "linear",
-                    delay: idx * 0.5
-                  }}
-                />
-              </motion.div>
-            ))}
-          </div>
+      {/* Horizontal status ribbon/ticker */}
+      <div className="bg-[#0A0A0C] border-b border-neutral-900 py-3.5 overflow-hidden">
+        <div className="max-w-6xl mx-auto px-6 flex justify-between items-center text-[10px] sm:text-xs font-mono-tech tracking-widest uppercase text-neutral-400 gap-4 flex-wrap">
+          <span>IIT Dhanbad</span>
+          <span className="text-neutral-800">•</span>
+          <span>Product Strategy</span>
+          <span className="text-neutral-800">•</span>
+          <span>Wireframing &amp; UX</span>
+          <span className="text-neutral-800">•</span>
+          <span>Data-Backed Decisions</span>
+          <span className="text-neutral-800">•</span>
+          <span>AI Prototyping</span>
+        </div>
+      </div>
 
-          {/* Interactive Hint Pill */}
-          <div className="absolute bottom-4 right-8 z-35 text-[10px] text-neutral-500 font-light pointer-events-none hidden md:block group-hover:text-neutral-400 transition-colors">
-            ✦ Hover over the sunset bars to interact
-          </div>
-        </section>
-
+      {/* Main Container for dark content */}
+      {/* Main Container for dark content */}
+      <div className="max-w-6xl mx-auto px-6 relative z-10 pt-16 space-y-28">
+        
         {/* About Section */}
-        <section id="about" className="py-16 border-t border-neutral-900 grid md:grid-cols-3 gap-12">
-          <div className="space-y-6">
-            <div>
-              <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-white mb-4">About Me</h2>
-              <p className="text-sm text-neutral-500 font-light leading-relaxed">
-                Product thinking, user empathy, and strategic prioritization mapped at the intersection of business and technology.
-              </p>
-            </div>
-            <div className="relative group w-48 h-48 md:w-full md:max-w-[240px] aspect-square rounded-2xl overflow-hidden border border-neutral-800 bg-neutral-950/40 p-2 transition-all hover:border-orange-500/30 mx-auto md:mx-0">
-              <div className="absolute inset-0 bg-gradient-to-tr from-orange-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-              <Image
-                src="/rakshit.png"
-                alt="Rakshit Raj"
-                width={240}
-                height={240}
-                className="w-full h-full object-cover rounded-xl filter grayscale contrast-[1.1] brightness-[0.9] hover:grayscale-0 transition-all duration-500"
-              />
+        <section id="about" className="space-y-12">
+          <div className="flex justify-center border-t border-b border-neutral-900 py-6 mb-12">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 border border-neutral-900 text-[10px] font-mono-tech tracking-widest text-[#E55943] uppercase">
+              [ &times; ] 01 / Who I Am
             </div>
           </div>
-          <div className="md:col-span-2 space-y-6 text-neutral-400 font-light leading-relaxed">
-            <p>
-              I am a pre-final year student at <strong className="font-bold text-white">IIT (ISM) Dhanbad</strong> pursuing my B.Tech. My interest lies at the core of product management — identifying structural user friction, mapping customer journeys, and applying first-principles reasoning to design scalable features.
-            </p>
-            <p>
-              I gain energy from building mockups on Figma, debating tech strategies, and solving complex business cases. I have delivered feature roadmaps for startups, structured pricing structures, and built 0-to-1 AI product specs.
-            </p>
 
-            {/* Achievement / Stats Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 pt-4">
-              <div className="p-4 bg-neutral-950 border border-neutral-900 rounded-xl">
-                <span className="block text-2xl font-bold text-white mb-1">9.1</span>
-                <span className="text-xs text-neutral-500 uppercase tracking-wider block">B.Tech GPA</span>
-                <span className="text-[10px] text-neutral-600 block mt-1">IIT (ISM) Dhanbad</span>
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+            <h2 className="text-4xl sm:text-5xl font-sans tracking-tight font-medium text-white leading-tight">
+              Product thinking, user empathy, and strategic prioritization.
+            </h2>
+            <p className="text-sm text-neutral-500 max-w-xl mx-auto font-light leading-relaxed">
+              Applying first-principles reasoning to design scalable features and resolve structural user friction.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 border border-neutral-900 bg-[#070708] divide-y md:divide-y-0 md:divide-x divide-neutral-900">
+            {/* Left: Clean Profile Photo */}
+            <div className="p-8 flex items-center justify-center bg-[#09090b]/40 min-h-[300px]">
+              <div className="relative group w-full max-w-[260px] aspect-square rounded-2xl overflow-hidden border border-neutral-800 bg-[#0A0A0C] p-2 transition-all duration-300 hover:border-[#E55943]/30">
+                <div className="absolute inset-0 bg-gradient-to-tr from-[#E55943]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                <Image
+                  src="/rakshit.png"
+                  alt="Rakshit Raj"
+                  width={260}
+                  height={260}
+                  className="w-full h-full object-cover rounded-xl filter grayscale contrast-[1.1] brightness-[0.95] hover:grayscale-0 transition-all duration-500"
+                />
               </div>
-              <div className="p-4 bg-neutral-950 border border-neutral-900 rounded-xl">
-                <span className="block text-2xl font-bold text-orange-400 mb-1">Top 4</span>
-                <span className="text-xs text-neutral-500 uppercase tracking-wider block">Rank</span>
-                <span className="text-[10px] text-neutral-600 block mt-1">ProdBlitz-3 (1300+ entries)</span>
+            </div>
+
+            {/* Right: 2x2 grid of details */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 divide-y divide-neutral-900 bg-[#070708]">
+              {/* Cell 1: Bio Summary */}
+              <div className="p-8 space-y-3 flex flex-col justify-center sm:col-span-2">
+                <div className="flex justify-between items-center">
+                  <span className="text-[10px] font-mono-tech text-[#E55943] tracking-wider uppercase font-semibold">PROFILE SUMMARY</span>
+                  <span className="text-[10px] font-mono-tech text-neutral-600">001 // BIO</span>
+                </div>
+                <p className="text-xs text-neutral-400 font-light leading-relaxed">
+                  I am a pre-final year student at <strong className="font-semibold text-white">IIT (ISM) Dhanbad</strong> pursuing my B.Tech. My interest lies at the core of product management — identifying structural user friction, mapping customer journeys, and applying first-principles reasoning to design scalable features.
+                </p>
               </div>
-              <div className="p-4 bg-neutral-950 border border-neutral-900 rounded-xl col-span-2 md:col-span-1">
-                <span className="block text-2xl font-bold text-orange-500 mb-1">3rd Place</span>
-                <span className="text-xs text-neutral-500 uppercase tracking-wider block">Award</span>
-                <span className="text-[10px] text-neutral-600 block mt-1">Product Sprints (Zepto Case)</span>
+
+              {/* Cell 2: GPA */}
+              <div className="p-8 space-y-3 flex flex-col justify-center border-t border-neutral-900">
+                <div className="flex justify-between items-center">
+                  <span className="text-[10px] font-mono-tech text-neutral-500 uppercase font-semibold">ACADEMICS</span>
+                  <span className="text-[10px] font-mono-tech text-neutral-600">002 // GPA</span>
+                </div>
+                <div>
+                  <span className="block text-4xl text-white font-sans font-semibold mb-1">9.1</span>
+                  <span className="text-xs text-neutral-300 font-medium block">B.Tech CGPA</span>
+                  <span className="text-[10px] text-neutral-500 block">IIT (ISM) Dhanbad</span>
+                </div>
+              </div>
+
+              {/* Cell 3: Rank */}
+              <div className="p-8 space-y-3 flex flex-col justify-center border-t border-neutral-900">
+                <div className="flex justify-between items-center">
+                  <span className="text-[10px] font-mono-tech text-neutral-500 uppercase font-semibold">COMPETITIONS</span>
+                  <span className="text-[10px] font-mono-tech text-neutral-600">003 // RANK</span>
+                </div>
+                <div>
+                  <span className="block text-4xl text-white font-sans font-semibold mb-1">Top 4</span>
+                  <span className="text-xs text-neutral-300 font-medium block">ProdBlitz-3 Rank</span>
+                  <span className="text-[10px] text-neutral-500 block">Out of 1,300+ entries</span>
+                </div>
+              </div>
+
+              {/* Cell 4: Award */}
+              <div className="p-8 space-y-3 flex flex-col justify-center border-t border-neutral-900 sm:col-span-2">
+                <div className="flex justify-between items-center">
+                  <span className="text-[10px] font-mono-tech text-neutral-500 uppercase font-semibold">HONORS</span>
+                  <span className="text-[10px] font-mono-tech text-neutral-600">004 // AWARD</span>
+                </div>
+                <div>
+                  <span className="block text-4xl text-[#E55943] font-sans font-semibold mb-1">3rd Place</span>
+                  <span className="text-xs text-neutral-300 font-medium block">IIT Product Sprints</span>
+                  <span className="text-[10px] text-neutral-500 block">Zepto conversion optimization case</span>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
         {/* Skills Section */}
-        <section id="skills" className="py-16 border-t border-neutral-900 space-y-12">
-          <div>
-            <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-white mb-2">Technical Skills & Tooling</h2>
-            <p className="text-sm text-neutral-400 font-light">My product manager toolbox, technical foundation, and core capabilities.</p>
+        <section id="skills" className="space-y-12">
+          <div className="flex justify-center border-t border-b border-neutral-900 py-6 mb-12">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 border border-neutral-900 text-[10px] font-mono-tech tracking-widest text-[#E55943] uppercase">
+              [ &times; ] 02 / Tooling
+            </div>
           </div>
-          <div className="grid md:grid-cols-3 gap-6">
+          
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+            <h2 className="text-4xl sm:text-5xl font-sans tracking-tight font-medium text-white leading-tight">
+              A comprehensive PM toolkit for data and execution.
+            </h2>
+            <p className="text-sm text-neutral-500 max-w-xl mx-auto font-light leading-relaxed">
+              My technical foundation, prioritization frameworks, and design applications.
+            </p>
+          </div>
 
+          <div className="grid grid-cols-1 md:grid-cols-3 border border-neutral-900 divide-y md:divide-y-0 md:divide-x divide-neutral-900 bg-[#070708]">
             {/* PM Card */}
-            <div className="p-6 bg-neutral-950 border border-neutral-900 rounded-xl space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-orange-500">
-                  <Layout className="w-5 h-5" />
+            <div className="p-8 space-y-6 flex flex-col justify-between">
+              <div className="space-y-4">
+                <div className="flex justify-between items-center">
+                  <span className="text-[10px] font-mono-tech text-neutral-500 uppercase font-semibold">DISCIPLINE</span>
+                  <span className="text-[10px] font-mono-tech text-neutral-600">[ 01 ]</span>
                 </div>
-                <h3 className="text-lg font-semibold text-white">Product Management</h3>
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 bg-[#E55943]/10 border border-[#E55943]/20 flex items-center justify-center text-[#E55943]">
+                    <Layout className="w-4 h-4" />
+                  </div>
+                  <h3 className="text-base font-sans font-medium text-white">Product Management</h3>
+                </div>
+                <p className="text-xs text-neutral-500 font-light leading-relaxed">
+                  Focusing on product discovery, user research, wireframing, and metric optimization.
+                </p>
               </div>
-              <div className="flex flex-wrap gap-2">
-                {["Product Strategy", "User & Market Research", "Wireframing", "Roadmapping", "Feature Prioritization", "Agile & Scrum", "A/B Testing", "LTV & Churn Analytics", "RICE Prioritization"].map((skill) => (
-                  <span key={skill} className="bg-neutral-900 border border-neutral-800 text-neutral-400 text-xs px-2.5 py-1.5 rounded-md font-light">
+              <div className="flex flex-wrap gap-2 pt-6 border-t border-neutral-900/60">
+                {["Product Strategy", "User Research", "Wireframing", "Roadmapping", "Prioritization", "Agile & Scrum", "A/B Testing", "Churn Analytics", "RICE Model"].map((skill) => (
+                  <span key={skill} className="bg-[#09090b] border border-neutral-900 text-neutral-400 text-[10px] px-2.5 py-1.5 font-mono-code">
                     {skill}
                   </span>
                 ))}
@@ -522,16 +529,25 @@ export default function PortfolioHome() {
             </div>
 
             {/* Tech Card */}
-            <div className="p-6 bg-neutral-950 border border-neutral-900 rounded-xl space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-orange-500">
-                  <Code className="w-5 h-5" />
+            <div className="p-8 space-y-6 flex flex-col justify-between">
+              <div className="space-y-4">
+                <div className="flex justify-between items-center">
+                  <span className="text-[10px] font-mono-tech text-neutral-500 uppercase font-semibold">TECHNICAL</span>
+                  <span className="text-[10px] font-mono-tech text-neutral-600">[ 02 ]</span>
                 </div>
-                <h3 className="text-lg font-semibold text-white">Languages & Logic</h3>
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 bg-[#E55943]/10 border border-[#E55943]/20 flex items-center justify-center text-[#E55943]">
+                    <Code className="w-4 h-4" />
+                  </div>
+                  <h3 className="text-base font-sans font-medium text-white">Languages &amp; Logic</h3>
+                </div>
+                <p className="text-xs text-neutral-500 font-light leading-relaxed">
+                  Leveraging data extraction and coding logic to evaluate systems and draw insights.
+                </p>
               </div>
-              <div className="flex flex-wrap gap-2">
-                {["SQL (Data Queries)", "Python (Data Analysis)", "C Programming", "HTML5", "Spreadsheets (Excel)", "API Integrations", "First-Principles Logic"].map((skill) => (
-                  <span key={skill} className="bg-neutral-900 border border-neutral-800 text-neutral-400 text-xs px-2.5 py-1.5 rounded-md font-light">
+              <div className="flex flex-wrap gap-2 pt-6 border-t border-neutral-900/60">
+                {["SQL (Data Queries)", "Python (Data)", "C Programming", "HTML5 &amp; CSS3", "Spreadsheets", "API Integration", "Logical Reasoning"].map((skill) => (
+                  <span key={skill} className="bg-[#09090b] border border-neutral-900 text-neutral-400 text-[10px] px-2.5 py-1.5 font-mono-code">
                     {skill}
                   </span>
                 ))}
@@ -539,100 +555,129 @@ export default function PortfolioHome() {
             </div>
 
             {/* Tools Card */}
-            <div className="p-6 bg-neutral-950 border border-neutral-900 rounded-xl space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-orange-500">
-                  <Settings className="w-5 h-5" />
+            <div className="p-8 space-y-6 flex flex-col justify-between">
+              <div className="space-y-4">
+                <div className="flex justify-between items-center">
+                  <span className="text-[10px] font-mono-tech text-neutral-500 uppercase font-semibold">SYSTEMS</span>
+                  <span className="text-[10px] font-mono-tech text-neutral-600">[ 03 ]</span>
                 </div>
-                <h3 className="text-lg font-semibold text-white">Tooling & Platforms</h3>
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 bg-[#E55943]/10 border border-[#E55943]/20 flex items-center justify-center text-[#E55943]">
+                    <Settings className="w-4 h-4" />
+                  </div>
+                  <h3 className="text-base font-sans font-medium text-white">Tooling &amp; Platforms</h3>
+                </div>
+                <p className="text-xs text-neutral-500 font-light leading-relaxed">
+                  Using industry-standard applications to coordinate tasks and create interactive UI prototypes.
+                </p>
               </div>
-              <div className="flex flex-wrap gap-2">
-                {["Figma (Design/UI)", "Jira (Task Ops)", "Notion", "Whimsical (User Flows)", "Tableau", "Vercel", "Slack", "Google Analytics", "PowerBI"].map((skill) => (
-                  <span key={skill} className="bg-neutral-900 border border-neutral-800 text-neutral-400 text-xs px-2.5 py-1.5 rounded-md font-light">
+              <div className="flex flex-wrap gap-2 pt-6 border-t border-neutral-900/60">
+                {["Figma", "Jira", "Notion", "Whimsical", "Tableau", "Vercel", "Slack", "Google Analytics", "PowerBI"].map((skill) => (
+                  <span key={skill} className="bg-[#09090b] border border-neutral-900 text-neutral-400 text-[10px] px-2.5 py-1.5 font-mono-code">
                     {skill}
                   </span>
                 ))}
               </div>
             </div>
-
           </div>
         </section>
 
         {/* Projects Section */}
-        <section id="projects" className="py-16 border-t border-neutral-900 space-y-12">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-            <div>
-              <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-white mb-2">Case Study Deep Dives</h2>
-              <p className="text-sm text-neutral-400 font-light">Detailed product case studies built on actual research, user surveys, and data-backed impact estimation.</p>
+        <section id="projects" className="space-y-12">
+          <div className="flex justify-center border-t border-b border-neutral-900 py-6 mb-12">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 border border-neutral-900 text-[10px] font-mono-tech tracking-widest text-[#E55943] uppercase">
+              [ &times; ] 03 / Deep Dives
             </div>
           </div>
+          
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+            <h2 className="text-4xl sm:text-5xl font-sans tracking-tight font-medium text-white leading-tight">
+              Case Study Archive
+            </h2>
+            <p className="text-sm text-neutral-500 max-w-xl mx-auto font-light leading-relaxed">
+              Detailed product case studies built on actual research, user surveys, and data-backed impact estimation.
+            </p>
+          </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 border border-neutral-900 divide-y divide-neutral-900 bg-[#070708] overflow-hidden">
             {projectsData.map((project, idx) => (
-              <motion.div
+              <div
                 key={project.id}
                 onClick={() => setSelectedProject(project)}
-                whileHover={{ y: -4 }}
-                className={`p-6 rounded-xl border border-neutral-900 bg-neutral-950/40 hover:border-orange-500/30 hover:bg-neutral-950/80 cursor-pointer transition-all flex flex-col justify-between min-h-[240px] relative group ${idx === 4 ? "md:col-span-2" : ""}`}
+                className={`p-8 hover:bg-[#09090b]/60 cursor-pointer transition-all flex flex-col justify-between min-h-[220px] relative group ${idx === 4 ? "md:col-span-2" : ""}`}
               >
-                {/* Visual Top Glow on card hover */}
-                <div className="absolute top-0 left-10 right-10 h-[1px] bg-gradient-to-r from-transparent via-orange-500/0 group-hover:via-orange-500/40 to-transparent transition-all duration-300" />
-
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="text-[10px] text-orange-500 uppercase tracking-widest font-semibold bg-orange-500/5 border border-orange-500/10 px-2 py-0.5 rounded">
-                      Case Study
+                    <span className="text-[9px] text-[#E55943] uppercase tracking-widest font-mono-tech">
+                      00{idx+1} // CASE STUDY
                     </span>
                     {project.award && (
-                      <span className="text-[10px] text-orange-400 bg-orange-400/10 px-2.5 py-0.5 rounded-full flex items-center gap-1 font-medium border border-orange-400/20">
-                        <Award className="w-3 h-3" />
-                        {project.award}
+                      <span className="text-[9px] text-[#E55943] font-mono-tech uppercase">
+                        [ {project.award} ]
                       </span>
                     )}
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-white group-hover:text-orange-400 transition-colors mb-2">
+                    <h3 className="text-xl font-sans font-medium text-white group-hover:text-[#E55943] transition-colors mb-2">
                       {project.title}
                     </h3>
-                    <p className="text-sm text-neutral-400 font-light leading-relaxed line-clamp-3">
+                    <p className="text-xs text-neutral-400 font-light leading-relaxed line-clamp-3">
                       {project.tagline}
                     </p>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-1.5 text-xs text-orange-500 font-medium pt-4 group-hover:gap-2.5 transition-all">
-                  Read Full Pitch Deck & PRD Details
-                  <ChevronRight className="w-4 h-4" />
+                <div className="flex items-center gap-1.5 text-[10px] text-[#E55943] font-mono-tech uppercase pt-6 group-hover:gap-2.5 transition-all">
+                  Read Full Pitch Deck &amp; PRD Details
+                  <ChevronRight className="w-3.5 h-3.5" />
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </section>
 
         {/* Experience Section */}
-        <section id="experience" className="py-16 border-t border-neutral-900 space-y-12">
-          <div>
-            <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-white mb-2">Professional Experience</h2>
-            <p className="text-sm text-neutral-400 font-light">Practical roles driving metric optimizations, stand-ups, and user surveys.</p>
+        <section id="experience" className="space-y-12">
+          <div className="flex justify-center border-t border-b border-neutral-900 py-6 mb-12">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 border border-neutral-900 text-[10px] font-mono-tech tracking-widest text-[#E55943] uppercase">
+              [ &times; ] 04 / Experience
+            </div>
+          </div>
+          
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+            <h2 className="text-4xl sm:text-5xl font-sans tracking-tight font-medium text-white leading-tight">
+              Work History
+            </h2>
+            <p className="text-sm text-neutral-500 max-w-xl mx-auto font-light leading-relaxed">
+              Practical roles driving metric optimizations, stand-ups, and user surveys.
+            </p>
           </div>
 
-          <div className="relative border-l border-neutral-900 pl-6 space-y-8 ml-3">
+          <div className="border border-neutral-900 divide-y divide-neutral-900 bg-[#070708]">
             {/* Sherlock Studio */}
-            <div className="relative">
-              <span className="absolute -left-[31px] top-1.5 w-4.5 h-4.5 rounded-full border-4 border-[#030303] bg-orange-500 flex items-center justify-center"></span>
+            <div className="p-8 grid md:grid-cols-3 gap-6">
               <div className="space-y-2">
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-1">
-                  <h3 className="text-lg font-bold text-white">Product Management Intern</h3>
-                  <span className="text-sm text-orange-400/90 font-light">Jul 2025 – Sept 2025</span>
+                <div className="flex justify-between md:flex-col md:justify-start gap-1">
+                  <span className="text-[10px] font-mono-tech text-[#E55943] tracking-wider uppercase font-semibold">JUL 2025 – SEPT 2025</span>
+                  <span className="text-[10px] font-mono-tech text-neutral-600 md:mt-1">[ 01 ] INTERNSHIP</span>
                 </div>
-                <div className="flex items-center justify-between gap-1 text-xs text-neutral-500 font-light">
-                  <span>Sherlock Studio</span>
-                  <span>Remote</span>
-                </div>
-                <ul className="space-y-2 text-sm text-neutral-400 font-light list-disc list-inside leading-relaxed pl-1 pt-1">
-                  <li>Delivered 3+ feature recommendations based on competitive analysis of RPG horror games to drive market differentiation.</li>
-                  <li>Conducted cost and pricing structure audits on Steam, optimizing the product’s entry-level price specifically for the Indian audience.</li>
-                  <li>Facilitated daily stand-up meetings with a 10+ member cross-functional team of designers, engineers, and audio artists to align project sprints.</li>
+                <h3 className="text-lg font-sans font-medium text-white">Product Management Intern</h3>
+                <p className="text-xs text-neutral-500 font-light">Sherlock Studio (Remote)</p>
+              </div>
+              <div className="md:col-span-2">
+                <ul className="space-y-3 text-xs text-neutral-400 font-light leading-relaxed list-none pl-0">
+                  <li className="flex gap-3 items-start">
+                    <span className="text-[#E55943] font-mono-tech select-none mt-0.5">&gt;</span>
+                    <span>Delivered 3+ feature recommendations based on competitive analysis of RPG horror games to drive market differentiation.</span>
+                  </li>
+                  <li className="flex gap-3 items-start">
+                    <span className="text-[#E55943] font-mono-tech select-none mt-0.5">&gt;</span>
+                    <span>Conducted cost and pricing structure audits on Steam, optimizing the product’s entry-level price specifically for the Indian audience.</span>
+                  </li>
+                  <li className="flex gap-3 items-start">
+                    <span className="text-[#E55943] font-mono-tech select-none mt-0.5">&gt;</span>
+                    <span>Facilitated daily stand-up meetings with a 10+ member cross-functional team of designers, engineers, and audio artists to align project sprints.</span>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -640,28 +685,38 @@ export default function PortfolioHome() {
         </section>
 
         {/* Resume Preview & Download Section */}
-        <section id="resume" className="py-16 border-t border-neutral-900 space-y-12">
-          <div>
-            <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-white mb-2">Curriculum Vitae</h2>
-            <p className="text-sm text-neutral-400 font-light">Preview and download the complete resume detailing achievements and coursework.</p>
+        <section id="resume" className="space-y-12">
+          <div className="flex justify-center border-t border-b border-neutral-900 py-6 mb-12">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 border border-neutral-900 text-[10px] font-mono-tech tracking-widest text-[#E55943] uppercase">
+              [ &times; ] 05 / Profile
+            </div>
+          </div>
+          
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+            <h2 className="text-4xl sm:text-5xl font-sans tracking-tight font-medium text-white leading-tight">
+              Curriculum Vitae
+            </h2>
+            <p className="text-sm text-neutral-500 max-w-xl mx-auto font-light leading-relaxed">
+              Preview and download the complete resume detailing achievements and coursework.
+            </p>
           </div>
 
-          <div className="p-6 bg-neutral-950 border border-neutral-900 rounded-xl grid md:grid-cols-3 gap-8 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-3 border border-neutral-900 divide-y md:divide-y-0 md:divide-x divide-neutral-900 bg-[#070708] p-8 items-center gap-6">
             <div className="md:col-span-2 space-y-4">
-              <h3 className="text-lg font-bold text-white flex items-center gap-2">
-                <FileText className="w-5 h-5 text-orange-500" />
-                Academic & Professional Profile
+              <h3 className="text-lg font-sans font-medium text-white flex items-center gap-2">
+                <FileText className="w-5 h-5 text-[#E55943]" />
+                Academic &amp; Professional Profile
               </h3>
-              <p className="text-sm text-neutral-400 font-light leading-relaxed">
+              <p className="text-xs text-neutral-400 font-light leading-relaxed">
                 Highlights academic background at IIT (ISM) Dhanbad (9.1 GPA), Inter-IIT product case awards (3rd place), ProdBlitz-3 top 4, Sherlock Studio internship, and structured PM capabilities.
               </p>
             </div>
-            <div>
+            <div className="flex justify-center md:justify-end">
               <a
                 href="/resume.pdf"
                 target="_blank"
                 rel="noreferrer"
-                className="w-full bg-neutral-900 border border-neutral-800 hover:border-neutral-700 hover:bg-neutral-850 text-white font-medium py-3.5 px-5 rounded-lg flex items-center justify-center gap-2 transition-all"
+                className="w-full max-w-[240px] bg-[#E55943] text-black hover:bg-[#CB4934] font-mono-tech text-xs uppercase py-3.5 px-5 btn-chamfer flex items-center justify-center gap-2 transition-all font-semibold"
               >
                 <Download className="w-4 h-4" />
                 Download Resume
@@ -671,32 +726,40 @@ export default function PortfolioHome() {
         </section>
 
         {/* Contact Section */}
-        <section id="contact" className="py-16 border-t border-neutral-900 space-y-8">
-          <div className="text-center max-w-xl mx-auto space-y-3">
-            <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-white">Get in Touch</h2>
-            <p className="text-sm text-neutral-400 font-light">
+        <section id="contact" className="space-y-12">
+          <div className="flex justify-center border-t border-b border-neutral-900 py-6 mb-12">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 border border-neutral-900 text-[10px] font-mono-tech tracking-widest text-[#E55943] uppercase">
+              [ &times; ] 06 / The Terminal
+            </div>
+          </div>
+          
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+            <h2 className="text-4xl sm:text-5xl font-sans tracking-tight font-medium text-white leading-tight">
+              Get In Touch
+            </h2>
+            <p className="text-sm text-neutral-500 max-w-xl mx-auto font-light leading-relaxed">
               Always open to discussing product design, roadmap iterations, case competitions, or internship opportunities.
             </p>
           </div>
 
-          <div className="max-w-md mx-auto p-6 bg-neutral-950 border border-neutral-900 rounded-xl space-y-6">
-            <div className="space-y-4">
-              <div className="flex items-center gap-3 text-neutral-400 text-sm font-light">
-                <MapPin className="w-4 h-4 text-orange-500" />
+          <div className="max-w-md mx-auto border border-neutral-900 bg-[#070708] divide-y divide-neutral-900">
+            <div className="p-8 space-y-4">
+              <div className="flex items-center gap-3 text-neutral-400 text-xs font-light">
+                <MapPin className="w-4 h-4 text-[#E55943]" />
                 <span>Gurgaon, Haryana, India</span>
               </div>
-              <div className="flex items-center gap-3 text-neutral-400 text-sm font-light">
-                <Mail className="w-4 h-4 text-orange-500" />
+              <div className="flex items-center gap-3 text-neutral-400 text-xs font-light">
+                <Mail className="w-4 h-4 text-[#E55943]" />
                 <a href="mailto:rakshitraj1107@gmail.com" className="hover:text-white transition-colors">rakshitraj1107@gmail.com</a>
               </div>
             </div>
 
-            <div className="flex gap-4 pt-2">
+            <div className="p-8 grid grid-cols-2 divide-x divide-neutral-900 bg-[#09090b]/40">
               <a
                 href="https://linkedin.com/in/rakshit-raj-4796a2320"
                 target="_blank"
                 rel="noreferrer"
-                className="flex-1 bg-neutral-900 border border-neutral-800 hover:border-neutral-700 text-neutral-300 hover:text-white transition-all py-3 px-4 rounded-lg flex items-center justify-center gap-2 text-sm"
+                className="flex items-center justify-center gap-2 text-xs text-neutral-400 hover:text-white font-mono-tech uppercase transition-all"
               >
                 <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
                   <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
@@ -707,7 +770,7 @@ export default function PortfolioHome() {
                 href="https://github.com/FocusedFalco"
                 target="_blank"
                 rel="noreferrer"
-                className="flex-1 bg-neutral-900 border border-neutral-800 hover:border-neutral-700 text-neutral-300 hover:text-white transition-all py-3 px-4 rounded-lg flex items-center justify-center gap-2 text-sm"
+                className="flex items-center justify-center gap-2 text-xs text-neutral-400 hover:text-white font-mono-tech uppercase transition-all"
               >
                 <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
                   <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />

@@ -12,18 +12,18 @@ const config: Config = {
         background: "#030303",
         "on-background": "#FFFFFF",
         primary: {
-          DEFAULT: "#F97316",
-          dark: "#EA580C",
-          light: "#FDBA74",
+          DEFAULT: "#E55943",
+          dark: "#CB4934",
+          light: "#F07E6C",
         },
         sunset: {
-          orange: "#F97316",
+          orange: "#E55943",
           red: "#EF4444",
           gold: "#F59E0B",
           pink: "#EC4899",
           dark: "#050505",
           glass: "rgba(10, 10, 10, 0.7)",
-          border: "rgba(249, 115, 22, 0.15)",
+          border: "rgba(229, 89, 67, 0.15)",
         },
       },
       fontFamily: {
