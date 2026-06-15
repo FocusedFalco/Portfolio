@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import {
   Mail,
   MapPin,
@@ -12,22 +12,12 @@ import {
   FileText,
   Settings,
   ChevronRight,
-  Award,
   Menu,
   X
 } from "lucide-react";
 import ProjectModal from "@/components/ProjectModal";
 
-// Colors for the sunset strips from bottom-left (reds) to top-right (golds)
-const strips = [
-  { from: "#DC2626", to: "#EF4444", delay: 0.1, height: "h-[300px] md:h-[420px]" }, // Red
-  { from: "#DC2626", via: "#EA580C", to: "#F97316", delay: 0.15, height: "h-[350px] md:h-[500px]" }, // Red-Orange
-  { from: "#EA580C", via: "#F97316", to: "#FB923C", delay: 0.2, height: "h-[400px] md:h-[580px]" }, // Orange
-  { from: "#F97316", via: "#FDBA74", to: "#F59E0B", delay: 0.25, height: "h-[450px] md:h-[650px]" }, // Orange-Gold
-  { from: "#F59E0B", via: "#FBBF24", to: "#FDE047", delay: 0.3, height: "h-[480px] md:h-[700px]" }, // Gold-Yellow
-  { from: "#FBBF24", via: "#FDE047", to: "#FEF08A", delay: 0.35, height: "h-[420px] md:h-[620px]" }, // Yellow
-  { from: "#F59E0B", via: "#F97316", to: "#EA580C", delay: 0.4, height: "h-[320px] md:h-[470px]" }, // Orange
-];
+
 
 // Setup full project database extracted from scraped Notion/PDF data
 const projectsData = [
@@ -271,7 +261,6 @@ const projectsData = [
 export default function PortfolioHome() {
   const [selectedProject, setSelectedProject] = useState<typeof projectsData[0] | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [hoveredStripIndex, setHoveredStripIndex] = useState<number | null>(null);
 
   return (
     <div className="min-h-screen bg-[#070708] text-neutral-100 font-sans relative pb-24 selection:bg-white selection:text-black">
@@ -609,7 +598,7 @@ export default function PortfolioHome() {
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
                     <span className="text-[9px] text-[#E55943] uppercase tracking-widest font-mono-tech">
-                      00{idx+1} // CASE STUDY
+                      00{idx+1} {"// CASE STUDY"}
                     </span>
                     {project.award && (
                       <span className="text-[9px] text-[#E55943] font-mono-tech uppercase">
