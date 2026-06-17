@@ -258,43 +258,39 @@ const projectsData = [
   },
   {
     id: "student-performance",
-    title: "Student Academic Performance Analysis",
-    tagline: "Investigating habits, lifestyle choices, and demographics associated with exam outcomes using SQL and Tableau.",
-    objective: "Identify key factors that influence student academic performance and determine which habits, lifestyle choices, and demographic characteristics correlate with higher exam scores.",
-    about: "A complete analytics workflow involving data extraction, cohort segmentation, and aggregation through PostgreSQL, followed by interactive exploratory dashboard visualization in Tableau Desktop to isolate student academic success drivers.",
+    title: "Student Academic Performance Analytics",
+    tagline: "End-to-end data analytics using SQL & Tableau to analyze study habits, lifestyle choices, and demographics of 1,000 students.",
+    objective: "Conduct exploratory data analysis (EDA), cohort segmentations, and correlation analysis to identify key drivers of student exam outcomes.",
+    about: "A comprehensive data analytics project utilizing PostgreSQL for data extraction, joining, and aggregation, followed by Tableau Desktop dashboard construction to visualize academic performance patterns across attendance, sleep, screen time, and employment variables.",
     problem: {
-      statement: "Educational institutions lack granular visibility into how lifestyle habits (sleep, screen time, employment) compound to impact exam scores, leading to generic student support strategies.",
+      statement: "Academic institutions lack quantified, data-driven visibility into how addressable student habits (such as sleep and screen time) correlate with exam performance compared to static demographic traits.",
       impact: [
-        "Inefficient intervention: Academic advisors target static demographics (e.g. parental background) rather than addressable habits (e.g. sleep, attendance).",
-        "Choice overload: Students struggle to identify key distractors (e.g. 'chronically online' status) from negligible factors (e.g. part-time jobs).",
-        "Lack of data-backed resource allocation to prioritize student well-being programs."
+        "Inability to optimize academic intervention strategies due to undocumented habit correlations.",
+        "Lack of quantified thresholds for student screen-time distraction versus productive study hours.",
+        "Undifferentiated support programs that fail to prioritize addressable factors like classroom attendance."
       ],
       causes: [
-        "Class participation bottlenecks (low attendance has direct negative correlation).",
-        "Excessive screen time (distraction from social media and streaming).",
-        "Poor physical well-being (lack of sleep, poor diet, low mental health ratings)."
+        "Un-aggregated student databases with disparate lifestyle and academic variables.",
+        "Absence of interactive cohort-filtering dashboards for institutional researchers.",
+        "Unexplored relationships between wellness metrics (diet, mental health) and GPA outcomes."
       ]
     },
     solutions: [
-      { title: "SQL Cohort Segmentation", desc: "Write PostgreSQL queries to isolate student groups based on overlapping wellness metrics (diet quality, mental health rating, sleep duration) to identify compound effects on GPA." },
-      { title: "Distraction Threshold Mapping", desc: "Segment students by entertainment consumption (social media + Netflix hours) to find the threshold where screen time creates negative drag on study hours." },
-      { title: "Attendance Stratification", desc: "Group student records into percentage-based attendance tiers, proving that high attendance is a dominant predictor of academic performance." },
-      { title: "Interactive Tableau Dashboards", desc: "Construct visual dashboards featuring treemaps, bubble charts, and study-hour trendlines to enable academic administrators to filter cohorts dynamically." }
+      { title: "SQL Cohort Segmentation & Aggregation", desc: "Wrote complex PostgreSQL queries to clean, segment, and aggregate student records based on wellness indicators (diet, sleep, mental health) to isolate compound GPA effects." },
+      { title: "Distraction Threshold Quantisation", desc: "Segmented and queried student records by combined social media and streaming hours to determine the point where entertainment consumption decreases exam scores." },
+      { title: "Attendance Correlation Analysis", desc: "Grouped students into attendance percentage tiers, proving a dominant 1.05x score multiplier for high-attendance cohorts regardless of demographic factors." },
+      { title: "Exploratory Tableau Dashboards", desc: "Built interactive Tableau dashboards featuring treemaps, bubble charts, and dual-axis trendlines to present findings dynamically to administrators." }
     ],
     metrics: {
-      nsm: "Average Exam Score Improvement (%)",
+      nsm: "Data Insight Actionability & Query Execution Speed",
       secondary: [
-        "Attendance Impact Factor (1.05x higher scores)",
-        "Well-being Impact Factor (1.20x higher scores)",
-        "Screen Time Distraction Threshold (Hrs/Day)",
-        "Parental Background Correlation (Negligible)"
+        "PostgreSQL Query Optimization",
+        "Dashboard Interactive Filters",
+        "Data Scope (1,000 Student Profiles)",
+        "Variables Evaluated (15 distinct metrics)"
       ]
     },
-    gtm: [
-      "Export SQL query datasets and design Tableau schemas for clean cross-group cohort filtering.",
-      "Deploy dashboards to institutional research administrators to test data-backed intervention strategies.",
-      "Establish weekly data pipelines syncing student records to monitor well-being, attendance, and exam scores in real-time."
-    ],
+    gtm: [],
     deckUrl: "/student_academic_performance_analysis.pdf",
     deckName: "Student Academic Performance Analysis.pdf"
   }
