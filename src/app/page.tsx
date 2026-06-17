@@ -255,6 +255,48 @@ const projectsData = [
     ],
     deckUrl: "https://drive.google.com/file/d/11jLej6yQdqdC-UvkXpjrDl7xAriuC0IL/view?usp=sharing",
     deckName: "Career Path AI Deck.pdf"
+  },
+  {
+    id: "student-performance",
+    title: "Student Academic Performance Analysis",
+    tagline: "Investigating habits, lifestyle choices, and demographics associated with exam outcomes using SQL and Tableau.",
+    objective: "Identify key factors that influence student academic performance and determine which habits, lifestyle choices, and demographic characteristics correlate with higher exam scores.",
+    about: "A complete analytics workflow involving data extraction, cohort segmentation, and aggregation through PostgreSQL, followed by interactive exploratory dashboard visualization in Tableau Desktop to isolate student academic success drivers.",
+    problem: {
+      statement: "Educational institutions lack granular visibility into how lifestyle habits (sleep, screen time, employment) compound to impact exam scores, leading to generic student support strategies.",
+      impact: [
+        "Inefficient intervention: Academic advisors target static demographics (e.g. parental background) rather than addressable habits (e.g. sleep, attendance).",
+        "Choice overload: Students struggle to identify key distractors (e.g. 'chronically online' status) from negligible factors (e.g. part-time jobs).",
+        "Lack of data-backed resource allocation to prioritize student well-being programs."
+      ],
+      causes: [
+        "Class participation bottlenecks (low attendance has direct negative correlation).",
+        "Excessive screen time (distraction from social media and streaming).",
+        "Poor physical well-being (lack of sleep, poor diet, low mental health ratings)."
+      ]
+    },
+    solutions: [
+      { title: "SQL Cohort Segmentation", desc: "Write PostgreSQL queries to isolate student groups based on overlapping wellness metrics (diet quality, mental health rating, sleep duration) to identify compound effects on GPA." },
+      { title: "Distraction Threshold Mapping", desc: "Segment students by entertainment consumption (social media + Netflix hours) to find the threshold where screen time creates negative drag on study hours." },
+      { title: "Attendance Stratification", desc: "Group student records into percentage-based attendance tiers, proving that high attendance is a dominant predictor of academic performance." },
+      { title: "Interactive Tableau Dashboards", desc: "Construct visual dashboards featuring treemaps, bubble charts, and study-hour trendlines to enable academic administrators to filter cohorts dynamically." }
+    ],
+    metrics: {
+      nsm: "Average Exam Score Improvement (%)",
+      secondary: [
+        "Attendance Impact Factor (1.05x higher scores)",
+        "Well-being Impact Factor (1.20x higher scores)",
+        "Screen Time Distraction Threshold (Hrs/Day)",
+        "Parental Background Correlation (Negligible)"
+      ]
+    },
+    gtm: [
+      "Export SQL query datasets and design Tableau schemas for clean cross-group cohort filtering.",
+      "Deploy dashboards to institutional research administrators to test data-backed intervention strategies.",
+      "Establish weekly data pipelines syncing student records to monitor well-being, attendance, and exam scores in real-time."
+    ],
+    deckUrl: "/student_academic_performance_analysis.pdf",
+    deckName: "Student Academic Performance Analysis.pdf"
   }
 ];
 
@@ -593,7 +635,7 @@ export default function PortfolioHome() {
               <div
                 key={project.id}
                 onClick={() => setSelectedProject(project)}
-                className={`p-8 hover:bg-[#09090b]/60 cursor-pointer transition-all flex flex-col justify-between min-h-[220px] relative group ${idx === 4 ? "md:col-span-2" : ""}`}
+                className="p-8 hover:bg-[#09090b]/60 cursor-pointer transition-all flex flex-col justify-between min-h-[220px] relative group"
               >
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
