@@ -912,7 +912,7 @@ export default function PortfolioHome() {
               <h2 className="text-lg font-sans font-medium text-white uppercase tracking-wider">Contact</h2>
             </div>
 
-            <div className="max-w-2xl space-y-3 mb-6">
+            <div className="max-w-2xl mx-auto text-center space-y-3 mb-6">
               <h3 className="text-3xl font-sans font-medium text-white leading-tight">
                 Get In Touch
               </h3>
@@ -921,7 +921,7 @@ export default function PortfolioHome() {
               </p>
             </div>
 
-            <div className="max-w-md border border-neutral-900 bg-[#070708] divide-y divide-neutral-900">
+            <div className="max-w-md mx-auto border border-neutral-900 bg-[#070708] divide-y divide-neutral-900">
               <div className="p-10 space-y-4">
                 <div className="flex items-center gap-3 text-neutral-300 text-sm font-light">
                   <MapPin className="w-4 h-4 text-[#E55943]" />
