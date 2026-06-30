@@ -304,8 +304,8 @@ export default function PortfolioHome() {
   useEffect(() => {
     const observerOptions = {
       root: null,
-      rootMargin: "-25% 0px -45% 0px",
-      threshold: 0.15,
+      rootMargin: "-15% 0px -20% 0px",
+      threshold: 0.1,
     };
 
     const handleIntersection = (entries: IntersectionObserverEntry[]) => {
