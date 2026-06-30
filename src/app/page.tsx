@@ -309,6 +309,13 @@ export default function PortfolioHome() {
     };
 
     const handleIntersection = (entries: IntersectionObserverEntry[]) => {
+      // Check if we are scrolled to the bottom
+      const isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 120;
+      if (isAtBottom) {
+        setActiveSection("contact");
+        return;
+      }
+
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           setActiveSection(entry.target.id);
@@ -324,7 +331,19 @@ export default function PortfolioHome() {
       if (el) observer.observe(el);
     });
 
-    return () => observer.disconnect();
+    const handleScroll = () => {
+      const isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 120;
+      if (isAtBottom) {
+        setActiveSection("contact");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   return (
