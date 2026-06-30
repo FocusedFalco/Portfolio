@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { AnimatePresence } from "framer-motion";
 import {
@@ -299,6 +299,33 @@ const projectsData = [
 export default function PortfolioHome() {
   const [selectedProject, setSelectedProject] = useState<typeof projectsData[0] | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("about");
+
+  useEffect(() => {
+    const observerOptions = {
+      root: null,
+      rootMargin: "-25% 0px -45% 0px",
+      threshold: 0.15,
+    };
+
+    const handleIntersection = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(handleIntersection, observerOptions);
+    const sections = ["about", "skills", "projects", "experience", "resume", "contact"];
+    
+    sections.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div className="min-h-screen bg-[#070708] text-neutral-100 font-sans relative pb-24 selection:bg-white selection:text-black">
@@ -422,89 +449,110 @@ export default function PortfolioHome() {
 
       {/* Main Container for dark content */}
       {/* Main Container for dark content */}
-      <div className="max-w-6xl mx-auto px-6 relative z-10 pt-16 space-y-28">
+      <div className="max-w-6xl mx-auto px-6 relative z-10 pt-16 space-y-24">
         
         {/* About Section */}
-        <section id="about" className="space-y-12">
-          <div className="flex justify-center border-t border-b border-neutral-900 py-6 mb-12">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 border border-neutral-900 text-[10px] font-mono-tech tracking-widest text-[#E55943] uppercase">
-              [ &times; ] 01 / Who I Am
+        <section id="about" className="relative grid grid-cols-1 md:grid-cols-[140px_1fr] gap-8 md:gap-12 scroll-mt-24">
+          {/* Left: Vertical Title Column */}
+          <div className="hidden md:flex flex-col items-center justify-start">
+            <div className="sticky top-28 flex flex-col items-center space-y-4">
+              <span className="text-[10px] font-mono-tech text-neutral-600 tracking-widest uppercase">
+                01 // WHO
+              </span>
+              <div className={`flex items-center justify-center border rounded-xl py-8 px-4 transition-all duration-500 ${
+                activeSection === "about" 
+                  ? "border-[#E55943] bg-[#E55943]/5 shadow-[0_0_15px_rgba(229,89,67,0.1)] text-[#E55943]" 
+                  : "border-neutral-900 bg-[#070708]/50 text-neutral-500 hover:border-neutral-800 hover:text-neutral-300"
+              }`}>
+                <span className="text-xs font-mono-tech tracking-[0.3em] uppercase [writing-mode:vertical-rl] rotate-180 select-none">
+                  ABOUT
+                </span>
+              </div>
             </div>
           </div>
 
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <h2 className="text-4xl sm:text-5xl font-sans tracking-tight font-medium text-white leading-tight">
-              Product thinking, user empathy, and strategic prioritization.
-            </h2>
-            <p className="text-sm text-neutral-500 max-w-xl mx-auto font-light leading-relaxed">
-              Applying first-principles reasoning to design scalable features and resolve structural user friction.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 border border-neutral-900 bg-[#070708] divide-y md:divide-y-0 md:divide-x divide-neutral-900">
-            {/* Left: Clean Profile Photo */}
-            <div className="p-8 flex items-center justify-center bg-[#09090b]/40 min-h-[300px]">
-              <div className="relative group w-full max-w-[260px] aspect-square rounded-2xl overflow-hidden border border-neutral-800 bg-[#0A0A0C] p-2 transition-all duration-300 hover:border-[#E55943]/30">
-                <div className="absolute inset-0 bg-gradient-to-tr from-[#E55943]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-                <Image
-                  src="/rakshit.png"
-                  alt="Rakshit Raj"
-                  width={260}
-                  height={260}
-                  className="w-full h-full object-cover rounded-xl filter grayscale contrast-[1.1] brightness-[0.95] hover:grayscale-0 transition-all duration-500"
-                />
-              </div>
+          {/* Right: Content Column */}
+          <div className="space-y-8">
+            {/* Mobile Section Header */}
+            <div className="md:hidden flex items-center gap-3 border-b border-neutral-900 pb-4 mb-6">
+              <span className="text-[10px] font-mono-tech text-[#E55943]">01 /</span>
+              <h2 className="text-lg font-sans font-medium text-white uppercase tracking-wider">About</h2>
             </div>
 
-            {/* Right: 2x2 grid of details */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 divide-y divide-neutral-900 bg-[#070708]">
-              {/* Cell 1: Bio Summary */}
-              <div className="p-8 space-y-3 flex flex-col justify-center sm:col-span-2">
-                <div className="flex justify-between items-center">
-                  <span className="text-[10px] font-mono-tech text-[#E55943] tracking-wider uppercase font-semibold">PROFILE SUMMARY</span>
-                  <span className="text-[10px] font-mono-tech text-neutral-600">001 // BIO</span>
-                </div>
-                <p className="text-xs text-neutral-400 font-light leading-relaxed">
-                  I am a pre-final year student at <strong className="font-semibold text-white">IIT (ISM) Dhanbad</strong> pursuing my B.Tech. My interest lies at the core of product management — identifying structural user friction, mapping customer journeys, and applying first-principles reasoning to design scalable features.
-                </p>
-              </div>
+            <div className="max-w-2xl space-y-3 mb-6">
+              <h3 className="text-3xl font-sans font-medium text-white leading-tight">
+                Product thinking, user empathy, and strategic prioritization.
+              </h3>
+              <p className="text-sm text-neutral-500 font-light leading-relaxed">
+                Applying first-principles reasoning to design scalable features and resolve structural user friction.
+              </p>
+            </div>
 
-              {/* Cell 2: GPA */}
-              <div className="p-8 space-y-3 flex flex-col justify-center border-t border-neutral-900">
-                <div className="flex justify-between items-center">
-                  <span className="text-[10px] font-mono-tech text-neutral-500 uppercase font-semibold">ACADEMICS</span>
-                  <span className="text-[10px] font-mono-tech text-neutral-600">002 // GPA</span>
-                </div>
-                <div>
-                  <span className="block text-4xl text-white font-sans font-semibold mb-1">9.1</span>
-                  <span className="text-xs text-neutral-300 font-medium block">B.Tech CGPA</span>
-                  <span className="text-[10px] text-neutral-500 block">IIT (ISM) Dhanbad</span>
-                </div>
-              </div>
-
-              {/* Cell 3: Rank */}
-              <div className="p-8 space-y-3 flex flex-col justify-center border-t border-neutral-900">
-                <div className="flex justify-between items-center">
-                  <span className="text-[10px] font-mono-tech text-neutral-500 uppercase font-semibold">COMPETITIONS</span>
-                  <span className="text-[10px] font-mono-tech text-neutral-600">003 // RANK</span>
-                </div>
-                <div>
-                  <span className="block text-4xl text-white font-sans font-semibold mb-1">Top 4</span>
-                  <span className="text-xs text-neutral-300 font-medium block">ProdBlitz-3 Rank</span>
-                  <span className="text-[10px] text-neutral-500 block">Out of 1,300+ entries</span>
+            <div className="grid grid-cols-1 md:grid-cols-2 border border-neutral-900 bg-[#070708] divide-y md:divide-y-0 md:divide-x divide-neutral-900">
+              {/* Left: Clean Profile Photo */}
+              <div className="p-8 flex items-center justify-center bg-[#09090b]/40 min-h-[300px]">
+                <div className="relative group w-full max-w-[260px] aspect-square rounded-2xl overflow-hidden border border-neutral-800 bg-[#0A0A0C] p-2 transition-all duration-300 hover:border-[#E55943]/30">
+                  <div className="absolute inset-0 bg-gradient-to-tr from-[#E55943]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                  <Image
+                    src="/rakshit.png"
+                    alt="Rakshit Raj"
+                    width={260}
+                    height={260}
+                    className="w-full h-full object-cover rounded-xl filter grayscale contrast-[1.1] brightness-[0.95] hover:grayscale-0 transition-all duration-500"
+                  />
                 </div>
               </div>
 
-              {/* Cell 4: Award */}
-              <div className="p-8 space-y-3 flex flex-col justify-center border-t border-neutral-900 sm:col-span-2">
-                <div className="flex justify-between items-center">
-                  <span className="text-[10px] font-mono-tech text-neutral-500 uppercase font-semibold">HONORS</span>
-                  <span className="text-[10px] font-mono-tech text-neutral-600">004 // AWARD</span>
+              {/* Right: 2x2 grid of details */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 divide-y divide-neutral-900 bg-[#070708]">
+                {/* Cell 1: Bio Summary */}
+                <div className="p-8 space-y-3 flex flex-col justify-center sm:col-span-2">
+                  <div className="flex justify-between items-center">
+                    <span className="text-[10px] font-mono-tech text-[#E55943] tracking-wider uppercase font-semibold">PROFILE SUMMARY</span>
+                    <span className="text-[10px] font-mono-tech text-neutral-600">001 // BIO</span>
+                  </div>
+                  <p className="text-xs text-neutral-400 font-light leading-relaxed">
+                    I am a pre-final year student at <strong className="font-semibold text-white">IIT (ISM) Dhanbad</strong> pursuing my B.Tech. My interest lies at the core of product management — identifying structural user friction, mapping customer journeys, and applying first-principles reasoning to design scalable features.
+                  </p>
                 </div>
-                <div>
-                  <span className="block text-4xl text-[#E55943] font-sans font-semibold mb-1">3rd Place</span>
-                  <span className="text-xs text-neutral-300 font-medium block">IIT Product Sprints</span>
-                  <span className="text-[10px] text-neutral-500 block">Zepto conversion optimization case</span>
+
+                {/* Cell 2: GPA */}
+                <div className="p-8 space-y-3 flex flex-col justify-center border-t border-neutral-900">
+                  <div className="flex justify-between items-center">
+                    <span className="text-[10px] font-mono-tech text-neutral-500 uppercase font-semibold">ACADEMICS</span>
+                    <span className="text-[10px] font-mono-tech text-neutral-600">002 // GPA</span>
+                  </div>
+                  <div>
+                    <span className="block text-4xl text-white font-sans font-semibold mb-1">9.1</span>
+                    <span className="text-xs text-neutral-300 font-medium block">B.Tech CGPA</span>
+                    <span className="text-[10px] text-neutral-500 block">IIT (ISM) Dhanbad</span>
+                  </div>
+                </div>
+
+                {/* Cell 3: Rank */}
+                <div className="p-8 space-y-3 flex flex-col justify-center border-t border-neutral-900">
+                  <div className="flex justify-between items-center">
+                    <span className="text-[10px] font-mono-tech text-neutral-500 uppercase font-semibold">COMPETITIONS</span>
+                    <span className="text-[10px] font-mono-tech text-neutral-600">003 // RANK</span>
+                  </div>
+                  <div>
+                    <span className="block text-4xl text-white font-sans font-semibold mb-1">Top 4</span>
+                    <span className="text-xs text-neutral-300 font-medium block">ProdBlitz-3 Rank</span>
+                    <span className="text-[10px] text-neutral-500 block">Out of 1,300+ entries</span>
+                  </div>
+                </div>
+
+                {/* Cell 4: Award */}
+                <div className="p-8 space-y-3 flex flex-col justify-center border-t border-neutral-900 sm:col-span-2">
+                  <div className="flex justify-between items-center">
+                    <span className="text-[10px] font-mono-tech text-neutral-500 uppercase font-semibold">HONORS</span>
+                    <span className="text-[10px] font-mono-tech text-neutral-600">004 // AWARD</span>
+                  </div>
+                  <div>
+                    <span className="block text-4xl text-[#E55943] font-sans font-semibold mb-1">3rd Place</span>
+                    <span className="text-xs text-neutral-300 font-medium block">IIT Product Sprints</span>
+                    <span className="text-[10px] text-neutral-500 block">Zepto conversion optimization case</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -512,298 +560,403 @@ export default function PortfolioHome() {
         </section>
 
         {/* Skills Section */}
-        <section id="skills" className="space-y-12">
-          <div className="flex justify-center border-t border-b border-neutral-900 py-6 mb-12">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 border border-neutral-900 text-[10px] font-mono-tech tracking-widest text-[#E55943] uppercase">
-              [ &times; ] 02 / Tooling
+        <section id="skills" className="relative grid grid-cols-1 md:grid-cols-[140px_1fr] gap-8 md:gap-12 scroll-mt-24">
+          {/* Left: Vertical Title Column */}
+          <div className="hidden md:flex flex-col items-center justify-start">
+            <div className="sticky top-28 flex flex-col items-center space-y-4">
+              <span className="text-[10px] font-mono-tech text-neutral-600 tracking-widest uppercase">
+                02 // TOOLS
+              </span>
+              <div className={`flex items-center justify-center border rounded-xl py-8 px-4 transition-all duration-500 ${
+                activeSection === "skills" 
+                  ? "border-[#E55943] bg-[#E55943]/5 shadow-[0_0_15px_rgba(229,89,67,0.1)] text-[#E55943]" 
+                  : "border-neutral-900 bg-[#070708]/50 text-neutral-500 hover:border-neutral-800 hover:text-neutral-300"
+              }`}>
+                <span className="text-xs font-mono-tech tracking-[0.3em] uppercase [writing-mode:vertical-rl] rotate-180 select-none">
+                  SKILLS
+                </span>
+              </div>
             </div>
           </div>
-          
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <h2 className="text-4xl sm:text-5xl font-sans tracking-tight font-medium text-white leading-tight">
-              A comprehensive PM toolkit for data and execution.
-            </h2>
-            <p className="text-sm text-neutral-500 max-w-xl mx-auto font-light leading-relaxed">
-              My technical foundation, prioritization frameworks, and design applications.
-            </p>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 border border-neutral-900 divide-y md:divide-y-0 md:divide-x divide-neutral-900 bg-[#070708]">
-            {/* PM Card */}
-            <div className="p-8 space-y-6 flex flex-col justify-between">
-              <div className="space-y-4">
-                <div className="flex justify-between items-center">
-                  <span className="text-[10px] font-mono-tech text-neutral-500 uppercase font-semibold">DISCIPLINE</span>
-                  <span className="text-[10px] font-mono-tech text-neutral-600">[ 01 ]</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-[#E55943]/10 border border-[#E55943]/20 flex items-center justify-center text-[#E55943]">
-                    <Layout className="w-4 h-4" />
-                  </div>
-                  <h3 className="text-base font-sans font-medium text-white">Product Management</h3>
-                </div>
-                <p className="text-xs text-neutral-500 font-light leading-relaxed">
-                  Focusing on product discovery, user research, wireframing, and metric optimization.
-                </p>
-              </div>
-              <div className="flex flex-wrap gap-2 pt-6 border-t border-neutral-900/60">
-                {["Product Strategy", "User Research", "Wireframing", "Roadmapping", "Prioritization", "Agile & Scrum", "A/B Testing", "Churn Analytics", "RICE Model"].map((skill) => (
-                  <span key={skill} className="bg-[#09090b] border border-neutral-900 text-neutral-400 text-[10px] px-2.5 py-1.5 font-mono-code">
-                    {skill}
-                  </span>
-                ))}
-              </div>
+          {/* Right: Content Column */}
+          <div className="space-y-8">
+            {/* Mobile Section Header */}
+            <div className="md:hidden flex items-center gap-3 border-b border-neutral-900 pb-4 mb-6">
+              <span className="text-[10px] font-mono-tech text-[#E55943]">02 /</span>
+              <h2 className="text-lg font-sans font-medium text-white uppercase tracking-wider">Skills</h2>
             </div>
 
-            {/* Tech Card */}
-            <div className="p-8 space-y-6 flex flex-col justify-between">
-              <div className="space-y-4">
-                <div className="flex justify-between items-center">
-                  <span className="text-[10px] font-mono-tech text-neutral-500 uppercase font-semibold">TECHNICAL</span>
-                  <span className="text-[10px] font-mono-tech text-neutral-600">[ 02 ]</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-[#E55943]/10 border border-[#E55943]/20 flex items-center justify-center text-[#E55943]">
-                    <Code className="w-4 h-4" />
-                  </div>
-                  <h3 className="text-base font-sans font-medium text-white">Languages &amp; Logic</h3>
-                </div>
-                <p className="text-xs text-neutral-500 font-light leading-relaxed">
-                  Leveraging data extraction and coding logic to evaluate systems and draw insights.
-                </p>
-              </div>
-              <div className="flex flex-wrap gap-2 pt-6 border-t border-neutral-900/60">
-                {["SQL (Data Queries)", "Python (Data)", "C Programming", "HTML5 &amp; CSS3", "Spreadsheets", "API Integration", "Logical Reasoning"].map((skill) => (
-                  <span key={skill} className="bg-[#09090b] border border-neutral-900 text-neutral-400 text-[10px] px-2.5 py-1.5 font-mono-code">
-                    {skill}
-                  </span>
-                ))}
-              </div>
+            <div className="max-w-2xl space-y-3 mb-6">
+              <h3 className="text-3xl font-sans font-medium text-white leading-tight">
+                A comprehensive PM toolkit for data and execution.
+              </h3>
+              <p className="text-sm text-neutral-500 font-light leading-relaxed">
+                My technical foundation, prioritization frameworks, and design applications.
+              </p>
             </div>
 
-            {/* Tools Card */}
-            <div className="p-8 space-y-6 flex flex-col justify-between">
-              <div className="space-y-4">
-                <div className="flex justify-between items-center">
-                  <span className="text-[10px] font-mono-tech text-neutral-500 uppercase font-semibold">SYSTEMS</span>
-                  <span className="text-[10px] font-mono-tech text-neutral-600">[ 03 ]</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-[#E55943]/10 border border-[#E55943]/20 flex items-center justify-center text-[#E55943]">
-                    <Settings className="w-4 h-4" />
+            <div className="grid grid-cols-1 md:grid-cols-3 border border-neutral-900 divide-y md:divide-y-0 md:divide-x divide-neutral-900 bg-[#070708]">
+              {/* PM Card */}
+              <div className="p-8 space-y-6 flex flex-col justify-between">
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center">
+                    <span className="text-[10px] font-mono-tech text-neutral-500 uppercase font-semibold">DISCIPLINE</span>
+                    <span className="text-[10px] font-mono-tech text-neutral-600">[ 01 ]</span>
                   </div>
-                  <h3 className="text-base font-sans font-medium text-white">Tooling &amp; Platforms</h3>
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 bg-[#E55943]/10 border border-[#E55943]/20 flex items-center justify-center text-[#E55943]">
+                      <Layout className="w-4 h-4" />
+                    </div>
+                    <h3 className="text-base font-sans font-medium text-white">Product Management</h3>
+                  </div>
+                  <p className="text-xs text-neutral-500 font-light leading-relaxed">
+                    Focusing on product discovery, user research, wireframing, and metric optimization.
+                  </p>
                 </div>
-                <p className="text-xs text-neutral-500 font-light leading-relaxed">
-                  Using industry-standard applications to coordinate tasks and create interactive UI prototypes.
-                </p>
+                <div className="flex flex-wrap gap-2 pt-6 border-t border-neutral-900/60">
+                  {["Product Strategy", "User Research", "Wireframing", "Roadmapping", "Prioritization", "Agile & Scrum", "A/B Testing", "Churn Analytics", "RICE Model"].map((skill) => (
+                    <span key={skill} className="bg-[#09090b] border border-neutral-900 text-neutral-400 text-[10px] px-2.5 py-1.5 font-mono-code">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
               </div>
-              <div className="flex flex-wrap gap-2 pt-6 border-t border-neutral-900/60">
-                {["Figma", "Jira", "Notion", "Whimsical", "Tableau", "Vercel", "Slack", "Google Analytics", "PowerBI"].map((skill) => (
-                  <span key={skill} className="bg-[#09090b] border border-neutral-900 text-neutral-400 text-[10px] px-2.5 py-1.5 font-mono-code">
-                    {skill}
-                  </span>
-                ))}
+
+              {/* Tech Card */}
+              <div className="p-8 space-y-6 flex flex-col justify-between">
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center">
+                    <span className="text-[10px] font-mono-tech text-neutral-500 uppercase font-semibold">TECHNICAL</span>
+                    <span className="text-[10px] font-mono-tech text-neutral-600">[ 02 ]</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 bg-[#E55943]/10 border border-[#E55943]/20 flex items-center justify-center text-[#E55943]">
+                      <Code className="w-4 h-4" />
+                    </div>
+                    <h3 className="text-base font-sans font-medium text-white">Languages &amp; Logic</h3>
+                  </div>
+                  <p className="text-xs text-neutral-500 font-light leading-relaxed">
+                    Leveraging data extraction and coding logic to evaluate systems and draw insights.
+                  </p>
+                </div>
+                <div className="flex flex-wrap gap-2 pt-6 border-t border-neutral-900/60">
+                  {["SQL (Data Queries)", "Python (Data)", "C Programming", "HTML5 &amp; CSS3", "Spreadsheets", "API Integration", "Logical Reasoning"].map((skill) => (
+                    <span key={skill} className="bg-[#09090b] border border-neutral-900 text-neutral-400 text-[10px] px-2.5 py-1.5 font-mono-code">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Tools Card */}
+              <div className="p-8 space-y-6 flex flex-col justify-between">
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center">
+                    <span className="text-[10px] font-mono-tech text-neutral-500 uppercase font-semibold">SYSTEMS</span>
+                    <span className="text-[10px] font-mono-tech text-neutral-600">[ 03 ]</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 bg-[#E55943]/10 border border-[#E55943]/20 flex items-center justify-center text-[#E55943]">
+                      <Settings className="w-4 h-4" />
+                    </div>
+                    <h3 className="text-base font-sans font-medium text-white">Tooling &amp; Platforms</h3>
+                  </div>
+                  <p className="text-xs text-neutral-500 font-light leading-relaxed">
+                    Using industry-standard applications to coordinate tasks and create interactive UI prototypes.
+                  </p>
+                </div>
+                <div className="flex flex-wrap gap-2 pt-6 border-t border-neutral-900/60">
+                  {["Figma", "Jira", "Notion", "Whimsical", "Tableau", "Vercel", "Slack", "Google Analytics", "PowerBI"].map((skill) => (
+                    <span key={skill} className="bg-[#09090b] border border-neutral-900 text-neutral-400 text-[10px] px-2.5 py-1.5 font-mono-code">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
         </section>
 
         {/* Projects Section */}
-        <section id="projects" className="space-y-12">
-          <div className="flex justify-center border-t border-b border-neutral-900 py-6 mb-12">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 border border-neutral-900 text-[10px] font-mono-tech tracking-widest text-[#E55943] uppercase">
-              [ &times; ] 03 / Deep Dives
+        <section id="projects" className="relative grid grid-cols-1 md:grid-cols-[140px_1fr] gap-8 md:gap-12 scroll-mt-24">
+          {/* Left: Vertical Title Column */}
+          <div className="hidden md:flex flex-col items-center justify-start">
+            <div className="sticky top-28 flex flex-col items-center space-y-4">
+              <span className="text-[10px] font-mono-tech text-neutral-600 tracking-widest uppercase">
+                03 // WORKS
+              </span>
+              <div className={`flex items-center justify-center border rounded-xl py-8 px-4 transition-all duration-500 ${
+                activeSection === "projects" 
+                  ? "border-[#E55943] bg-[#E55943]/5 shadow-[0_0_15px_rgba(229,89,67,0.1)] text-[#E55943]" 
+                  : "border-neutral-900 bg-[#070708]/50 text-neutral-500 hover:border-neutral-800 hover:text-neutral-300"
+              }`}>
+                <span className="text-xs font-mono-tech tracking-[0.3em] uppercase [writing-mode:vertical-rl] rotate-180 select-none">
+                  PROJECTS
+                </span>
+              </div>
             </div>
           </div>
-          
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <h2 className="text-4xl sm:text-5xl font-sans tracking-tight font-medium text-white leading-tight">
-              Case Study Archive
-            </h2>
-            <p className="text-sm text-neutral-500 max-w-xl mx-auto font-light leading-relaxed">
-              Detailed product case studies built on actual research, user surveys, and data-backed impact estimation.
-            </p>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 border border-neutral-900 divide-y divide-neutral-900 bg-[#070708] overflow-hidden">
-            {projectsData.map((project, idx) => (
-              <div
-                key={project.id}
-                onClick={() => setSelectedProject(project)}
-                className="p-8 hover:bg-[#09090b]/60 cursor-pointer transition-all flex flex-col justify-between min-h-[220px] relative group"
-              >
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[9px] text-[#E55943] uppercase tracking-widest font-mono-tech">
-                      00{idx+1} {"// CASE STUDY"}
-                    </span>
-                    {project.award && (
-                      <span className="text-[9px] text-[#E55943] font-mono-tech uppercase">
-                        [ {project.award} ]
+          {/* Right: Content Column */}
+          <div className="space-y-8">
+            {/* Mobile Section Header */}
+            <div className="md:hidden flex items-center gap-3 border-b border-neutral-900 pb-4 mb-6">
+              <span className="text-[10px] font-mono-tech text-[#E55943]">03 /</span>
+              <h2 className="text-lg font-sans font-medium text-white uppercase tracking-wider">Projects</h2>
+            </div>
+
+            <div className="max-w-2xl space-y-3 mb-6">
+              <h3 className="text-3xl font-sans font-medium text-white leading-tight">
+                Case Study Archive
+              </h3>
+              <p className="text-sm text-neutral-500 font-light leading-relaxed">
+                Detailed product case studies built on actual research, user surveys, and data-backed impact estimation.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 border border-neutral-900 divide-y divide-neutral-900 bg-[#070708] overflow-hidden">
+              {projectsData.map((project, idx) => (
+                <div
+                  key={project.id}
+                  onClick={() => setSelectedProject(project)}
+                  className="p-8 hover:bg-[#09090b]/60 cursor-pointer transition-all flex flex-col justify-between min-h-[220px] relative group"
+                >
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[9px] text-[#E55943] uppercase tracking-widest font-mono-tech">
+                        00{idx+1} {"// CASE STUDY"}
                       </span>
-                    )}
+                      {project.award && (
+                        <span className="text-[9px] text-[#E55943] font-mono-tech uppercase">
+                          [ {project.award} ]
+                        </span>
+                      )}
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-sans font-medium text-white group-hover:text-[#E55943] transition-colors mb-2">
+                        {project.title}
+                      </h3>
+                      <p className="text-xs text-neutral-400 font-light leading-relaxed line-clamp-3">
+                        {project.tagline}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-xl font-sans font-medium text-white group-hover:text-[#E55943] transition-colors mb-2">
-                      {project.title}
-                    </h3>
-                    <p className="text-xs text-neutral-400 font-light leading-relaxed line-clamp-3">
-                      {project.tagline}
-                    </p>
-                  </div>
-                </div>
 
-                <div className="flex items-center gap-1.5 text-[10px] text-[#E55943] font-mono-tech uppercase pt-6 group-hover:gap-2.5 transition-all">
-                  Read Full Pitch Deck &amp; PRD Details
-                  <ChevronRight className="w-3.5 h-3.5" />
+                  <div className="flex items-center gap-1.5 text-[10px] text-[#E55943] font-mono-tech uppercase pt-6 group-hover:gap-2.5 transition-all">
+                    Read Full Pitch Deck &amp; PRD Details
+                    <ChevronRight className="w-3.5 h-3.5" />
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </section>
 
         {/* Experience Section */}
-        <section id="experience" className="space-y-12">
-          <div className="flex justify-center border-t border-b border-neutral-900 py-6 mb-12">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 border border-neutral-900 text-[10px] font-mono-tech tracking-widest text-[#E55943] uppercase">
-              [ &times; ] 04 / Experience
+        <section id="experience" className="relative grid grid-cols-1 md:grid-cols-[140px_1fr] gap-8 md:gap-12 scroll-mt-24">
+          {/* Left: Vertical Title Column */}
+          <div className="hidden md:flex flex-col items-center justify-start">
+            <div className="sticky top-28 flex flex-col items-center space-y-4">
+              <span className="text-[10px] font-mono-tech text-neutral-600 tracking-widest uppercase">
+                04 // HIST
+              </span>
+              <div className={`flex items-center justify-center border rounded-xl py-8 px-4 transition-all duration-500 ${
+                activeSection === "experience" 
+                  ? "border-[#E55943] bg-[#E55943]/5 shadow-[0_0_15px_rgba(229,89,67,0.1)] text-[#E55943]" 
+                  : "border-neutral-900 bg-[#070708]/50 text-neutral-500 hover:border-neutral-800 hover:text-neutral-300"
+              }`}>
+                <span className="text-xs font-mono-tech tracking-[0.3em] uppercase [writing-mode:vertical-rl] rotate-180 select-none">
+                  EXPERIENCE
+                </span>
+              </div>
             </div>
           </div>
-          
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <h2 className="text-4xl sm:text-5xl font-sans tracking-tight font-medium text-white leading-tight">
-              Work History
-            </h2>
-            <p className="text-sm text-neutral-500 max-w-xl mx-auto font-light leading-relaxed">
-              Practical roles driving metric optimizations, stand-ups, and user surveys.
-            </p>
-          </div>
 
-          <div className="border border-neutral-900 divide-y divide-neutral-900 bg-[#070708]">
-            {/* Sherlock Studio */}
-            <div className="p-8 grid md:grid-cols-3 gap-6">
-              <div className="space-y-2">
-                <div className="flex justify-between md:flex-col md:justify-start gap-1">
-                  <span className="text-[10px] font-mono-tech text-[#E55943] tracking-wider uppercase font-semibold">JUL 2025 – SEPT 2025</span>
-                  <span className="text-[10px] font-mono-tech text-neutral-600 md:mt-1">[ 01 ] INTERNSHIP</span>
+          {/* Right: Content Column */}
+          <div className="space-y-8">
+            {/* Mobile Section Header */}
+            <div className="md:hidden flex items-center gap-3 border-b border-neutral-900 pb-4 mb-6">
+              <span className="text-[10px] font-mono-tech text-[#E55943]">04 /</span>
+              <h2 className="text-lg font-sans font-medium text-white uppercase tracking-wider">Experience</h2>
+            </div>
+
+            <div className="max-w-2xl space-y-3 mb-6">
+              <h3 className="text-3xl font-sans font-medium text-white leading-tight">
+                Work History
+              </h3>
+              <p className="text-sm text-neutral-500 font-light leading-relaxed">
+                Practical roles driving metric optimizations, stand-ups, and user surveys.
+              </p>
+            </div>
+
+            <div className="border border-neutral-900 divide-y divide-neutral-900 bg-[#070708]">
+              {/* Sherlock Studio */}
+              <div className="p-8 grid md:grid-cols-3 gap-6">
+                <div className="space-y-2">
+                  <div className="flex justify-between md:flex-col md:justify-start gap-1">
+                    <span className="text-[10px] font-mono-tech text-[#E55943] tracking-wider uppercase font-semibold">JUL 2025 – SEPT 2025</span>
+                    <span className="text-[10px] font-mono-tech text-neutral-600 md:mt-1">[ 01 ] INTERNSHIP</span>
+                  </div>
+                  <h3 className="text-lg font-sans font-medium text-white">Product Management Intern</h3>
+                  <p className="text-xs text-neutral-500 font-light">Sherlock Studio (Remote)</p>
                 </div>
-                <h3 className="text-lg font-sans font-medium text-white">Product Management Intern</h3>
-                <p className="text-xs text-neutral-500 font-light">Sherlock Studio (Remote)</p>
-              </div>
-              <div className="md:col-span-2">
-                <ul className="space-y-3 text-xs text-neutral-400 font-light leading-relaxed list-none pl-0">
-                  <li className="flex gap-3 items-start">
-                    <span className="text-[#E55943] font-mono-tech select-none mt-0.5">&gt;</span>
-                    <span>Delivered 3+ feature recommendations based on competitive analysis of RPG horror games to drive market differentiation.</span>
-                  </li>
-                  <li className="flex gap-3 items-start">
-                    <span className="text-[#E55943] font-mono-tech select-none mt-0.5">&gt;</span>
-                    <span>Conducted cost and pricing structure audits on Steam, optimizing the product’s entry-level price specifically for the Indian audience.</span>
-                  </li>
-                  <li className="flex gap-3 items-start">
-                    <span className="text-[#E55943] font-mono-tech select-none mt-0.5">&gt;</span>
-                    <span>Facilitated daily stand-up meetings with a 10+ member cross-functional team of designers, engineers, and audio artists to align project sprints.</span>
-                  </li>
-                </ul>
+                <div className="md:col-span-2">
+                  <ul className="space-y-3 text-xs text-neutral-400 font-light leading-relaxed list-none pl-0">
+                    <li className="flex gap-3 items-start">
+                      <span className="text-[#E55943] font-mono-tech select-none mt-0.5">&gt;</span>
+                      <span>Delivered 3+ feature recommendations based on competitive analysis of RPG horror games to drive market differentiation.</span>
+                    </li>
+                    <li className="flex gap-3 items-start">
+                      <span className="text-[#E55943] font-mono-tech select-none mt-0.5">&gt;</span>
+                      <span>Conducted cost and pricing structure audits on Steam, optimizing the product’s entry-level price specifically for the Indian audience.</span>
+                    </li>
+                    <li className="flex gap-3 items-start">
+                      <span className="text-[#E55943] font-mono-tech select-none mt-0.5">&gt;</span>
+                      <span>Facilitated daily stand-up meetings with a 10+ member cross-functional team of designers, engineers, and audio artists to align project sprints.</span>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
         {/* Resume Preview & Download Section */}
-        <section id="resume" className="space-y-12">
-          <div className="flex justify-center border-t border-b border-neutral-900 py-6 mb-12">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 border border-neutral-900 text-[10px] font-mono-tech tracking-widest text-[#E55943] uppercase">
-              [ &times; ] 05 / Profile
+        <section id="resume" className="relative grid grid-cols-1 md:grid-cols-[140px_1fr] gap-8 md:gap-12 scroll-mt-24">
+          {/* Left: Vertical Title Column */}
+          <div className="hidden md:flex flex-col items-center justify-start">
+            <div className="sticky top-28 flex flex-col items-center space-y-4">
+              <span className="text-[10px] font-mono-tech text-neutral-600 tracking-widest uppercase">
+                05 // FILE
+              </span>
+              <div className={`flex items-center justify-center border rounded-xl py-8 px-4 transition-all duration-500 ${
+                activeSection === "resume" 
+                  ? "border-[#E55943] bg-[#E55943]/5 shadow-[0_0_15px_rgba(229,89,67,0.1)] text-[#E55943]" 
+                  : "border-neutral-900 bg-[#070708]/50 text-neutral-500 hover:border-neutral-800 hover:text-neutral-300"
+              }`}>
+                <span className="text-xs font-mono-tech tracking-[0.3em] uppercase [writing-mode:vertical-rl] rotate-180 select-none">
+                  RESUME
+                </span>
+              </div>
             </div>
-          </div>
-          
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <h2 className="text-4xl sm:text-5xl font-sans tracking-tight font-medium text-white leading-tight">
-              Curriculum Vitae
-            </h2>
-            <p className="text-sm text-neutral-500 max-w-xl mx-auto font-light leading-relaxed">
-              Preview and download the complete resume detailing achievements and coursework.
-            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 border border-neutral-900 divide-y md:divide-y-0 md:divide-x divide-neutral-900 bg-[#070708] p-8 items-center gap-6">
-            <div className="md:col-span-2 space-y-4">
-              <h3 className="text-lg font-sans font-medium text-white flex items-center gap-2">
-                <FileText className="w-5 h-5 text-[#E55943]" />
-                Academic &amp; Professional Profile
+          {/* Right: Content Column */}
+          <div className="space-y-8">
+            {/* Mobile Section Header */}
+            <div className="md:hidden flex items-center gap-3 border-b border-neutral-900 pb-4 mb-6">
+              <span className="text-[10px] font-mono-tech text-[#E55943]">05 /</span>
+              <h2 className="text-lg font-sans font-medium text-white uppercase tracking-wider">Resume</h2>
+            </div>
+
+            <div className="max-w-2xl space-y-3 mb-6">
+              <h3 className="text-3xl font-sans font-medium text-white leading-tight">
+                Curriculum Vitae
               </h3>
-              <p className="text-xs text-neutral-400 font-light leading-relaxed">
-                Highlights academic background at IIT (ISM) Dhanbad (9.1 GPA), Inter-IIT product case awards (3rd place), ProdBlitz-3 top 4, Sherlock Studio internship, and structured PM capabilities.
+              <p className="text-sm text-neutral-500 font-light leading-relaxed">
+                Preview and download the complete resume detailing achievements and coursework.
               </p>
             </div>
-            <div className="flex justify-center md:justify-end">
-              <a
-                href="/resume.pdf"
-                target="_blank"
-                rel="noreferrer"
-                className="w-full max-w-[240px] bg-[#E55943] text-black hover:bg-[#CB4934] font-mono-tech text-xs uppercase py-3.5 px-5 btn-chamfer flex items-center justify-center gap-2 transition-all font-semibold"
-              >
-                <Download className="w-4 h-4" />
-                Download Resume
-              </a>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 border border-neutral-900 divide-y md:divide-y-0 md:divide-x divide-neutral-900 bg-[#070708] p-8 items-center gap-6">
+              <div className="md:col-span-2 space-y-4">
+                <h3 className="text-lg font-sans font-medium text-white flex items-center gap-2">
+                  <FileText className="w-5 h-5 text-[#E55943]" />
+                  Academic &amp; Professional Profile
+                </h3>
+                <p className="text-xs text-neutral-400 font-light leading-relaxed">
+                  Highlights academic background at IIT (ISM) Dhanbad (9.1 GPA), Inter-IIT product case awards (3rd place), ProdBlitz-3 top 4, Sherlock Studio internship, and structured PM capabilities.
+                </p>
+              </div>
+              <div className="flex justify-center md:justify-end">
+                <a
+                  href="/resume.pdf"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="w-full max-w-[240px] bg-[#E55943] text-black hover:bg-[#CB4934] font-mono-tech text-xs uppercase py-3.5 px-5 btn-chamfer flex items-center justify-center gap-2 transition-all font-semibold"
+                >
+                  <Download className="w-4 h-4" />
+                  Download Resume
+                </a>
+              </div>
             </div>
           </div>
         </section>
 
         {/* Contact Section */}
-        <section id="contact" className="space-y-12">
-          <div className="flex justify-center border-t border-b border-neutral-900 py-6 mb-12">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 border border-neutral-900 text-[10px] font-mono-tech tracking-widest text-[#E55943] uppercase">
-              [ &times; ] 06 / The Terminal
-            </div>
-          </div>
-          
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <h2 className="text-4xl sm:text-5xl font-sans tracking-tight font-medium text-white leading-tight">
-              Get In Touch
-            </h2>
-            <p className="text-sm text-neutral-500 max-w-xl mx-auto font-light leading-relaxed">
-              Always open to discussing product design, roadmap iterations, case competitions, or internship opportunities.
-            </p>
-          </div>
-
-          <div className="max-w-md mx-auto border border-neutral-900 bg-[#070708] divide-y divide-neutral-900">
-            <div className="p-8 space-y-4">
-              <div className="flex items-center gap-3 text-neutral-400 text-xs font-light">
-                <MapPin className="w-4 h-4 text-[#E55943]" />
-                <span>Gurgaon, Haryana, India</span>
-              </div>
-              <div className="flex items-center gap-3 text-neutral-400 text-xs font-light">
-                <Mail className="w-4 h-4 text-[#E55943]" />
-                <a href="mailto:rakshitraj1107@gmail.com" className="hover:text-white transition-colors">rakshitraj1107@gmail.com</a>
+        <section id="contact" className="relative grid grid-cols-1 md:grid-cols-[140px_1fr] gap-8 md:gap-12 scroll-mt-24">
+          {/* Left: Vertical Title Column */}
+          <div className="hidden md:flex flex-col items-center justify-start">
+            <div className="sticky top-28 flex flex-col items-center space-y-4">
+              <span className="text-[10px] font-mono-tech text-neutral-600 tracking-widest uppercase">
+                06 // SEND
+              </span>
+              <div className={`flex items-center justify-center border rounded-xl py-8 px-4 transition-all duration-500 ${
+                activeSection === "contact" 
+                  ? "border-[#E55943] bg-[#E55943]/5 shadow-[0_0_15px_rgba(229,89,67,0.1)] text-[#E55943]" 
+                  : "border-neutral-900 bg-[#070708]/50 text-neutral-500 hover:border-neutral-800 hover:text-neutral-300"
+              }`}>
+                <span className="text-xs font-mono-tech tracking-[0.3em] uppercase [writing-mode:vertical-rl] rotate-180 select-none">
+                  CONTACT
+                </span>
               </div>
             </div>
+          </div>
 
-            <div className="p-8 grid grid-cols-2 divide-x divide-neutral-900 bg-[#09090b]/40">
-              <a
-                href="https://linkedin.com/in/rakshit-raj-4796a2320"
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center justify-center gap-2 text-xs text-neutral-400 hover:text-white font-mono-tech uppercase transition-all"
-              >
-                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                </svg>
-                LinkedIn
-              </a>
-              <a
-                href="https://github.com/FocusedFalco"
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center justify-center gap-2 text-xs text-neutral-400 hover:text-white font-mono-tech uppercase transition-all"
-              >
-                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                </svg>
-                GitHub
-              </a>
+          {/* Right: Content Column */}
+          <div className="space-y-8">
+            {/* Mobile Section Header */}
+            <div className="md:hidden flex items-center gap-3 border-b border-neutral-900 pb-4 mb-6">
+              <span className="text-[10px] font-mono-tech text-[#E55943]">06 /</span>
+              <h2 className="text-lg font-sans font-medium text-white uppercase tracking-wider">Contact</h2>
+            </div>
+
+            <div className="max-w-2xl space-y-3 mb-6">
+              <h3 className="text-3xl font-sans font-medium text-white leading-tight">
+                Get In Touch
+              </h3>
+              <p className="text-sm text-neutral-500 font-light leading-relaxed">
+                Always open to discussing product design, roadmap iterations, case competitions, or internship opportunities.
+              </p>
+            </div>
+
+            <div className="max-w-md border border-neutral-900 bg-[#070708] divide-y divide-neutral-900">
+              <div className="p-8 space-y-4">
+                <div className="flex items-center gap-3 text-neutral-400 text-xs font-light">
+                  <MapPin className="w-4 h-4 text-[#E55943]" />
+                  <span>Gurgaon, Haryana, India</span>
+                </div>
+                <div className="flex items-center gap-3 text-neutral-400 text-xs font-light">
+                  <Mail className="w-4 h-4 text-[#E55943]" />
+                  <a href="mailto:rakshitraj1107@gmail.com" className="hover:text-white transition-colors">rakshitraj1107@gmail.com</a>
+                </div>
+              </div>
+
+              <div className="p-8 grid grid-cols-2 divide-x divide-neutral-900 bg-[#09090b]/40">
+                <a
+                  href="https://linkedin.com/in/rakshit-raj-4796a2320"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center justify-center gap-2 text-xs text-neutral-400 hover:text-white font-mono-tech uppercase transition-all"
+                >
+                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                  </svg>
+                  LinkedIn
+                </a>
+                <a
+                  href="https://github.com/FocusedFalco"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center justify-center gap-2 text-xs text-neutral-400 hover:text-white font-mono-tech uppercase transition-all"
+                >
+                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                  </svg>
+                  GitHub
+                </a>
+              </div>
             </div>
           </div>
         </section>
