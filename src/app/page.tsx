@@ -522,10 +522,10 @@ export default function PortfolioHome() {
                 </div>
               </div>
 
-              {/* Right: 2x2 grid of details */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 divide-y divide-neutral-900 bg-[#070708]">
+              {/* Right: 1-column list of details */}
+              <div className="grid grid-cols-1 divide-y divide-neutral-900 bg-[#070708]">
                 {/* Cell 1: Bio Summary */}
-                <div className="p-10 space-y-4 flex flex-col justify-center sm:col-span-2">
+                <div className="p-10 space-y-4 flex flex-col justify-center">
                   <div className="flex justify-between items-center">
                     <span className="text-xs font-mono-tech text-[#E55943] tracking-wider uppercase font-semibold">PROFILE SUMMARY</span>
                     <span className="text-xs font-mono-tech text-neutral-600">001 // BIO</span>
@@ -536,7 +536,7 @@ export default function PortfolioHome() {
                 </div>
 
                 {/* Cell 2: GPA */}
-                <div className="p-10 space-y-4 flex flex-col justify-center border-t border-neutral-900">
+                <div className="p-10 space-y-4 flex flex-col justify-center">
                   <div className="flex justify-between items-center">
                     <span className="text-xs font-mono-tech text-neutral-500 uppercase font-semibold">ACADEMICS</span>
                     <span className="text-xs font-mono-tech text-neutral-600">002 // GPA</span>
@@ -549,7 +549,7 @@ export default function PortfolioHome() {
                 </div>
 
                 {/* Cell 3: Rank */}
-                <div className="p-10 space-y-4 flex flex-col justify-center border-t border-neutral-900">
+                <div className="p-10 space-y-4 flex flex-col justify-center">
                   <div className="flex justify-between items-center">
                     <span className="text-xs font-mono-tech text-neutral-500 uppercase font-semibold">COMPETITIONS</span>
                     <span className="text-xs font-mono-tech text-neutral-600">003 // RANK</span>
@@ -562,7 +562,7 @@ export default function PortfolioHome() {
                 </div>
 
                 {/* Cell 4: Award */}
-                <div className="p-10 space-y-4 flex flex-col justify-center border-t border-neutral-900 sm:col-span-2">
+                <div className="p-10 space-y-4 flex flex-col justify-center">
                   <div className="flex justify-between items-center">
                     <span className="text-xs font-mono-tech text-neutral-500 uppercase font-semibold">HONORS</span>
                     <span className="text-xs font-mono-tech text-neutral-600">004 // AWARD</span>
@@ -633,7 +633,7 @@ export default function PortfolioHome() {
                     Focusing on product discovery, user research, wireframing, and metric optimization.
                   </p>
                 </div>
-                <div className="flex flex-wrap gap-2 pt-6 border-t border-neutral-900/60">
+                <div className="flex flex-col gap-2 items-start pt-6 border-t border-neutral-900/60">
                   {["Product Strategy", "User Research", "Wireframing", "Roadmapping", "Prioritization", "Agile & Scrum", "A/B Testing", "Churn Analytics", "RICE Model"].map((skill) => (
                     <span key={skill} className="bg-[#09090b] border border-neutral-900 text-neutral-300 text-xs px-3 py-2 font-mono-code">
                       {skill}
@@ -659,7 +659,7 @@ export default function PortfolioHome() {
                     Leveraging data extraction and coding logic to evaluate systems and draw insights.
                   </p>
                 </div>
-                <div className="flex flex-wrap gap-2 pt-6 border-t border-neutral-900/60">
+                <div className="flex flex-col gap-2 items-start pt-6 border-t border-neutral-900/60">
                   {["SQL (Data Queries)", "Python (Data)", "C Programming", "HTML5 & CSS3", "Spreadsheets", "API Integration", "Logical Reasoning"].map((skill) => (
                     <span key={skill} className="bg-[#09090b] border border-neutral-900 text-neutral-300 text-xs px-3 py-2 font-mono-code">
                       {skill}
@@ -685,7 +685,7 @@ export default function PortfolioHome() {
                     Using industry-standard applications to coordinate tasks and create interactive UI prototypes.
                   </p>
                 </div>
-                <div className="flex flex-wrap gap-2 pt-6 border-t border-neutral-900/60">
+                <div className="flex flex-col gap-2 items-start pt-6 border-t border-neutral-900/60">
                   {["Figma", "Jira", "Notion", "Whimsical", "Tableau", "Vercel", "Slack", "Google Analytics", "PowerBI"].map((skill) => (
                     <span key={skill} className="bg-[#09090b] border border-neutral-900 text-neutral-300 text-xs px-3 py-2 font-mono-code">
                       {skill}
