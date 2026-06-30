@@ -599,7 +599,7 @@ export default function PortfolioHome() {
             <div className="grid grid-cols-1 md:grid-cols-3 border border-neutral-900 divide-y md:divide-y-0 md:divide-x divide-neutral-900 bg-[#070708]">
               {/* PM Card */}
               <div className="p-10 space-y-6 flex flex-col justify-between">
-                <div className="space-y-4">
+                <div className="space-y-4 md:min-h-[160px] flex-grow">
                   <div className="flex justify-between items-center">
                     <span className="text-xs font-mono-tech text-neutral-500 uppercase font-semibold">DISCIPLINE</span>
                     <span className="text-xs font-mono-tech text-neutral-600">[ 01 ]</span>
@@ -625,7 +625,7 @@ export default function PortfolioHome() {
 
               {/* Tech Card */}
               <div className="p-10 space-y-6 flex flex-col justify-between">
-                <div className="space-y-4">
+                <div className="space-y-4 md:min-h-[160px] flex-grow">
                   <div className="flex justify-between items-center">
                     <span className="text-xs font-mono-tech text-neutral-500 uppercase font-semibold">TECHNICAL</span>
                     <span className="text-xs font-mono-tech text-neutral-600">[ 02 ]</span>
@@ -634,14 +634,14 @@ export default function PortfolioHome() {
                     <div className="w-10 h-10 bg-[#E55943]/10 border border-[#E55943]/20 flex items-center justify-center text-[#E55943]">
                       <Code className="w-5 h-5" />
                     </div>
-                    <h3 className="text-lg font-sans font-medium text-white">Languages &amp; Logic</h3>
+                    <h3 className="text-lg font-sans font-medium text-white">Languages & Logic</h3>
                   </div>
                   <p className="text-sm text-neutral-400 font-light leading-relaxed">
                     Leveraging data extraction and coding logic to evaluate systems and draw insights.
                   </p>
                 </div>
                 <div className="flex flex-wrap gap-2 pt-6 border-t border-neutral-900/60">
-                  {["SQL (Data Queries)", "Python (Data)", "C Programming", "HTML5 &amp; CSS3", "Spreadsheets", "API Integration", "Logical Reasoning"].map((skill) => (
+                  {["SQL (Data Queries)", "Python (Data)", "C Programming", "HTML5 & CSS3", "Spreadsheets", "API Integration", "Logical Reasoning"].map((skill) => (
                     <span key={skill} className="bg-[#09090b] border border-neutral-900 text-neutral-300 text-xs px-3 py-2 font-mono-code">
                       {skill}
                     </span>
@@ -651,7 +651,7 @@ export default function PortfolioHome() {
 
               {/* Tools Card */}
               <div className="p-10 space-y-6 flex flex-col justify-between">
-                <div className="space-y-4">
+                <div className="space-y-4 md:min-h-[160px] flex-grow">
                   <div className="flex justify-between items-center">
                     <span className="text-xs font-mono-tech text-neutral-500 uppercase font-semibold">SYSTEMS</span>
                     <span className="text-xs font-mono-tech text-neutral-600">[ 03 ]</span>
@@ -660,7 +660,7 @@ export default function PortfolioHome() {
                     <div className="w-10 h-10 bg-[#E55943]/10 border border-[#E55943]/20 flex items-center justify-center text-[#E55943]">
                       <Settings className="w-5 h-5" />
                     </div>
-                    <h3 className="text-lg font-sans font-medium text-white">Tooling &amp; Platforms</h3>
+                    <h3 className="text-lg font-sans font-medium text-white">Tooling & Platforms</h3>
                   </div>
                   <p className="text-sm text-neutral-400 font-light leading-relaxed">
                     Using industry-standard applications to coordinate tasks and create interactive UI prototypes.
@@ -723,12 +723,12 @@ export default function PortfolioHome() {
                   className="p-10 hover:bg-[#09090b]/60 cursor-pointer transition-all flex flex-col justify-between min-h-[260px] relative group"
                 >
                   <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs text-[#E55943] uppercase tracking-widest font-mono-tech">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-x-4 gap-y-1.5">
+                      <span className="text-xs text-[#E55943] uppercase tracking-widest font-mono-tech whitespace-nowrap flex-shrink-0">
                         00{idx+1} {"// CASE STUDY"}
                       </span>
                       {project.award && (
-                        <span className="text-xs text-[#E55943] font-mono-tech uppercase">
+                        <span className="text-xs text-[#E55943] font-mono-tech uppercase text-left sm:text-right">
                           [ {project.award} ]
                         </span>
                       )}
@@ -744,7 +744,7 @@ export default function PortfolioHome() {
                   </div>
 
                   <div className="flex items-center gap-1.5 text-xs text-[#E55943] font-mono-tech uppercase pt-6 group-hover:gap-2.5 transition-all">
-                    Read Full Pitch Deck &amp; PRD Details
+                    Read Full Pitch Deck & PRD Details
                     <ChevronRight className="w-3.5 h-3.5" />
                   </div>
                 </div>
