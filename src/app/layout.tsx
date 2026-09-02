@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import LayoutContent from "@/components/LayoutContent";
 
 export const metadata: Metadata = {
-  title: "Rakshit Raj | Product Manager Portfolio",
-  description: "Personal portfolio of Rakshit Raj, an aspiring Product Manager with experience in product strategy, data analytics, AI prototyping, and case competitions. Built using Apple, Linear, and Stripe design aesthetics.",
+  title: "Prisma — Creative Studio & Global Collective",
+  description: "A worldwide network of visual artists, filmmakers, and storytellers bound by passion and hunger to unlock potential through unique perspectives.",
 };
 
 export default function RootLayout({
@@ -14,9 +13,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <LayoutContent>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Instrument+Serif:ital@1&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body className="bg-black text-[#E1E0CC] font-sans antialiased selection:bg-[#DEDBC8] selection:text-black">
         {children}
-      </LayoutContent>
+      </body>
     </html>
   );
 }
