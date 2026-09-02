@@ -176,10 +176,10 @@ interface ProjectsSectionProps {
 
 export default function ProjectsSection({ onSelectProject }: ProjectsSectionProps) {
   const headerSegments: MultiStyleSegment[] = [
-    { text: "Product Case Studies & PRDs.", className: "text-[#E1E0CC]" },
+    { text: "Product Case Studies & PRDs.", className: "text-white" },
     {
       text: "Built on actual user research, data analytics, and impact estimation.",
-      className: "text-gray-500 block w-full mt-1 sm:mt-2",
+      className: "text-[#E55943] block w-full mt-1 sm:mt-2 font-mono text-lg sm:text-xl md:text-2xl",
     },
   ];
 
@@ -188,7 +188,7 @@ export default function ProjectsSection({ onSelectProject }: ProjectsSectionProp
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center max-w-4xl mx-auto mb-16 md:mb-20">
-          <span className="text-primary text-[10px] sm:text-xs tracking-widest uppercase mb-4 block font-medium">
+          <span className="text-[#E55943] text-[10px] sm:text-xs tracking-widest uppercase mb-4 block font-medium font-mono">
             CASE STUDY ARCHIVE
           </span>
           <WordsPullUpMultiStyle
@@ -207,7 +207,7 @@ export default function ProjectsSection({ onSelectProject }: ProjectsSectionProp
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: idx * 0.15 }}
               onClick={() => onSelectProject(project)}
-              className="bg-[#101010] rounded-2xl md:rounded-[1.8rem] p-8 border border-white/5 hover:border-primary/40 flex flex-col justify-between cursor-pointer transition-all duration-300 group shadow-xl hover:-translate-y-1"
+              className="bg-[#070708] rounded-2xl md:rounded-[1.8rem] p-8 border border-neutral-900 hover:border-[#E55943]/50 flex flex-col justify-between cursor-pointer transition-all duration-300 group shadow-xl hover:-translate-y-1"
             >
               <div className="space-y-5">
                 {/* Header Tag + Award */}
@@ -216,7 +216,7 @@ export default function ProjectsSection({ onSelectProject }: ProjectsSectionProp
                     00{idx + 1} {"// CASE STUDY"}
                   </span>
                   {project.award && (
-                    <span className="text-[10px] sm:text-xs text-[#E55943] bg-[#E55943]/10 px-2.5 py-1 rounded-full border border-[#E55943]/20 font-medium">
+                    <span className="text-[10px] sm:text-xs text-[#E55943] bg-[#E55943]/10 px-2.5 py-1 rounded-full border border-[#E55943]/30 font-medium font-mono">
                       {project.award}
                     </span>
                   )}
@@ -224,19 +224,19 @@ export default function ProjectsSection({ onSelectProject }: ProjectsSectionProp
 
                 {/* Title & Tagline */}
                 <div>
-                  <h3 className="text-2xl font-medium text-white group-hover:text-primary transition-colors mb-3">
+                  <h3 className="text-2xl font-medium text-white group-hover:text-[#E55943] transition-colors mb-3">
                     {project.title}
                   </h3>
-                  <p className="text-sm text-gray-400 font-light leading-relaxed line-clamp-3">
+                  <p className="text-sm text-neutral-400 font-light leading-relaxed line-clamp-3">
                     {project.tagline}
                   </p>
                 </div>
               </div>
 
               {/* Bottom CTA Link */}
-              <div className="flex items-center gap-2 text-xs sm:text-sm text-[#E55943] font-medium pt-8 group-hover:gap-3 transition-all duration-300">
+              <div className="flex items-center gap-2 text-xs sm:text-sm text-[#E55943] font-medium font-mono pt-8 group-hover:gap-3 transition-all duration-300">
                 <span>Read Pitch Deck &amp; PRD Details</span>
-                <ChevronRight className="w-4 h-4" />
+                <ChevronRight className="w-4 h-4 text-[#E55943]" />
               </div>
             </motion.div>
           ))}

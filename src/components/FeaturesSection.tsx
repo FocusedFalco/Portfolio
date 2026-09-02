@@ -8,11 +8,11 @@ export default function FeaturesSection() {
   const headerSegments: MultiStyleSegment[] = [
     {
       text: "Data-driven workflows for high-impact product growth.",
-      className: "text-[#E1E0CC]",
+      className: "text-white",
     },
     {
       text: "Built on analytical rigor. Driven by user empathy.",
-      className: "text-gray-500 block w-full mt-1 sm:mt-2",
+      className: "text-[#E55943] block w-full mt-1 sm:mt-2 font-mono text-lg sm:text-xl md:text-2xl",
     },
   ];
 
@@ -52,7 +52,7 @@ export default function FeaturesSection() {
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={cardVariants}
-            className="relative rounded-2xl md:rounded-[1.5rem] overflow-hidden p-6 sm:p-8 flex flex-col justify-end h-[420px] lg:h-full border border-white/10 group shadow-2xl"
+            className="relative rounded-2xl md:rounded-[1.5rem] overflow-hidden p-6 sm:p-8 flex flex-col justify-end h-[420px] lg:h-full border border-neutral-900 group shadow-2xl"
           >
             <video
               autoPlay
@@ -63,7 +63,7 @@ export default function FeaturesSection() {
               src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260406_133058_0504132a-0cf3-4450-a370-8ea3b05c95d4.mp4"
             />
             <div className="bg-gradient-to-t from-black/90 via-black/40 to-transparent absolute inset-0 z-10 pointer-events-none" />
-            <h3 className="text-xl sm:text-2xl font-medium text-[#E1E0CC] z-20 relative tracking-tight">
+            <h3 className="text-xl sm:text-2xl font-medium text-white z-20 relative tracking-tight">
               First-principles product canvas.
             </h3>
           </motion.div>
@@ -75,16 +75,16 @@ export default function FeaturesSection() {
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={cardVariants}
-            className="bg-[#212121] rounded-2xl md:rounded-[1.5rem] p-6 sm:p-7 flex flex-col justify-between h-[420px] lg:h-full border border-white/5 relative group hover:border-white/20 transition-all duration-300 shadow-xl"
+            className="bg-[#070708] rounded-2xl md:rounded-[1.5rem] p-6 sm:p-7 flex flex-col justify-between h-[420px] lg:h-full border border-neutral-900 relative group hover:border-[#E55943]/40 transition-all duration-300 shadow-xl"
           >
             <div>
               <div className="flex items-center justify-between mb-6">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary font-bold text-lg">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[#E55943]/10 border border-[#E55943]/30 flex items-center justify-center text-[#E55943] font-bold text-lg font-mono">
                   PM
                 </div>
-                <span className="text-xs font-mono text-gray-500">01</span>
+                <span className="text-xs font-mono text-neutral-500">01</span>
               </div>
-              <h3 className="text-lg sm:text-xl font-medium text-[#E1E0CC] mb-5 tracking-tight">
+              <h3 className="text-lg sm:text-xl font-medium text-white mb-5 tracking-tight">
                 Product Strategy.
               </h3>
 
@@ -95,8 +95,8 @@ export default function FeaturesSection() {
                   "Prioritization & RICE Model",
                   "A/B Testing & Churn Analytics",
                 ].map((item, idx) => (
-                  <li key={idx} className="flex items-center gap-2.5 text-xs sm:text-sm text-gray-400">
-                    <Check className="w-4 h-4 text-primary shrink-0" />
+                  <li key={idx} className="flex items-center gap-2.5 text-xs sm:text-sm text-neutral-400">
+                    <Check className="w-4 h-4 text-[#E55943] shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -105,7 +105,7 @@ export default function FeaturesSection() {
 
             <a
               href="#projects"
-              className="inline-flex items-center gap-1.5 text-xs sm:text-sm text-primary font-medium mt-6 group-hover:gap-2.5 transition-all duration-300"
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm text-[#E55943] font-medium mt-6 group-hover:gap-2.5 transition-all duration-300 font-mono"
             >
               <span>See case studies</span>
               <ArrowRight className="w-4 h-4 transform -rotate-45 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -119,16 +119,16 @@ export default function FeaturesSection() {
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={cardVariants}
-            className="bg-[#212121] rounded-2xl md:rounded-[1.5rem] p-6 sm:p-7 flex flex-col justify-between h-[420px] lg:h-full border border-white/5 relative group hover:border-white/20 transition-all duration-300 shadow-xl"
+            className="bg-[#070708] rounded-2xl md:rounded-[1.5rem] p-6 sm:p-7 flex flex-col justify-between h-[420px] lg:h-full border border-neutral-900 relative group hover:border-[#E55943]/40 transition-all duration-300 shadow-xl"
           >
             <div>
               <div className="flex items-center justify-between mb-6">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary font-bold text-lg">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[#E55943]/10 border border-[#E55943]/30 flex items-center justify-center text-[#E55943] font-bold text-lg font-mono">
                   SQL
                 </div>
-                <span className="text-xs font-mono text-gray-500">02</span>
+                <span className="text-xs font-mono text-neutral-500">02</span>
               </div>
-              <h3 className="text-lg sm:text-xl font-medium text-[#E1E0CC] mb-5 tracking-tight">
+              <h3 className="text-lg sm:text-xl font-medium text-white mb-5 tracking-tight">
                 Languages & Analytics.
               </h3>
 
@@ -139,8 +139,8 @@ export default function FeaturesSection() {
                   "C Programming & Logic",
                   "API Integration & Spreadsheets",
                 ].map((item, idx) => (
-                  <li key={idx} className="flex items-center gap-2.5 text-xs sm:text-sm text-gray-400">
-                    <Check className="w-4 h-4 text-primary shrink-0" />
+                  <li key={idx} className="flex items-center gap-2.5 text-xs sm:text-sm text-neutral-400">
+                    <Check className="w-4 h-4 text-[#E55943] shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -149,7 +149,7 @@ export default function FeaturesSection() {
 
             <a
               href="#projects"
-              className="inline-flex items-center gap-1.5 text-xs sm:text-sm text-primary font-medium mt-6 group-hover:gap-2.5 transition-all duration-300"
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm text-[#E55943] font-medium mt-6 group-hover:gap-2.5 transition-all duration-300 font-mono"
             >
               <span>See case studies</span>
               <ArrowRight className="w-4 h-4 transform -rotate-45 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -163,16 +163,16 @@ export default function FeaturesSection() {
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={cardVariants}
-            className="bg-[#212121] rounded-2xl md:rounded-[1.5rem] p-6 sm:p-7 flex flex-col justify-between h-[420px] lg:h-full border border-white/5 relative group hover:border-white/20 transition-all duration-300 shadow-xl"
+            className="bg-[#070708] rounded-2xl md:rounded-[1.5rem] p-6 sm:p-7 flex flex-col justify-between h-[420px] lg:h-full border border-neutral-900 relative group hover:border-[#E55943]/40 transition-all duration-300 shadow-xl"
           >
             <div>
               <div className="flex items-center justify-between mb-6">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary font-bold text-lg">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[#E55943]/10 border border-[#E55943]/30 flex items-center justify-center text-[#E55943] font-bold text-lg font-mono">
                   UI
                 </div>
-                <span className="text-xs font-mono text-gray-500">03</span>
+                <span className="text-xs font-mono text-neutral-500">03</span>
               </div>
-              <h3 className="text-lg sm:text-xl font-medium text-[#E1E0CC] mb-5 tracking-tight">
+              <h3 className="text-lg sm:text-xl font-medium text-white mb-5 tracking-tight">
                 Tooling & Systems.
               </h3>
 
@@ -183,8 +183,8 @@ export default function FeaturesSection() {
                   "Tableau & PowerBI Dashboards",
                   "Google Analytics & Vercel",
                 ].map((item, idx) => (
-                  <li key={idx} className="flex items-center gap-2.5 text-xs sm:text-sm text-gray-400">
-                    <Check className="w-4 h-4 text-primary shrink-0" />
+                  <li key={idx} className="flex items-center gap-2.5 text-xs sm:text-sm text-neutral-400">
+                    <Check className="w-4 h-4 text-[#E55943] shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -193,7 +193,7 @@ export default function FeaturesSection() {
 
             <a
               href="#projects"
-              className="inline-flex items-center gap-1.5 text-xs sm:text-sm text-primary font-medium mt-6 group-hover:gap-2.5 transition-all duration-300"
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm text-[#E55943] font-medium mt-6 group-hover:gap-2.5 transition-all duration-300 font-mono"
             >
               <span>See case studies</span>
               <ArrowRight className="w-4 h-4 transform -rotate-45 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
