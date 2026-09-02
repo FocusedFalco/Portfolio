@@ -6,11 +6,11 @@ import WordsPullUp from "./WordsPullUp";
 
 export default function HeroSection() {
   const navItems = [
-    "About",
-    "Skills",
-    "Projects",
-    "Resume",
-    "Contact",
+    "Our story",
+    "Collective",
+    "Workshops",
+    "Programs",
+    "Inquiries",
   ];
 
   return (
@@ -30,16 +30,19 @@ export default function HeroSection() {
         <div className="noise-overlay opacity-[0.7] mix-blend-overlay pointer-events-none absolute inset-0 z-10" />
 
         {/* Gradient Overlay */}
-        <div className="bg-gradient-to-b from-black/40 via-transparent to-black/80 absolute inset-0 pointer-events-none z-10" />
+        <div className="bg-gradient-to-b from-black/30 via-transparent to-black/60 absolute inset-0 pointer-events-none z-10" />
 
         {/* Navbar hanging pill */}
         <nav className="absolute top-0 left-1/2 -translate-x-1/2 z-30">
-          <div className="bg-black/90 backdrop-blur-md rounded-b-2xl md:rounded-b-3xl px-5 py-2.5 md:px-8 flex items-center gap-4 sm:gap-6 md:gap-12 lg:gap-14 shadow-2xl border-b border-x border-neutral-900">
+          <div className="bg-black rounded-b-2xl md:rounded-b-3xl px-4 py-2 md:px-8 flex items-center gap-3 sm:gap-6 md:gap-12 lg:gap-14 shadow-2xl border-b border-x border-white/5">
             {navItems.map((item, idx) => (
               <a
                 key={idx}
-                href={`#${item.toLowerCase()}`}
-                className="text-[10px] sm:text-xs md:text-sm transition-colors duration-200 font-medium tracking-wide uppercase whitespace-nowrap text-neutral-400 hover:text-[#E55943]"
+                href={`#${item.toLowerCase().replace(" ", "-")}`}
+                className="text-[10px] sm:text-xs md:text-sm font-normal tracking-wide whitespace-nowrap transition-colors duration-200"
+                style={{ color: "rgba(225, 224, 204, 0.8)" }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#E1E0CC")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(225, 224, 204, 0.8)")}
               >
                 {item}
               </a>
@@ -50,16 +53,16 @@ export default function HeroSection() {
         {/* Hero Content (Bottom Aligned) */}
         <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10 lg:p-12 z-20">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-end">
-            {/* Left 8 columns: Giant Name Heading */}
+            {/* Left 8 columns: Giant Heading */}
             <div className="lg:col-span-8 relative">
               <WordsPullUp
-                text="Rakshit"
+                text="Prisma"
                 showAsterisk={true}
-                className="text-[24vw] sm:text-[22vw] md:text-[20vw] lg:text-[18vw] xl:text-[17vw] 2xl:text-[18vw] font-medium leading-[0.85] tracking-[-0.07em] text-white"
+                className="text-[26vw] sm:text-[24vw] md:text-[22vw] lg:text-[20vw] xl:text-[19vw] 2xl:text-[20vw] font-medium leading-[0.85] tracking-[-0.07em]"
               />
             </div>
 
-            {/* Right 4 columns: Paragraph + CTA button */}
+            {/* Right 4 columns: Description Paragraph + CTA Button */}
             <div className="lg:col-span-4 flex flex-col gap-6 items-start justify-end mb-2 md:mb-4 lg:mb-6">
               {/* Description Paragraph */}
               <motion.p
@@ -70,14 +73,16 @@ export default function HeroSection() {
                   delay: 0.5,
                   ease: [0.16, 1, 0.3, 1],
                 }}
-                className="text-neutral-300 text-xs sm:text-sm md:text-base leading-[1.3] font-normal max-w-md"
+                className="text-primary/70 text-xs sm:text-sm md:text-base leading-[1.2] font-normal max-w-md"
               >
-                Pre-final year student at <strong className="font-semibold text-white">IIT (ISM) Dhanbad</strong>. Building data-backed product strategy, user friction solutions, and growth architecture.
+                Prisma is a worldwide network of visual artists, filmmakers and
+                storytellers bound not by place, status or labels but by passion
+                and hunger to unlock potential through our unique perspectives.
               </motion.p>
 
               {/* CTA Button */}
               <motion.a
-                href="#projects"
+                href="#collective"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
@@ -85,13 +90,13 @@ export default function HeroSection() {
                   delay: 0.7,
                   ease: [0.16, 1, 0.3, 1],
                 }}
-                className="bg-[#E55943] hover:bg-[#CB4934] text-black rounded-full px-5 py-2.5 sm:px-6 sm:py-3 flex items-center gap-2 hover:gap-3 group cursor-pointer transition-all duration-300 shadow-lg font-semibold"
+                className="bg-primary rounded-full px-5 py-2.5 sm:px-6 sm:py-3 flex items-center gap-2 hover:gap-3 group cursor-pointer transition-all duration-300 shadow-lg"
               >
-                <span className="text-black font-semibold text-sm sm:text-base tracking-tight">
-                  Explore Case Studies
+                <span className="text-black font-medium text-sm sm:text-base tracking-tight">
+                  Join the lab
                 </span>
                 <div className="bg-black rounded-full w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
-                  <ArrowRight className="text-white w-4 h-4 sm:w-5 sm:h-5" />
+                  <ArrowRight className="text-[#E1E0CC] w-4 h-4 sm:w-5 sm:h-5" />
                 </div>
               </motion.a>
             </div>
