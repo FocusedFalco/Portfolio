@@ -6,11 +6,11 @@ import WordsPullUp from "./WordsPullUp";
 
 export default function HeroSection() {
   const navItems = [
-    "Our story",
-    "Collective",
-    "Workshops",
-    "Programs",
-    "Inquiries",
+    "About",
+    "Skills",
+    "Projects",
+    "Resume",
+    "Contact",
   ];
 
   return (
@@ -38,8 +38,8 @@ export default function HeroSection() {
             {navItems.map((item, idx) => (
               <a
                 key={idx}
-                href={`#${item.toLowerCase().replace(" ", "-")}`}
-                className="text-[10px] sm:text-xs md:text-sm font-normal tracking-wide whitespace-nowrap transition-colors duration-200"
+                href={`#${item.toLowerCase()}`}
+                className="text-[10px] sm:text-xs md:text-sm font-normal tracking-wide uppercase whitespace-nowrap transition-colors duration-200"
                 style={{ color: "rgba(225, 224, 204, 0.8)" }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = "#E1E0CC")}
                 onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(225, 224, 204, 0.8)")}
@@ -56,9 +56,9 @@ export default function HeroSection() {
             {/* Left 8 columns: Giant Heading */}
             <div className="lg:col-span-8 relative">
               <WordsPullUp
-                text="Prisma"
+                text="Rakshit"
                 showAsterisk={true}
-                className="text-[26vw] sm:text-[24vw] md:text-[22vw] lg:text-[20vw] xl:text-[19vw] 2xl:text-[20vw] font-medium leading-[0.85] tracking-[-0.07em]"
+                className="text-[24vw] sm:text-[22vw] md:text-[20vw] lg:text-[18vw] xl:text-[17vw] 2xl:text-[18vw] font-medium leading-[0.85] tracking-[-0.07em] text-[#E1E0CC]"
               />
             </div>
 
@@ -75,14 +75,12 @@ export default function HeroSection() {
                 }}
                 className="text-primary/70 text-xs sm:text-sm md:text-base leading-[1.2] font-normal max-w-md"
               >
-                Prisma is a worldwide network of visual artists, filmmakers and
-                storytellers bound not by place, status or labels but by passion
-                and hunger to unlock potential through our unique perspectives.
+                Pre-final year student at <strong className="font-semibold text-white">IIT (ISM) Dhanbad</strong>. Building data-backed product strategy, user friction solutions, and growth architecture.
               </motion.p>
 
               {/* CTA Button */}
               <motion.a
-                href="#collective"
+                href="#projects"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
@@ -93,7 +91,7 @@ export default function HeroSection() {
                 className="bg-primary rounded-full px-5 py-2.5 sm:px-6 sm:py-3 flex items-center gap-2 hover:gap-3 group cursor-pointer transition-all duration-300 shadow-lg"
               >
                 <span className="text-black font-medium text-sm sm:text-base tracking-tight">
-                  Join the lab
+                  Explore Case Studies
                 </span>
                 <div className="bg-black rounded-full w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
                   <ArrowRight className="text-[#E1E0CC] w-4 h-4 sm:w-5 sm:h-5" />

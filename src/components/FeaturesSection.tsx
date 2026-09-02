@@ -7,11 +7,11 @@ import WordsPullUpMultiStyle, { MultiStyleSegment } from "./WordsPullUpMultiStyl
 export default function FeaturesSection() {
   const headerSegments: MultiStyleSegment[] = [
     {
-      text: "Studio-grade workflows for visionary creators.",
+      text: "Data-driven workflows for high-impact product growth.",
       className: "text-[#E1E0CC]",
     },
     {
-      text: "Built for pure vision. Powered by art.",
+      text: "Built on analytical rigor. Driven by user empathy.",
       className: "text-gray-500 block w-full mt-1 sm:mt-2",
     },
   ];
@@ -30,7 +30,7 @@ export default function FeaturesSection() {
   };
 
   return (
-    <section id="workshops" className="min-h-screen bg-black py-24 md:py-32 px-4 md:px-6 relative overflow-hidden">
+    <section id="skills" className="min-h-screen bg-black py-24 md:py-32 px-4 md:px-6 relative overflow-hidden">
       {/* Background Noise Texture */}
       <div className="bg-noise opacity-[0.15] absolute inset-0 pointer-events-none z-0" />
 
@@ -68,7 +68,7 @@ export default function FeaturesSection() {
             </h3>
           </motion.div>
 
-          {/* Card 2: Project Storyboard. (01) */}
+          {/* Card 2: Product Strategy (01) */}
           <motion.div
             custom={1}
             initial="hidden"
@@ -81,21 +81,21 @@ export default function FeaturesSection() {
               <div className="flex items-center justify-between mb-6">
                 <img
                   src="https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260405_171918_4a5edc79-d78f-4637-ac8b-53c43c220606.png&w=1280&q=85"
-                  alt="Project Storyboard Icon"
+                  alt="Product Strategy Icon"
                   className="w-10 h-10 sm:w-12 sm:h-12 rounded object-cover"
                 />
                 <span className="text-xs font-mono text-gray-500">01</span>
               </div>
               <h3 className="text-lg sm:text-xl font-medium text-[#E1E0CC] mb-5 tracking-tight">
-                Project Storyboard.
+                Product Strategy.
               </h3>
 
               <ul className="space-y-3">
                 {[
-                  "Visual shot sequencing & keyframes",
-                  "Director notes & timeline sync",
-                  "Automated frame breakdown",
-                  "Multi-angle reference boards",
+                  "User Research & Journey Mapping",
+                  "Wireframing & Roadmapping",
+                  "Prioritization & RICE Model",
+                  "A/B Testing & Churn Analytics",
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-center gap-2.5 text-xs sm:text-sm text-gray-400">
                     <Check className="w-4 h-4 text-primary shrink-0" />
@@ -106,15 +106,15 @@ export default function FeaturesSection() {
             </div>
 
             <a
-              href="#programs"
+              href="#projects"
               className="inline-flex items-center gap-1.5 text-xs sm:text-sm text-primary font-medium mt-6 group-hover:gap-2.5 transition-all duration-300"
             >
-              <span>Learn more</span>
+              <span>See case studies</span>
               <ArrowRight className="w-4 h-4 transform -rotate-45 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
           </motion.div>
 
-          {/* Card 3: Smart Critiques. (02) */}
+          {/* Card 3: Languages & Analytics (02) */}
           <motion.div
             custom={2}
             initial="hidden"
@@ -127,20 +127,21 @@ export default function FeaturesSection() {
               <div className="flex items-center justify-between mb-6">
                 <img
                   src="https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260405_171741_ed9845ab-f5b2-4018-8ce7-07cc01823522.png&w=1280&q=85"
-                  alt="Smart Critiques Icon"
+                  alt="Languages & Analytics Icon"
                   className="w-10 h-10 sm:w-12 sm:h-12 rounded object-cover"
                 />
                 <span className="text-xs font-mono text-gray-500">02</span>
               </div>
               <h3 className="text-lg sm:text-xl font-medium text-[#E1E0CC] mb-5 tracking-tight">
-                Smart Critiques.
+                Languages & Analytics.
               </h3>
 
               <ul className="space-y-3">
                 {[
-                  "AI color & composition analysis",
-                  "Peer review & creative notes",
-                  "Seamless NLE tool integrations",
+                  "SQL Data Extraction & Queries",
+                  "Python Data Analytics",
+                  "C Programming & Logic",
+                  "API Integration & Spreadsheets",
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-center gap-2.5 text-xs sm:text-sm text-gray-400">
                     <Check className="w-4 h-4 text-primary shrink-0" />
@@ -151,15 +152,15 @@ export default function FeaturesSection() {
             </div>
 
             <a
-              href="#programs"
+              href="#projects"
               className="inline-flex items-center gap-1.5 text-xs sm:text-sm text-primary font-medium mt-6 group-hover:gap-2.5 transition-all duration-300"
             >
-              <span>Learn more</span>
+              <span>See case studies</span>
               <ArrowRight className="w-4 h-4 transform -rotate-45 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
           </motion.div>
 
-          {/* Card 4: Immersion Capsule. (03) */}
+          {/* Card 4: Tooling & Systems (03) */}
           <motion.div
             custom={3}
             initial="hidden"
@@ -172,20 +173,21 @@ export default function FeaturesSection() {
               <div className="flex items-center justify-between mb-6">
                 <img
                   src="https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260405_171809_f56666dc-c099-4778-ad82-9ad4f209567b.png&w=1280&q=85"
-                  alt="Immersion Capsule Icon"
+                  alt="Tooling & Systems Icon"
                   className="w-10 h-10 sm:w-12 sm:h-12 rounded object-cover"
                 />
                 <span className="text-xs font-mono text-gray-500">03</span>
               </div>
               <h3 className="text-lg sm:text-xl font-medium text-[#E1E0CC] mb-5 tracking-tight">
-                Immersion Capsule.
+                Tooling & Systems.
               </h3>
 
               <ul className="space-y-3">
                 {[
-                  "Deep focus notification silencing",
-                  "Generative ambient soundscapes",
-                  "Production schedule syncing",
+                  "Figma UI & Prototyping",
+                  "Jira & Notion Workflows",
+                  "Tableau & PowerBI Dashboards",
+                  "Google Analytics & Vercel",
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-center gap-2.5 text-xs sm:text-sm text-gray-400">
                     <Check className="w-4 h-4 text-primary shrink-0" />
@@ -196,10 +198,10 @@ export default function FeaturesSection() {
             </div>
 
             <a
-              href="#programs"
+              href="#projects"
               className="inline-flex items-center gap-1.5 text-xs sm:text-sm text-primary font-medium mt-6 group-hover:gap-2.5 transition-all duration-300"
             >
-              <span>Learn more</span>
+              <span>See case studies</span>
               <ArrowRight className="w-4 h-4 transform -rotate-45 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
           </motion.div>
