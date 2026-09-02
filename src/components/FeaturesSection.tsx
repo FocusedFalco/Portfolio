@@ -12,7 +12,7 @@ export default function FeaturesSection() {
     },
     {
       text: "Built on analytical rigor. Driven by user empathy.",
-      className: "text-[#E55943] block w-full mt-1 sm:mt-2 font-mono text-lg sm:text-xl md:text-2xl",
+      className: "text-[#E55943] block w-full mt-1 sm:mt-2 text-lg sm:text-xl md:text-2xl font-normal",
     },
   ];
 
@@ -79,10 +79,10 @@ export default function FeaturesSection() {
           >
             <div>
               <div className="flex items-center justify-between mb-6">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[#E55943]/10 border border-[#E55943]/30 flex items-center justify-center text-[#E55943] font-bold text-lg font-mono">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[#E55943]/10 border border-[#E55943]/30 flex items-center justify-center text-[#E55943] font-bold text-lg">
                   PM
                 </div>
-                <span className="text-xs font-mono text-neutral-500">01</span>
+                <span className="text-xs text-neutral-500 font-medium">01</span>
               </div>
               <h3 className="text-lg sm:text-xl font-medium text-white mb-5 tracking-tight">
                 Product Strategy.
@@ -105,7 +105,7 @@ export default function FeaturesSection() {
 
             <a
               href="#projects"
-              className="inline-flex items-center gap-1.5 text-xs sm:text-sm text-[#E55943] font-medium mt-6 group-hover:gap-2.5 transition-all duration-300 font-mono"
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm text-[#E55943] font-medium mt-6 group-hover:gap-2.5 transition-all duration-300"
             >
               <span>See case studies</span>
               <ArrowRight className="w-4 h-4 transform -rotate-45 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -123,10 +123,10 @@ export default function FeaturesSection() {
           >
             <div>
               <div className="flex items-center justify-between mb-6">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[#E55943]/10 border border-[#E55943]/30 flex items-center justify-center text-[#E55943] font-bold text-lg font-mono">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[#E55943]/10 border border-[#E55943]/30 flex items-center justify-center text-[#E55943] font-bold text-lg">
                   SQL
                 </div>
-                <span className="text-xs font-mono text-neutral-500">02</span>
+                <span className="text-xs text-neutral-500 font-medium">02</span>
               </div>
               <h3 className="text-lg sm:text-xl font-medium text-white mb-5 tracking-tight">
                 Languages & Analytics.
@@ -149,7 +149,7 @@ export default function FeaturesSection() {
 
             <a
               href="#projects"
-              className="inline-flex items-center gap-1.5 text-xs sm:text-sm text-[#E55943] font-medium mt-6 group-hover:gap-2.5 transition-all duration-300 font-mono"
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm text-[#E55943] font-medium mt-6 group-hover:gap-2.5 transition-all duration-300"
             >
               <span>See case studies</span>
               <ArrowRight className="w-4 h-4 transform -rotate-45 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -167,10 +167,10 @@ export default function FeaturesSection() {
           >
             <div>
               <div className="flex items-center justify-between mb-6">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[#E55943]/10 border border-[#E55943]/30 flex items-center justify-center text-[#E55943] font-bold text-lg font-mono">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[#E55943]/10 border border-[#E55943]/30 flex items-center justify-center text-[#E55943] font-bold text-lg">
                   UI
                 </div>
-                <span className="text-xs font-mono text-neutral-500">03</span>
+                <span className="text-xs text-neutral-500 font-medium">03</span>
               </div>
               <h3 className="text-lg sm:text-xl font-medium text-white mb-5 tracking-tight">
                 Tooling & Systems.
@@ -193,7 +193,7 @@ export default function FeaturesSection() {
 
             <a
               href="#projects"
-              className="inline-flex items-center gap-1.5 text-xs sm:text-sm text-[#E55943] font-medium mt-6 group-hover:gap-2.5 transition-all duration-300 font-mono"
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm text-[#E55943] font-medium mt-6 group-hover:gap-2.5 transition-all duration-300"
             >
               <span>See case studies</span>
               <ArrowRight className="w-4 h-4 transform -rotate-45 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

@@ -7,7 +7,7 @@ export default function ResumeSection() {
     <section id="resume" className="bg-black py-20 px-4 md:px-6 relative">
       <div className="max-w-6xl mx-auto bg-[#070708] rounded-2xl md:rounded-[2.5rem] p-8 sm:p-12 md:p-14 border border-neutral-900 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-8">
         <div className="space-y-3 max-w-2xl">
-          <span className="text-[#E55943] text-[10px] sm:text-xs tracking-widest uppercase block font-medium font-mono">
+          <span className="text-[#E55943] text-[10px] sm:text-xs tracking-widest uppercase block font-medium">
             CURRICULUM VITAE
           </span>
           <h3 className="text-2xl sm:text-3xl font-medium text-white tracking-tight flex items-center gap-3">
@@ -24,7 +24,7 @@ export default function ResumeSection() {
             href="/resume.pdf"
             target="_blank"
             rel="noreferrer"
-            className="w-full md:w-auto bg-[#E55943] text-black hover:bg-[#CB4934] font-semibold text-sm uppercase py-4 px-8 rounded-full flex items-center justify-center gap-3 transition-all duration-300 shadow-lg hover:shadow-red-950/30 font-mono"
+            className="w-full md:w-auto bg-[#E55943] text-black hover:bg-[#CB4934] font-semibold text-sm uppercase py-4 px-8 rounded-full flex items-center justify-center gap-3 transition-all duration-300 shadow-lg hover:shadow-red-950/30"
           >
             <Download className="w-4 h-4" />
             <span>Download Resume</span>

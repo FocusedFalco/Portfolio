@@ -8,7 +8,7 @@ export default function ContactSection() {
       <div className="max-w-4xl mx-auto text-center space-y-12">
         {/* Section Header */}
         <div className="space-y-3">
-          <span className="text-[#E55943] text-[10px] sm:text-xs tracking-widest uppercase block font-medium font-mono">
+          <span className="text-[#E55943] text-[10px] sm:text-xs tracking-widest uppercase block font-medium">
             GET IN TOUCH
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium text-white tracking-tight">
@@ -72,8 +72,8 @@ export default function ContactSection() {
           </div>
         </div>
 
-        <p className="text-xs text-neutral-500 font-mono pt-12">
-          © {new Date().getFullYear()} Rakshit Raj. Built with sunset coral red design aesthetics.
+        <p className="text-xs text-neutral-500 font-sans pt-12">
+          © {new Date().getFullYear()} Rakshit Raj. Built with Almarai &amp; Instrument Serif typography.
         </p>
       </div>
     </section>

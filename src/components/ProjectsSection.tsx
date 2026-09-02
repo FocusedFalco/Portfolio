@@ -179,7 +179,7 @@ export default function ProjectsSection({ onSelectProject }: ProjectsSectionProp
     { text: "Product Case Studies & PRDs.", className: "text-white" },
     {
       text: "Built on actual user research, data analytics, and impact estimation.",
-      className: "text-[#E55943] block w-full mt-1 sm:mt-2 font-mono text-lg sm:text-xl md:text-2xl",
+      className: "text-[#E55943] block w-full mt-1 sm:mt-2 text-lg sm:text-xl md:text-2xl font-normal",
     },
   ];
 
@@ -188,7 +188,7 @@ export default function ProjectsSection({ onSelectProject }: ProjectsSectionProp
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center max-w-4xl mx-auto mb-16 md:mb-20">
-          <span className="text-[#E55943] text-[10px] sm:text-xs tracking-widest uppercase mb-4 block font-medium font-mono">
+          <span className="text-[#E55943] text-[10px] sm:text-xs tracking-widest uppercase mb-4 block font-medium">
             CASE STUDY ARCHIVE
           </span>
           <WordsPullUpMultiStyle
@@ -212,11 +212,11 @@ export default function ProjectsSection({ onSelectProject }: ProjectsSectionProp
               <div className="space-y-5">
                 {/* Header Tag + Award */}
                 <div className="flex flex-wrap items-center justify-between gap-2">
-                  <span className="text-xs text-[#E55943] uppercase tracking-widest font-mono">
+                  <span className="text-xs text-[#E55943] uppercase tracking-widest font-medium">
                     00{idx + 1} {"// CASE STUDY"}
                   </span>
                   {project.award && (
-                    <span className="text-[10px] sm:text-xs text-[#E55943] bg-[#E55943]/10 px-2.5 py-1 rounded-full border border-[#E55943]/30 font-medium font-mono">
+                    <span className="text-[10px] sm:text-xs text-[#E55943] bg-[#E55943]/10 px-2.5 py-1 rounded-full border border-[#E55943]/30 font-medium">
                       {project.award}
                     </span>
                   )}
@@ -234,7 +234,7 @@ export default function ProjectsSection({ onSelectProject }: ProjectsSectionProp
               </div>
 
               {/* Bottom CTA Link */}
-              <div className="flex items-center gap-2 text-xs sm:text-sm text-[#E55943] font-medium font-mono pt-8 group-hover:gap-3 transition-all duration-300">
+              <div className="flex items-center gap-2 text-xs sm:text-sm text-[#E55943] font-medium pt-8 group-hover:gap-3 transition-all duration-300">
                 <span>Read Pitch Deck &amp; PRD Details</span>
                 <ChevronRight className="w-4 h-4 text-[#E55943]" />
               </div>
