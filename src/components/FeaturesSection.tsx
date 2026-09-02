@@ -59,7 +59,7 @@ export default function FeaturesSection() {
               loop
               muted
               playsInline
-              className="absolute inset-0 w-full h-full object-cover z-0 transition-transform duration-700 group-hover:scale-105 opacity-60"
+              className="absolute inset-0 w-full h-full object-cover z-0 transition-transform duration-700 group-hover:scale-105"
               src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260406_133058_0504132a-0cf3-4450-a370-8ea3b05c95d4.mp4"
             />
             <div className="bg-gradient-to-t from-black/90 via-black/40 to-transparent absolute inset-0 z-10 pointer-events-none" />
