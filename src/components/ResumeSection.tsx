@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Download, FileText } from "lucide-react";
 
 export default function ResumeSection() {
@@ -13,7 +12,7 @@ export default function ResumeSection() {
           </span>
           <h3 className="text-2xl sm:text-3xl font-medium text-white tracking-tight flex items-center gap-3">
             <FileText className="w-6 h-6 text-[#E55943]" />
-            Academic & Professional Profile
+            Academic &amp; Professional Profile
           </h3>
           <p className="text-sm text-gray-400 font-light leading-relaxed">
             Highlights academic background at <strong className="text-white">IIT (ISM) Dhanbad (9.1 GPA)</strong>, Inter-IIT product case awards (3rd place), ProdBlitz-3 top 4, Sherlock Studio internship, and structured PM capabilities.

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ChevronRight, Award, FileText } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import WordsPullUpMultiStyle, { MultiStyleSegment } from "./WordsPullUpMultiStyle";
 
 export interface ProjectData {
@@ -213,7 +213,7 @@ export default function ProjectsSection({ onSelectProject }: ProjectsSectionProp
                 {/* Header Tag + Award */}
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <span className="text-xs text-[#E55943] uppercase tracking-widest font-mono">
-                    00{idx + 1} // CASE STUDY
+                    00{idx + 1} {"// CASE STUDY"}
                   </span>
                   {project.award && (
                     <span className="text-[10px] sm:text-xs text-[#E55943] bg-[#E55943]/10 px-2.5 py-1 rounded-full border border-[#E55943]/20 font-medium">
@@ -235,7 +235,7 @@ export default function ProjectsSection({ onSelectProject }: ProjectsSectionProp
 
               {/* Bottom CTA Link */}
               <div className="flex items-center gap-2 text-xs sm:text-sm text-[#E55943] font-medium pt-8 group-hover:gap-3 transition-all duration-300">
-                <span>Read Pitch Deck & PRD Details</span>
+                <span>Read Pitch Deck &amp; PRD Details</span>
                 <ChevronRight className="w-4 h-4" />
               </div>
             </motion.div>
