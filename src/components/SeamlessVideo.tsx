@@ -6,14 +6,14 @@ interface SeamlessVideoProps {
   src: string;
   className?: string;
   crossfadeDuration?: number; // in seconds
-  playbackRate?: number; // Speed multiplier (e.g. 0.12 to stretch video loop over ~2 minutes)
+  playbackRate?: number; // Keep at 1.0 for 1x normal speed
 }
 
 export default function SeamlessVideo({
   src,
   className = "absolute inset-0 w-full h-full object-cover z-0",
-  crossfadeDuration = 3.0,
-  playbackRate = 0.12,
+  crossfadeDuration = 2.0,
+  playbackRate = 1.0,
 }: SeamlessVideoProps) {
   const video1Ref = useRef<HTMLVideoElement>(null);
   const video2Ref = useRef<HTMLVideoElement>(null);
@@ -22,7 +22,7 @@ export default function SeamlessVideo({
   const [activeVideo, setActiveVideo] = useState<1 | 2>(1);
   const isTransitioningRef = useRef(false);
 
-  // Apply slow-motion playback speed (0.12x for ~2-minute ambient playback cycle)
+  // Set 1x normal playback speed
   useEffect(() => {
     const v1 = video1Ref.current;
     const v2 = video2Ref.current;
@@ -38,7 +38,7 @@ export default function SeamlessVideo({
     v1.playbackRate = playbackRate;
     v2.playbackRate = playbackRate;
 
-    // Start playing video 1 initially
+    // Start playing video 1 initially at 1x speed
     v1.play().catch(() => {});
 
     const handleTimeUpdate = () => {
@@ -50,7 +50,7 @@ export default function SeamlessVideo({
       if (currentVideo.duration && currentVideo.currentTime >= currentVideo.duration - crossfadeDuration) {
         isTransitioningRef.current = true;
         
-        // Prepare and start next video at slow playback speed
+        // Prepare and start next video at 1x speed
         nextVideo.currentTime = 0;
         nextVideo.playbackRate = playbackRate;
         nextVideo.play().then(() => {
@@ -77,7 +77,7 @@ export default function SeamlessVideo({
         ref={video1Ref}
         muted
         playsInline
-        className={`${className} transition-opacity duration-[2500ms] ease-in-out ${
+        className={`${className} transition-opacity duration-[1500ms] ease-in-out ${
           activeVideo === 1 ? "opacity-100" : "opacity-0"
         }`}
         src={src}
@@ -88,7 +88,7 @@ export default function SeamlessVideo({
         ref={video2Ref}
         muted
         playsInline
-        className={`${className} transition-opacity duration-[2500ms] ease-in-out ${
+        className={`${className} transition-opacity duration-[1500ms] ease-in-out ${
           activeVideo === 2 ? "opacity-100" : "opacity-0"
         }`}
         src={src}
