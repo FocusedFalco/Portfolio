@@ -3,6 +3,7 @@
 import { motion, Variants } from "framer-motion";
 import { Check, ArrowRight } from "lucide-react";
 import WordsPullUpMultiStyle, { MultiStyleSegment } from "./WordsPullUpMultiStyle";
+import SeamlessVideo from "./SeamlessVideo";
 
 export default function FeaturesSection() {
   const headerSegments: MultiStyleSegment[] = [
@@ -54,13 +55,10 @@ export default function FeaturesSection() {
             variants={cardVariants}
             className="relative rounded-2xl md:rounded-[1.5rem] overflow-hidden p-6 sm:p-8 flex flex-col justify-end h-[420px] lg:h-full border border-white/10 group shadow-2xl"
           >
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="absolute inset-0 w-full h-full object-cover z-0 transition-transform duration-700 group-hover:scale-105"
+            <SeamlessVideo
               src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260406_133058_0504132a-0cf3-4450-a370-8ea3b05c95d4.mp4"
+              className="absolute inset-0 w-full h-full object-cover z-0 transition-transform duration-700 group-hover:scale-105"
+              crossfadeDuration={2.0}
             />
             <div className="bg-gradient-to-t from-black/90 via-black/40 to-transparent absolute inset-0 z-10 pointer-events-none" />
             <h3 className="text-xl sm:text-2xl font-medium text-[#E1E0CC] z-20 relative tracking-tight">
