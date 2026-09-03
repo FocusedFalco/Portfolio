@@ -208,46 +208,6 @@ export const projectsData: ProjectData[] = [
     ],
     deckUrl: "https://drive.google.com/file/d/10koRnmbVAKUTXin7hgXzokgG4_DdkHB0/view?usp=sharing",
     deckName: "Zepto Quick Commerce Case Study.pdf"
-  },
-  {
-    id: "sherlock",
-    title: "Sherlock Studio Workflow Redesign",
-    tagline: "Redesigning creator onboarding, asset management, and collaborative review workflows during Sherlock Studio internship.",
-    award: "Product Internship Case Study",
-    objective: "Streamline creator asset upload latency and increase team review completion rates.",
-    about: "Completed during Rakshit's internship at Sherlock Studio, this project redesigned the core creator onboarding flow and introduced real-time collaborative timestamp commenting for video editors and brand managers.",
-    problem: {
-      statement: "Independent video creators and brand partners suffered from disjointed feedback loops and unstructured media file organization.",
-      impact: [
-        "Delayed video publishing timelines across client campaigns.",
-        "Extended revision cycles leading to team burnout.",
-        "Lower creator retention on the platform."
-      ],
-      causes: [
-        "No frame-accurate comment tagging on video timelines.",
-        "Scattered feedback across email and WhatsApp threads.",
-        "Complex media folder hierarchies causing lost assets."
-      ]
-    },
-    solutions: [
-      { title: "Frame-Accurate Video Commenting", desc: "Tag feedback directly on video timeline milliseconds for instant editor clarity." },
-      { title: "One-Click Client Approval Links", desc: "Share secure passwordless review previews for instant brand sign-offs." },
-      { title: "AI Media Tagging & Search", desc: "Auto-generate searchable tags for raw video clips to organize project assets." }
-    ],
-    metrics: {
-      nsm: "Video Review Turnaround Time (Hours)",
-      secondary: [
-        "Creator Onboarding Completion Rate",
-        "Revision Loop Count per Video",
-        "Monthly Active Creators"
-      ]
-    },
-    gtm: [
-      "Launch beta trial with 50 video production agencies.",
-      "Integrate Slack and WhatsApp notification hooks for real-time review alerts."
-    ],
-    deckUrl: "/Sherlock_Studio_Case_Study.pdf",
-    deckName: "Sherlock Studio Case Study.pdf"
   }
 ];
 
