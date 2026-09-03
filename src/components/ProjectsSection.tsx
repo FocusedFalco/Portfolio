@@ -1,7 +1,8 @@
 "use client";
 
+import { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, ChevronLeft } from "lucide-react";
 import WordsPullUpMultiStyle, { MultiStyleSegment } from "./WordsPullUpMultiStyle";
 
 export interface ProjectData {
@@ -167,6 +168,86 @@ export const projectsData: ProjectData[] = [
     gtm: [],
     deckUrl: "/student_academic_performance_analysis.pdf",
     deckName: "Student Academic Performance Analysis.pdf"
+  },
+  {
+    id: "zepto",
+    title: "Zepto Quick-Commerce Conversion",
+    tagline: "Optimizing checkout flow, reducing 10-minute order drop-offs, and introducing surge-demand micro-incentives.",
+    award: "Quick-Commerce Case Study",
+    objective: "Reduce cart abandonment rate during peak hours and improve repeat order frequency.",
+    about: "Evaluates Zepto's checkout funnel during peak grocery hours, identifying price-sensitivity drop-offs at delivery fee calculation and proposing dynamic bundling, slot reservations, and instant cart recovery widgets.",
+    problem: {
+      statement: "Quick-commerce users experience high checkout drop-offs during peak surge pricing windows.",
+      impact: [
+        "Lost revenue during high-intent visits.",
+        "Increased cart abandonment rate above 35% during peak hours.",
+        "Customer migration to competing quick-commerce apps."
+      ],
+      causes: [
+        "Unexpected surge fee additions at final payment step.",
+        "Lack of transparent arrival estimates during inclement weather.",
+        "Missing small-item add-on suggestions to bridge free delivery threshold."
+      ]
+    },
+    solutions: [
+      { title: "Dynamic Free Delivery Thresholds", desc: "Nudge users with small add-on items tailored to their basket to unlock free delivery automatically." },
+      { title: "Cart Time-Reservation Lock", desc: "Reserve high-demand fresh produce and inventory for 5 minutes during the checkout step." },
+      { title: "1-Click Reorder Widget", desc: "Introduce a smart home screen widget for 1-click reordering of daily essentials." }
+    ],
+    metrics: {
+      nsm: "Cart-to-Order Conversion Rate (%)",
+      secondary: [
+        "Average Order Value (AOV)",
+        "Repeat Order Frequency per Month",
+        "Peak Surge Cart Abandonment Rate"
+      ]
+    },
+    gtm: [
+      "Roll out home screen 1-click reorder widget to top 10% frequent buyers.",
+      "A/B test dynamic free delivery threshold vs flat surge fee model."
+    ],
+    deckUrl: "https://drive.google.com/file/d/10koRnmbVAKUTXin7hgXzokgG4_DdkHB0/view?usp=sharing",
+    deckName: "Zepto Quick Commerce Case Study.pdf"
+  },
+  {
+    id: "sherlock",
+    title: "Sherlock Studio Workflow Redesign",
+    tagline: "Redesigning creator onboarding, asset management, and collaborative review workflows during Sherlock Studio internship.",
+    award: "Product Internship Case Study",
+    objective: "Streamline creator asset upload latency and increase team review completion rates.",
+    about: "Completed during Rakshit's internship at Sherlock Studio, this project redesigned the core creator onboarding flow and introduced real-time collaborative timestamp commenting for video editors and brand managers.",
+    problem: {
+      statement: "Independent video creators and brand partners suffered from disjointed feedback loops and unstructured media file organization.",
+      impact: [
+        "Delayed video publishing timelines across client campaigns.",
+        "Extended revision cycles leading to team burnout.",
+        "Lower creator retention on the platform."
+      ],
+      causes: [
+        "No frame-accurate comment tagging on video timelines.",
+        "Scattered feedback across email and WhatsApp threads.",
+        "Complex media folder hierarchies causing lost assets."
+      ]
+    },
+    solutions: [
+      { title: "Frame-Accurate Video Commenting", desc: "Tag feedback directly on video timeline milliseconds for instant editor clarity." },
+      { title: "One-Click Client Approval Links", desc: "Share secure passwordless review previews for instant brand sign-offs." },
+      { title: "AI Media Tagging & Search", desc: "Auto-generate searchable tags for raw video clips to organize project assets." }
+    ],
+    metrics: {
+      nsm: "Video Review Turnaround Time (Hours)",
+      secondary: [
+        "Creator Onboarding Completion Rate",
+        "Revision Loop Count per Video",
+        "Monthly Active Creators"
+      ]
+    },
+    gtm: [
+      "Launch beta trial with 50 video production agencies.",
+      "Integrate Slack and WhatsApp notification hooks for real-time review alerts."
+    ],
+    deckUrl: "/Sherlock_Studio_Case_Study.pdf",
+    deckName: "Sherlock Studio Case Study.pdf"
   }
 ];
 
@@ -175,6 +256,10 @@ interface ProjectsSectionProps {
 }
 
 export default function ProjectsSection({ onSelectProject }: ProjectsSectionProps) {
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+
   const headerSegments: MultiStyleSegment[] = [
     { text: "Product Case Studies & PRDs.", className: "text-[#E1E0CC]" },
     {
@@ -183,31 +268,84 @@ export default function ProjectsSection({ onSelectProject }: ProjectsSectionProp
     },
   ];
 
+  const checkScroll = () => {
+    if (scrollContainerRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
+      setCanScrollLeft(scrollLeft > 10);
+      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
+    }
+  };
+
+  const scroll = (direction: "left" | "right") => {
+    if (scrollContainerRef.current) {
+      const scrollAmount = scrollContainerRef.current.clientWidth * 0.8;
+      scrollContainerRef.current.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
     <section id="projects" className="bg-black py-24 md:py-32 px-4 md:px-6 relative">
       <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
-        <div className="text-center max-w-4xl mx-auto mb-16 md:mb-20">
-          <span className="text-primary text-[10px] sm:text-xs tracking-widest uppercase mb-4 block font-medium">
-            CASE STUDY ARCHIVE
-          </span>
-          <WordsPullUpMultiStyle
-            segments={headerSegments}
-            containerClassName="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-normal leading-tight"
-          />
+        {/* Section Header with Navigation Arrows */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 md:mb-16 gap-6">
+          <div className="max-w-3xl">
+            <span className="text-primary text-[10px] sm:text-xs tracking-widest uppercase mb-4 block font-medium">
+              CASE STUDY ARCHIVE ({projectsData.length} PROJECTS)
+            </span>
+            <WordsPullUpMultiStyle
+              segments={headerSegments}
+              containerClassName="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-normal leading-tight"
+            />
+          </div>
+
+          {/* Slide Navigation Buttons */}
+          <div className="flex items-center gap-3 shrink-0">
+            <button
+              onClick={() => scroll("left")}
+              disabled={!canScrollLeft}
+              className={`w-12 h-12 rounded-full border border-white/10 flex items-center justify-center transition-all ${
+                canScrollLeft
+                  ? "bg-[#101010] text-primary hover:border-primary cursor-pointer hover:bg-primary/10"
+                  : "bg-black/40 text-gray-600 cursor-not-allowed border-white/5"
+              }`}
+              aria-label="Previous Projects"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+            <button
+              onClick={() => scroll("right")}
+              disabled={!canScrollRight}
+              className={`w-12 h-12 rounded-full border border-white/10 flex items-center justify-center transition-all ${
+                canScrollRight
+                  ? "bg-[#101010] text-primary hover:border-primary cursor-pointer hover:bg-primary/10"
+                  : "bg-black/40 text-gray-600 cursor-not-allowed border-white/5"
+              }`}
+              aria-label="Next Projects"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+          </div>
         </div>
 
-        {/* Projects Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Sliding Projects Horizontal Container */}
+        <div
+          ref={scrollContainerRef}
+          onScroll={checkScroll}
+          className="flex gap-6 overflow-x-auto scrollbar-none scroll-smooth snap-x snap-mandatory py-4 -mx-4 px-4 md:-mx-6 md:px-6"
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        >
           {projectsData.map((project, idx) => (
             <motion.div
               key={project.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: idx * 0.15 }}
+              transition={{ duration: 0.6, delay: idx * 0.1 }}
               onClick={() => onSelectProject(project)}
-              className="bg-[#101010] rounded-2xl md:rounded-[1.8rem] p-8 border border-white/5 hover:border-primary/40 flex flex-col justify-between cursor-pointer transition-all duration-300 group shadow-xl hover:-translate-y-1"
+              className="bg-[#101010] rounded-2xl md:rounded-[1.8rem] p-8 border border-white/5 hover:border-primary/40 flex flex-col justify-between cursor-pointer transition-all duration-300 group shadow-xl hover:-translate-y-1 shrink-0 w-[300px] sm:w-[350px] md:w-[380px] lg:w-[400px] snap-start"
             >
               <div className="space-y-5">
                 {/* Header Tag + Award */}
@@ -216,7 +354,7 @@ export default function ProjectsSection({ onSelectProject }: ProjectsSectionProp
                     00{idx + 1} {"// CASE STUDY"}
                   </span>
                   {project.award && (
-                    <span className="text-[10px] sm:text-xs text-primary bg-primary/10 px-2.5 py-1 rounded-full border border-primary/20 font-medium">
+                    <span className="text-[10px] sm:text-xs text-primary bg-primary/10 px-2.5 py-1 rounded-full border border-primary/20 font-medium truncate max-w-[200px]">
                       {project.award}
                     </span>
                   )}
