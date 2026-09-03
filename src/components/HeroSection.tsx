@@ -17,11 +17,12 @@ export default function HeroSection() {
   return (
     <section className="h-screen w-full p-4 md:p-6 bg-black relative">
       <div className="relative h-full w-full rounded-2xl md:rounded-[2rem] overflow-hidden bg-black flex flex-col justify-between">
-        {/* Background Video with Infinite Seamless Loop */}
+        {/* Background Video with 2-Minute Slow Motion Ambient Loop */}
         <SeamlessVideo
           src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260405_170732_8a9ccda6-5cff-4628-b164-059c500a2b41.mp4"
           className="absolute inset-0 w-full h-full object-cover z-0"
-          crossfadeDuration={2.0}
+          crossfadeDuration={3.0}
+          playbackRate={0.12}
         />
 
         {/* Noise Overlay */}
