@@ -264,7 +264,7 @@ export default function ProjectsSection({ onSelectProject }: ProjectsSectionProp
     { text: "Product Case Studies & PRDs.", className: "text-[#E1E0CC]" },
     {
       text: "Built on actual user research, data analytics, and impact estimation.",
-      className: "text-gray-500 block w-full mt-1 sm:mt-2",
+      className: "text-gray-500 mt-1 sm:mt-2",
     },
   ];
 
@@ -289,43 +289,44 @@ export default function ProjectsSection({ onSelectProject }: ProjectsSectionProp
   return (
     <section id="projects" className="bg-black py-24 md:py-32 px-4 md:px-6 relative">
       <div className="max-w-7xl mx-auto">
-        {/* Section Header with Navigation Arrows */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 md:mb-16 gap-6">
-          <div className="max-w-3xl">
-            <span className="text-primary text-[10px] sm:text-xs tracking-widest uppercase mb-4 block font-medium">
-              CASE STUDY ARCHIVE ({projectsData.length} PROJECTS)
-            </span>
-            <WordsPullUpMultiStyle
-              segments={headerSegments}
-              containerClassName="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-normal leading-tight"
-            />
-          </div>
+        {/* Centered Section Header */}
+        <div className="text-center max-w-4xl mx-auto mb-12 md:mb-16">
+          <span className="text-primary text-[10px] sm:text-xs tracking-widest uppercase mb-4 block font-medium">
+            CASE STUDY ARCHIVE ({projectsData.length} PROJECTS)
+          </span>
+          <WordsPullUpMultiStyle
+            segments={headerSegments}
+            containerClassName="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-normal leading-tight"
+          />
 
-          {/* Slide Navigation Buttons */}
-          <div className="flex items-center gap-3 shrink-0">
+          {/* Centered Slider Navigation Controls */}
+          <div className="flex items-center justify-center gap-4 mt-8">
             <button
               onClick={() => scroll("left")}
               disabled={!canScrollLeft}
-              className={`w-12 h-12 rounded-full border border-white/10 flex items-center justify-center transition-all ${
+              className={`w-11 h-11 rounded-full border border-white/10 flex items-center justify-center transition-all ${
                 canScrollLeft
                   ? "bg-[#101010] text-primary hover:border-primary cursor-pointer hover:bg-primary/10"
                   : "bg-black/40 text-gray-600 cursor-not-allowed border-white/5"
               }`}
               aria-label="Previous Projects"
             >
-              <ChevronLeft className="w-6 h-6" />
+              <ChevronLeft className="w-5 h-5" />
             </button>
+            <span className="text-xs text-gray-400 font-sans tracking-wide">
+              Slide to explore case studies
+            </span>
             <button
               onClick={() => scroll("right")}
               disabled={!canScrollRight}
-              className={`w-12 h-12 rounded-full border border-white/10 flex items-center justify-center transition-all ${
+              className={`w-11 h-11 rounded-full border border-white/10 flex items-center justify-center transition-all ${
                 canScrollRight
                   ? "bg-[#101010] text-primary hover:border-primary cursor-pointer hover:bg-primary/10"
                   : "bg-black/40 text-gray-600 cursor-not-allowed border-white/5"
               }`}
               aria-label="Next Projects"
             >
-              <ChevronRight className="w-6 h-6" />
+              <ChevronRight className="w-5 h-5" />
             </button>
           </div>
         </div>
