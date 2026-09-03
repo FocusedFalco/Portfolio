@@ -16,7 +16,7 @@ export default function AboutSection() {
     { text: "I am Rakshit Raj,", className: "font-normal text-white" },
     { text: "an aspiring Product Manager", className: "italic font-serif text-primary" },
     {
-      text: "pursuing B.Tech at IIT (ISM) Dhanbad with a 9.1 CGPA.",
+      text: "pursuing B.Tech at IIT (ISM) Dhanbad.",
       className: "font-normal text-white",
     },
   ];
@@ -61,9 +61,9 @@ export default function AboutSection() {
         {/* Key Metrics Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-12 border-t border-white/5 text-left">
           <div className="p-6 rounded-xl bg-black/40 border border-white/5 space-y-1">
-            <span className="text-3xl sm:text-4xl font-bold text-white block">9.1</span>
-            <span className="text-sm font-medium text-primary block">B.Tech CGPA</span>
-            <span className="text-xs text-gray-400 block">IIT (ISM) Dhanbad</span>
+            <span className="text-3xl sm:text-4xl font-bold text-white block">IIT (ISM)</span>
+            <span className="text-sm font-medium text-primary block">Dhanbad B.Tech</span>
+            <span className="text-xs text-gray-400 block">Pre-final year student</span>
           </div>
 
           <div className="p-6 rounded-xl bg-black/40 border border-white/5 space-y-1">

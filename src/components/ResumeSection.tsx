@@ -15,7 +15,7 @@ export default function ResumeSection() {
             Academic &amp; Professional Profile
           </h3>
           <p className="text-sm text-gray-300 font-light leading-relaxed">
-            Highlights academic background at <strong className="text-white font-semibold">IIT (ISM) Dhanbad (9.1 GPA)</strong>, Inter-IIT product case awards (3rd place), ProdBlitz-3 top 4, Sherlock Studio internship, and structured PM capabilities.
+            Highlights academic background at <strong className="text-white font-semibold">IIT (ISM) Dhanbad</strong>, Inter-IIT product case awards (3rd place), ProdBlitz-3 top 4, Sherlock Studio internship, and structured PM capabilities.
           </p>
         </div>
 
