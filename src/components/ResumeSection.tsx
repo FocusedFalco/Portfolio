@@ -2,10 +2,18 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Download, FileText, Briefcase, GraduationCap, Trophy, Award, Code, ChevronRight, UserCheck } from "lucide-react";
+import { Download, FileText, Briefcase, GraduationCap, Trophy, Award, Code, UserCheck } from "lucide-react";
 
 export default function ResumeSection() {
-  const [activeTab, setActiveTab] = useState<"experience" | "education" | "skills" | "leadership">("experience");
+  type TabType = "experience" | "education" | "skills" | "leadership";
+  const [activeTab, setActiveTab] = useState<TabType>("experience");
+
+  const tabs: { id: TabType; label: string; icon: typeof Briefcase }[] = [
+    { id: "experience", label: "Experience & Projects", icon: Briefcase },
+    { id: "education", label: "Education & Achievements", icon: GraduationCap },
+    { id: "skills", label: "Technical Skills & Tools", icon: Code },
+    { id: "leadership", label: "Positions of Responsibility", icon: UserCheck },
+  ];
 
   return (
     <section id="resume" className="bg-black py-24 md:py-32 px-4 md:px-6 relative">
@@ -42,18 +50,13 @@ export default function ResumeSection() {
         <div className="bg-[#101010] rounded-2xl md:rounded-[2rem] border border-white/5 p-6 sm:p-10 shadow-2xl space-y-8">
           {/* Tab Navigation Controls */}
           <div className="flex flex-wrap items-center gap-2 border-b border-white/5 pb-4">
-            {[
-              { id: "experience", label: "Experience & Projects", icon: Briefcase },
-              { id: "education", label: "Education & Achievements", icon: GraduationCap },
-              { id: "skills", label: "Technical Skills & Tools", icon: Code },
-              { id: "leadership", label: "Positions of Responsibility", icon: UserCheck },
-            ].map((tab) => {
+            {tabs.map((tab) => {
               const Icon = tab.icon;
               const isActive = activeTab === tab.id;
               return (
                 <button
                   key={tab.id}
-                  onClick={() => setActiveTab(tab.id as any)}
+                  onClick={() => setActiveTab(tab.id)}
                   className={`flex items-center gap-2 px-4 py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all cursor-pointer ${
                     isActive
                       ? "bg-primary text-black shadow-md"
