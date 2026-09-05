@@ -21,7 +21,7 @@ export default function ResumeSection() {
               Rakshit Raj — Resume &amp; Qualifications
             </h3>
             <p className="text-sm text-gray-300 font-light leading-relaxed">
-              B.Tech student at <strong className="text-white font-semibold">IIT (ISM) Dhanbad (GPA: 9.10 / 10)</strong>. Product Management Intern at Sherlock Studio, 3rd Place Inter-IIT Product Competition, and Top 4 ProdBlitz-3 finalist.
+              B.Tech student at <strong className="text-white font-semibold">IIT (ISM) Dhanbad</strong>. Product Management Intern at Sherlock Studio, 3rd Place Inter-IIT Product Competition, and Top 4 ProdBlitz-3 finalist.
             </p>
           </div>
 
@@ -163,8 +163,7 @@ export default function ResumeSection() {
                     </p>
                   </div>
                   <div className="text-left md:text-right shrink-0">
-                    <span className="text-2xl font-bold text-primary block">GPA: 9.10 / 10</span>
-                    <span className="text-xs text-gray-500 font-mono">Expected May 2028 | Dhanbad, Jharkhand</span>
+                    <span className="text-xs text-gray-400 font-mono">Expected May 2028 | Dhanbad, Jharkhand</span>
                   </div>
                 </div>
 
