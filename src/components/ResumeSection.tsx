@@ -166,6 +166,7 @@ export default function ResumeSection() {
                     </p>
                   </div>
                   <div className="text-left md:text-right shrink-0">
+                    <span className="text-2xl font-bold text-primary block">GPA: 9.10 / 10</span>
                     <span className="text-xs text-gray-400 font-mono">Expected May 2028 | Dhanbad, Jharkhand</span>
                   </div>
                 </div>
